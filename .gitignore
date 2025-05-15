@@ -1,0 +1,10 @@
+debug
+transcript
+work
+*.d
+*.o
+.DS_Store
+*~"
+Thumbs.db
+._*
+~$*
