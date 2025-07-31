@@ -293,8 +293,12 @@
         </tr>
         <!-- ****** MENUS - SEGUNDA LINHA  **************************************************************************************************** -->
         <tr>
-          <td class="w15">
-            <a class="personalizar-button" HREF="../microel/index.html"> Microeletrônica </a>
+           <td class="w15">
+            <select class="personalizar-select" onchange="window.open(this.options[this.selectedIndex].value,'_top')" name="website">
+                  <option value=""> Graduação </option>
+                  <option value="../microel/index.html"> Microeletrônica </option>
+                 <option value="../FSD_alunos/index.html"> FSD  </option>
+            </select>
           </td>
           <td class="w15">
             <a class="personalizar-button" HREF="../sichip/index.html"> Sist. Int. Chip </a>
@@ -349,7 +353,6 @@
               <!-- <option value="FMdicas.htm"> Dicas </option> -->
               <!-- <option value="http://www.inf.pucrs.br/calazans">  Ney </option> -->
               <option value="https://www.lboro.ac.uk/departments/meme/staff/luciano-ost/"> Ost </option>
-              <option value="../FSD_alunos/index.html"> FSD Alunos </option>
             </select>
           </td>
         </tr>
@@ -609,7 +612,7 @@
         </tr>
       </table>
       <hr>
-      <p class="atual"> Last update: July 13, 2025 </p>
+      <p class="atual"> Last update: July 30, 2025 </p>
     </div>
   </body>
 </html>
