@@ -165,77 +165,87 @@
     }
 
     // ####################################################################################-     
-     function filterByConference2(conf) {
-         // Pega somente os <li>, ignora <p class="year">
-          var allItems = document.querySelectorAll("li");
 
-          allItems.forEach(function(item) {
-              var text = item.innerHTML;
-              if (conf === "ALL") {
-                  item.style.display = "list-item";
-              } else if (text.includes("In: " + conf + ",")) {
-                  item.style.display = "list-item";
-              } else {
-                  item.style.display = "none";
-              }
-          });
+
+    function filterByConference(conf) {
+      const allItems = document.querySelectorAll("ol li");
+      const yearHeaders = document.querySelectorAll("p.year:not(#confCount)");
+      const yearSelectorBlocks = document.getElementsByClassName("show_year_selection");
+      const confCountBar = document.getElementById("confCount");
+      var totalArticles = 0;
+      var years = document.getElementsByClassName('year');
+
+
+      // Primeiro, calcula o total de artigos
+      for (var i = 0; i < years.length; i++) {
+             var yearId = years[i].id;
+             var olId = "ol" + yearId.substring(1);  // Remove the "a" prefix from the year ID to get the ol ID
+             var olElement = document.getElementById(olId);
+             
+             if (olElement) {
+                 totalArticles += olElement.getElementsByTagName('li').length;
+             }
+         }
+
+      if (conf === "ALL") {
+        // Restaura artigos
+        allItems.forEach((item) => {
+          item.style.display = "list-item";
+          item.style.visibility = "visible";
+        });
+
+        // Mostra anos (mas nunca o #confCount aqui)
+        yearHeaders.forEach((yh) => {
+          yh.style.display = "block";
+          yh.style.visibility = "visible";
+        });
+
+        // Mostra seletor de ano
+        if (yearSelectorBlocks.length > 0) {
+          yearSelectorBlocks[0].style.display = "block";
+          yearSelectorBlocks[0].style.visibility = "visible";
+        }
+
+        // Oculta a barra do contador ao voltar para ALL
+        confCountBar.style.display = "none";
+        confCountBar.textContent = "";
+        return;
+      }
+
+      // Esconde todos os artigos
+      allItems.forEach((item) => {
+        item.style.display = "none";
+        item.style.visibility = "hidden";
+      });
+
+      // Esconde anos, mas preserva o #confCount (excluído no seletor acima)
+      yearHeaders.forEach((yh) => {
+        yh.style.display = "none";
+        yh.style.visibility = "hidden";
+      });
+
+      // Esconde seletor de ano
+      if (yearSelectorBlocks.length > 0) {
+        yearSelectorBlocks[0].style.display = "none";
+        yearSelectorBlocks[0].style.visibility = "hidden";
+      }
+
+      // Conta e exibe apenas a conferência escolhida
+      const match = "In: " + conf + ",";
+      let count = 0;
+      allItems.forEach((item) => {
+        if (item.innerHTML.indexOf(match) !== -1) {
+          item.style.display = "list-item";
+          item.style.visibility = "visible";
+          count++;
+        }
+      });
+
+      // Mostra a barra azul ANTES da lista com o total encontrado
+      confCountBar.textContent = conf + " (" + count + " articles from " + totalArticles + ")";
+      confCountBar.style.display = "block";
+      confCountBar.style.visibility = "visible";
     }
-
-function filterByConference(conf) {
-  // Articles (list items)
-  var allItems = document.querySelectorAll("ol li");
-  // Year headers
-  var yearHeaders = document.querySelectorAll("p.year");
-  // “Year” selector block (optional: hide while filtering by conf)
-  var yearSelectorBlocks = document.getElementsByClassName("show_year_selection");
-
-  if (conf === "ALL") {
-    // Restore: show all articles
-    allItems.forEach(function (item) {
-      item.style.display = "list-item";
-      item.style.visibility = "visible";
-    });
-    // Show year headers again
-    yearHeaders.forEach(function (yh) {
-      yh.style.display = "block";
-      yh.style.visibility = "visible";
-    });
-    // Show the "Year" selector again (if it was visible originally)
-    if (yearSelectorBlocks.length > 0) {
-      yearSelectorBlocks[0].style.display = "block";
-      yearSelectorBlocks[0].style.visibility = "visible";
-    }
-    return;
-  }
-
-  // Hide all first
-  allItems.forEach(function (item) {
-    item.style.display = "none";
-    item.style.visibility = "hidden";
-  });
-
-  // Hide all year headers (requested behavior)
-  yearHeaders.forEach(function (yh) {
-    yh.style.display = "none";
-    yh.style.visibility = "hidden";
-  });
-
-  // Optionally hide the "Year" selector while a conference is active
-  if (yearSelectorBlocks.length > 0) {
-    yearSelectorBlocks[0].style.display = "none";
-    yearSelectorBlocks[0].style.visibility = "hidden";
-  }
-
-  // Show only items whose HTML contains: In: <conf>,
-  // (matches your entries, e.g., “In: SBCCI, 2025 <br>”)
-  var match = "In: " + conf + ",";
-  allItems.forEach(function (item) {
-    if (item.innerHTML.indexOf(match) !== -1) {
-      item.style.display = "list-item";
-      item.style.visibility = "visible";
-    }
-  });
-}
 
 
     // ####################################################################################-
@@ -345,6 +355,7 @@ function filterByConference(conf) {
   </select>
 </div>
 
+
 <div class="show_conference_selection">
   Conference:
   <select id="conferenceSelect" onchange="filterByConference(this.value)">
@@ -408,9 +419,9 @@ function filterByConference(conf) {
 
 <div class="div_conferences">  
 
-<!-- ########################################################################################## -->
-<!-- ###########################  STARTS THE CONFERENCE PAPERS ################################ -->
-<!-- ########################################################################################## -->
+  <!-- Conference counter bar (blue), initially hidden -->
+  <p id="confCount" class="year" style="display:none;"></p>
+
 
 <!-- ########################################################################################## -->
 <!-- ########################################################################################## -->
