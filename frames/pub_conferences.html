@@ -270,6 +270,57 @@
 
 
 
+      function generateReport() {
+        var confSelect = document.getElementById("conferenceSelect");
+        var conferences = Array.from(confSelect.options)
+                               .map(opt => opt.value)
+                               .filter(v => v !== "ALL");
+
+        var allItems = document.querySelectorAll("ol li");
+        var reportLines = [];
+
+        conferences.forEach(conf => {
+          var count = 0;
+          var yearsSet = new Set();
+
+          allItems.forEach(item => {
+            if (item.innerHTML.indexOf("In: " + conf + ",") !== -1) {
+              count++;
+              var m = item.innerHTML.match(/In:\s*[^,]+,\s*(\d{4})/);
+              if (m) yearsSet.add(m[1]);
+            }
+          });
+
+          if (count > 0) {
+            var years = Array.from(yearsSet).sort((a,b) => b.localeCompare(a));
+
+            // Nome fixo com 15 caracteres, contagem com 2 dígitos
+            var confName = conf.padEnd(15, " ");
+            var countStr = String(count).padStart(2, " ");
+
+            reportLines.push(confName + " " + countStr + " [" + years.join(", ") + "]");
+          }
+        });
+
+        // Nova janela com <pre>
+        var reportWin = window.open("", "ReportWindow");
+        if (!reportWin) {
+          alert("Pop-up blocked. Please allow pop-ups for this site.");
+          return;
+        }
+        var doc = reportWin.document;
+        doc.open();
+        doc.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Conference Report</title></head><body></body></html>');
+        doc.close();
+
+        var pre = doc.createElement("pre");
+        pre.style.fontFamily = "monospace";
+        pre.style.fontSize = "12pt";
+        pre.textContent = reportLines.join("\n");
+        doc.body.appendChild(pre);
+      }
+
+
 </script>
 
 
@@ -379,6 +430,11 @@
       <option value="CBRN">CBRN</option>
       <option value="SCTF">SCTF</option>
   </select>
+
+   &nbsp;&nbsp;&nbsp;&nbsp;
+
+   <button id="btnReport" onclick="generateReport()" style="margin-left:16px;">Report</button>
+
 </div>
 
 
