@@ -8,6 +8,22 @@
 
   <style>
 
+        .div_area_selecao 
+                { position: fixed;  top:  35px;   left:  60px;      
+                  font-weight: bold; font-size: 12pt;   color: black; }
+
+        .show_year_selection 
+                { position: fixed;  top:  80px;   left:  550px;    
+                  font-weight: bold; font-size: 12pt;   color: black;  }
+
+       .show_conference_selection 
+                { position: fixed;  top:  80px;   left:  750px;    
+                  font-weight: bold; font-size: 12pt;   color: black;  }
+
+        .div_conferences 
+                { position: fixed;  top:  120px;  left:    5px;    overflow-y: scroll;
+                  height: 90%;  width: 98%; }
+
         ol.start { 
             counter-reset: mycounter; 
         }
@@ -34,192 +50,74 @@
            border-style: none;
            background: #ADD8E6;
            color: navy;
-           margin-left:  2vw;
-           width: 96vw;
+           margin-left:  5vw;
+           width: 85vw;
           }
 
   </style>
 
+   <script> 
 
-<script>
-  // ---- helpers ----
-  function hideElements(nodeList) {
-    nodeList.forEach(function(el){ el.style.visibility = "hidden"; el.style.display = "none"; });
-  }
-  function realYearHeaders() {
-    var years = Array.from(document.querySelectorAll("p.year"));
-    return years.filter(function(el){ return el.id !== "confCount"; });
-  }
+    // ####################################################################################-
+    function type_paper(x) {
 
-  // (1) ALL button
-  function showAll() {
-    var allItems = document.querySelectorAll("ol li");
-    var years = realYearHeaders();
-    var confCountBar = document.getElementById("confCount");
+      console.log("Option selected:", x);
+    
+      var paper_classes = ["general", "Cmpsoc", "Csec", "Cfault", "Cenergy", "Cnoc", "CSDN", "Cmapping", "Cmigration", "Cfpga", "CRV5", "CML"];
 
-    // show everything
-    allItems.forEach(function(el){ el.style.visibility = "visible"; el.style.display = "list-item"; });
-    years.forEach(function(el){ el.style.visibility = "visible"; el.style.display = "block"; });
+      // Esconde todas as classes de papers
+      for (var ix = 0; ix < paper_classes.length; ix++) {
+        var elems = document.getElementsByClassName(paper_classes[ix]);
+        for (var i = 0; i < elems.length; i++) {
+            elems[i].style.visibility = "hidden";
+            elems[i].style.display = "none";
+        }
+     }
 
-    // reset controls
-    var subj = document.getElementById("subjectSelect");
-    var year = document.getElementById("yearSelect");
-    var conf = document.getElementById("conferenceSelect");
-    if (subj) subj.value = "0";
-    if (year) year.value = "0";
-    if (conf) conf.value = "ALL";
+      // Mostrar ou esconder os anos (blocos) conforme a opção selecionada (0 mestra todos os blocos de anos, senao >0 não mostra nenhum bloco)
+      var elem_year = document.getElementsByClassName("year");
+      //console.log("Year elements count:", elem_year.length);
+      for (var i = 0; i < elem_year.length; i++) {
+        if (x == 0) {
+            elem_year[i].style.visibility = "visible";
+            elem_year[i].style.display = "block";
+        } else {
+            elem_year[i].style.visibility = "hidden";
+            elem_year[i].style.display = "none";
+        }
+      }
 
-    // hide conference counter
-    if (confCountBar) { confCountBar.style.display = "none"; confCountBar.textContent = ""; }
-  }
+      // mostra o block de seleção de anos
+      var elems = document.getElementsByClassName("show_year_selection");
+      //console.log("Show year selection elements count:", elems.length);
+      if (x == 0) {
+        elems[0].style.visibility = "visible";
+        elems[0].style.display = "block";
+      } else {
+        elems[0].style.visibility = "hidden";
+        elems[0].style.display = "none";
+      }
 
-  // (2) Subject selector
-  function selectSubject(val) {
-    var PAPER_CLASSES = ["general","Cmpsoc","Csec","Cfault","Cenergy","Cnoc","CSDN","Cmapping","Cmigration","Cfpga","CRV5","CML"];
-    var allItems = document.querySelectorAll("ol li");
-    var years = realYearHeaders();
-    var confCountBar = document.getElementById("confCount");
-
-    if (val === "0") { showAll(); return; }
-
-    // Reset other controls
-    var year = document.getElementById("yearSelect"); if (year) year.value = "0";
-    var conf = document.getElementById("conferenceSelect"); if (conf) conf.value = "ALL";
-
-    // Hide years and counter bar, hide all items
-    hideElements(years);
-    if (confCountBar) { confCountBar.style.display = "none"; confCountBar.textContent = ""; }
-    hideElements(allItems);
-
-    // Show only items of the selected subject
-    var idx = parseInt(val, 10);
-    var cls = PAPER_CLASSES[idx];
-    Array.from(document.getElementsByClassName(cls)).forEach(function(el){
-      el.style.display = "list-item"; el.style.visibility = "visible";
-    });
-  }
-
-  // (3) Year selector
-  function selectYear(val) {
-    var allItems = document.querySelectorAll("ol li");
-    var years = realYearHeaders();
-    var confCountBar = document.getElementById("confCount");
-
-    if (val === "0") { showAll(); return; }
-
-    // Reset other controls
-    var subj = document.getElementById("subjectSelect"); if (subj) subj.value = "0";
-    var conf = document.getElementById("conferenceSelect"); if (conf) conf.value = "ALL";
-
-    // Hide all items and year headers
-    hideElements(allItems);
-    hideElements(years);
-
-    // Show selected year header and its items
-    var yearId = "a" + val;      // e.g., "2025" -> "a2025"
-    var olId   = "ol" + val;     // e.g., "2025" -> "ol2025"
-    var yhdr = document.getElementById(yearId);
-    var ylist = document.getElementById(olId);
-    if (yhdr) { yhdr.style.display = "block"; yhdr.style.visibility = "visible"; }
-    if (ylist) {
-      Array.from(ylist.getElementsByTagName("li")).forEach(function(el){
-        el.style.display = "list-item"; el.style.visibility = "visible";
-      });
+      if (x > 0) { // Mostrar a classe de papers selecionada
+        elems = document.getElementsByClassName(paper_classes[x]);
+        for (var i = 0; i < elems.length; i++) {
+            elems[i].style.visibility = "visible";
+            elems[i].style.display = "list-item";
+        }
+      } 
+      else {
+        // Se "ALL, sorted by year" é selecionado, mostrar todos os elementos
+        for (var ix = 0; ix < paper_classes.length; ix++) {
+            var elems = document.getElementsByClassName(paper_classes[ix]);
+            for (var i = 0; i < elems.length; i++) {
+                elems[i].style.visibility = "visible";
+                elems[i].style.display = "list-item";
+            }
+        }
+      }
     }
 
-    // Hide conference counter
-    if (confCountBar) { confCountBar.style.display = "none"; confCountBar.textContent = ""; }
-
-    if (yhdr) { yhdr.scrollIntoView({ behavior: 'instant', block: 'start' }); }
-  }
-
-  // (4) Conference selector
-  function selectConference(conf) {
-    var allItems = document.querySelectorAll("ol li");
-    var years = realYearHeaders();
-    var confCountBar = document.getElementById("confCount");
-
-    if (conf === "ALL") { showAll(); return; }
-
-    // Reset other controls
-    var subj = document.getElementById("subjectSelect"); if (subj) subj.value = "0";
-    var year = document.getElementById("yearSelect"); if (year) year.value = "0";
-
-    // Hide all items and years
-    hideElements(allItems);
-    hideElements(years);
-
-    // Show only items containing "In: <conf>,"
-    var match = "In: " + conf + ",";
-    var count = 0;
-    allItems.forEach(function(item){
-      if (item.innerHTML.indexOf(match) !== -1) {
-        item.style.display = "list-item";
-        item.style.visibility = "visible";
-        count++;
-      }
-    });
-
-    // Update blue conference counter (before the list)
-    if (confCountBar) {
-      var total = getTotalArticles();
-      confCountBar.textContent = conf + " (" + count + " articles from " + total + ")";
-      confCountBar.style.display = "block";
-      confCountBar.style.visibility = "visible";
-    }
-  }
-
-  // ---- Counters ----
-  function getTotalArticles() {
-    var years = realYearHeaders();
-    var total = 0;
-    years.forEach(function(y){
-      var ol = document.getElementById("ol" + y.id.substring(1));
-      if (ol) total += ol.getElementsByTagName("li").length;
-    });
-    return total;
-  }
-
-  function countArticlesPerYear() {
-    var years = realYearHeaders();
-    var total = 0;
-    years.forEach(function(y){
-      var ol = document.getElementById("ol" + y.id.substring(1));
-      if (ol) total += ol.getElementsByTagName("li").length;
-    });
-    years.forEach(function(y){
-      var ol = document.getElementById("ol" + y.id.substring(1));
-      if (ol) {
-        var n = ol.getElementsByTagName("li").length;
-        var baseText = y.textContent.split(" (")[0];
-        y.textContent = baseText + " (" + n + " articles from " + total + ")";
-      }
-    });
-  }
-
-  // Populate "Year" select dynamically
-  function populateYearSelect() {
-    var sel = document.getElementById("yearSelect");
-    if (!sel) return;
-    var years = realYearHeaders().map(function(y){ return y.id.substring(1); })
-                 .sort(function(a,b){ return b.localeCompare(a); });
-    while (sel.options.length > 1) sel.remove(1);
-    years.forEach(function(y){
-      var opt = document.createElement("option");
-      opt.value = y;
-      opt.textContent = " " + y + " ";
-      sel.appendChild(opt);
-    });
-  }
-
-  window.onload = function() {
-    countArticlesPerYear();
-    populateYearSelect();
-    showAll();
-  };
-
-
-      // ####################################################################################-
+    // ####################################################################################-
     function checkPassword(url) {
            const actualEncryptedArray = [432, 160, 72, 208, 240, 64, 704, 584, 600, 584, 576];
            let savedPassword = sessionStorage.getItem("savedPassword");
@@ -266,127 +164,263 @@
           return encrypted;
     }
 
-    // ####################################################################################-  
+    // ####################################################################################-     
 
 
+    function filterByConference(conf) {
+      const allItems = document.querySelectorAll("ol li");
+      const yearHeaders = document.querySelectorAll("p.year:not(#confCount)");
+      const yearSelectorBlocks = document.getElementsByClassName("show_year_selection");
+      const confCountBar = document.getElementById("confCount");
+      var totalArticles = 0;
+      var years = document.getElementsByClassName('year');
 
-</script>
+
+      // Primeiro, calcula o total de artigos
+      for (var i = 0; i < years.length; i++) {
+             var yearId = years[i].id;
+             var olId = "ol" + yearId.substring(1);  // Remove the "a" prefix from the year ID to get the ol ID
+             var olElement = document.getElementById(olId);
+             
+             if (olElement) {
+                 totalArticles += olElement.getElementsByTagName('li').length;
+             }
+         }
+
+      if (conf === "ALL") {
+        // Restaura artigos
+        allItems.forEach((item) => {
+          item.style.display = "list-item";
+          item.style.visibility = "visible";
+        });
+
+        // Mostra anos (mas nunca o #confCount aqui)
+        yearHeaders.forEach((yh) => {
+          yh.style.display = "block";
+          yh.style.visibility = "visible";
+        });
+
+        // Mostra seletor de ano
+        if (yearSelectorBlocks.length > 0) {
+          yearSelectorBlocks[0].style.display = "block";
+          yearSelectorBlocks[0].style.visibility = "visible";
+        }
+
+        // Oculta a barra do contador ao voltar para ALL
+        confCountBar.style.display = "none";
+        confCountBar.textContent = "";
+        return;
+      }
+
+      // Esconde todos os artigos
+      allItems.forEach((item) => {
+        item.style.display = "none";
+        item.style.visibility = "hidden";
+      });
+
+      // Esconde anos, mas preserva o #confCount (excluído no seletor acima)
+      yearHeaders.forEach((yh) => {
+        yh.style.display = "none";
+        yh.style.visibility = "hidden";
+      });
+
+      // Esconde seletor de ano
+      if (yearSelectorBlocks.length > 0) {
+        yearSelectorBlocks[0].style.display = "none";
+        yearSelectorBlocks[0].style.visibility = "hidden";
+      }
+
+      // Conta e exibe apenas a conferência escolhida
+      const match = "In: " + conf + ",";
+      let count = 0;
+      allItems.forEach((item) => {
+        if (item.innerHTML.indexOf(match) !== -1) {
+          item.style.display = "list-item";
+          item.style.visibility = "visible";
+          count++;
+        }
+      });
+
+      // Mostra a barra azul ANTES da lista com o total encontrado
+      confCountBar.textContent = conf + " (" + count + " articles from " + totalArticles + ")";
+      confCountBar.style.display = "block";
+      confCountBar.style.visibility = "visible";
+    }
 
 
+    // ####################################################################################-
+    function countArticlesPerYear() {
+         var years = document.getElementsByClassName('year');
+         var totalArticles = 0;
+    
+         // Primeiro, calcula o total de artigos
+         for (var i = 0; i < years.length; i++) {
+             var yearId = years[i].id;
+             var olId = "ol" + yearId.substring(1);  // Remove the "a" prefix from the year ID to get the ol ID
+             var olElement = document.getElementById(olId);
+             
+             if (olElement) {
+                 totalArticles += olElement.getElementsByTagName('li').length;
+             }
+         }
+    
+         // Agora, atualiza o texto de cada ano com a contagem de artigos e o total
+         for (var i = 0; i < years.length; i++) {
+             var yearId = years[i].id;
+             var olId = "ol" + yearId.substring(1);  // Remove the "a" prefix from the year ID to get the ol ID
+             var olElement = document.getElementById(olId);
+             
+             if (olElement) {
+                 var articleCount = olElement.getElementsByTagName('li').length;
+                 years[i].textContent = years[i].textContent + " (" + articleCount + " articles from " +  totalArticles + ")";
+             }
+         }
+    }
+
+    // ####################################################################################-
+    window.onload = function() {
+        countArticlesPerYear();
+        type_paper(0);  // To ensure all papers are visible initially
+    };
+
+
+   </script>
 
 </head>
 
 <body>
 
 <!-- *********** MENU DE TOPO - INCLUI UM ARQUIVO EXTERNO ********************* -->
-<div style="position: fixed; width: 100vw;  left: 0px; top: 0px; z-index: 20; height: 45px;  background: #ADD8E6; ">
+<div style="position:fixed; width: 100vw;  left: 0px; top: 0px; z-index: 20; height: 45px;  background: #ADD8E6; ">
     <object width="100%" height="60" type="text/html" data="menu_top.html"></object>
 </div>
 
 <!-- ####################################### Select a subject form #############-->
+<div class="div_area_selecao">
 
-<div style="position: fixed; width: 100vw;  left: 30px; top: 40px;  font-weight: bold; font-size: 12pt;   color: black; ">
+       <h2>Published Papers in Conferences and Symposiums</h2>
+ 
+       Select Paper by Subject or Year:&nbsp;&nbsp;&nbsp;&nbsp;
+          <select onchange="type_paper(this.value)">
+                  <option value=0> Select a year</option>
+                  <option value=1> MPSoC and many-cores</option>
+                  <option value=2> Security</option>
+                  <option value=3> Fault Tolerance</option>
+                  <option value=4> Energy and low power</option>
+                  <option value=5> NoC - Network on Chip</option>
+                  <option value=6> SDN - Software Defined Network</option>
+                  <option value=7> Task Mapping</option>
+                  <option value=8> Task Migration</option>
+                  <option value=9> FPGA and Reconfigurable</option>
+                  <option value=10> RISC-V</option>
+                  <option value=11> Machine Learning</option>
+          </select>
+</div>
 
+<!-- ####### Display the year selection when ALL papers are visible ################## -->
+<div class="show_year_selection">
 
-  <h2>Published Papers in Conferences and Symposiums</h2>
-
-  <!-- (1) ALL button -->
-  &nbsp;&nbsp;&nbsp;&nbsp;Show all papers:&nbsp;
-  <button id="btnAll" onclick="showAll()" style="margin-right: 16px;">ALL</button>
-
-  <!-- (2) Subject selector -->
-  Select Paper by Subject or Year:&nbsp;
-  <select id="subjectSelect" onchange="selectSubject(this.value)">
-      <option value="0">ALL papers</option>
-      <option value="1">MPSoC and many-cores</option>
-      <option value="2">Security</option>
-      <option value="3">Fault Tolerance</option>
-      <option value="4">Energy and low power</option>
-      <option value="5">NoC - Network on Chip</option>
-      <option value="6">SDN - Software Defined Network</option>
-      <option value="7">Task Mapping</option>
-      <option value="8">Task Migration</option>
-      <option value="9">FPGA and Reconfigurable</option>
-      <option value="10">RISC-V</option>
-      <option value="11">Machine Learning</option>
-  </select>
-
-  &nbsp;&nbsp;&nbsp;&nbsp;
-
-  <!-- (3) Year selector -->
-  Year:&nbsp;
-  <select id="yearSelect" onchange="selectYear(this.value)">
-      <option value="0">ALL years</option>
-      <!-- options auto-filled on load -->
-  </select>
-
-  &nbsp;&nbsp;&nbsp;&nbsp;
-
-  <!-- (4) Conference selector -->
-  Conference:&nbsp;
-  <select id="conferenceSelect" onchange="selectConference(this.value)">
-      <option value="ALL">All conferences</option>
-      <option value="SBCCI">SBCCI</option>
-      <option value="ICECS">ICECS</option>
-      <option value="ISCAS">ISCAS</option>
-      <option value="IBERCHIP">IBERCHIP</option>
-      <option value="IFIP-VLSI-SOC">IFIP-VLSI-SOC</option>
-      <option value="ISVLSI">ISVLSI</option>
-      <option value="LASCAS">LASCAS</option>
-      <option value="SOC">SOC</option>
-      <option value="DATE">DATE</option>
-      <option value="RSP">RSP</option>
-      <option value="SBESC">SBESC</option>
-      <option value="RECOSOC">RECOSOC</option>
-      <option value="DCIS">DCIS</option>
-      <option value="SOCC">SOCC</option>
-      <option value="ISQED">ISQED</option>
-      <option value="PATMOS">PATMOS</option>
-      <option value="FPL">FPL</option>
-      <option value="LATW">LATW</option>
-      <option value="FIE">FIE</option>
-      <option value="NOCS">NOCS</option>
-      <option value="SPL">SPL</option>
-      <option value="Reconfig">Reconfig</option>
-      <option value="RAW">RAW</option>
-      <option value="SCI">SCI</option>
-      <option value="SBMICRO">SBMICRO</option>
-      <option value="NEWCAS">NEWCAS</option>
-      <option value="GLSVLSI">GLSVLSI</option>
-      <option value="LATS">LATS</option>
-      <option value="WSCAD">WSCAD</option>
-      <option value="DFT">DFT</option>
-      <option value="DSD">DSD</option>
-      <option value="INDIN">INDIN</option>
-      <option value="BEC">BEC</option>
-      <option value="ACES-MB">ACES-MB</option>
-      <option value="CODES+ISSS">CODES+ISSS</option>
-      <option value="SIM">SIM</option>
-      <option value="SIES">SIES</option>
-      <option value="VTS">VTS</option>
-      <option value="ICCD">ICCD</option>
-      <option value="REC">REC</option>
-      <option value="ETS">ETS</option>
-      <option value="ITC">ITC</option>
-      <option value="ASP-DAC">ASP-DAC</option>
-      <option value="SCS">SCS</option>
-      <option value="COBEP">COBEP</option>
-      <option value="FPGA">FPGA</option>
-      <option value="ICTEM">ICTEM</option>
-      <option value="HLDVT">HLDVT</option>
-      <option value="SBrT">SBrT</option>
-      <option value="MWSCAS">MWSCAS</option>
-      <option value="CBRN">CBRN</option>
-      <option value="SCTF">SCTF</option>
+    Year:
+    <select size="1" name="links" onchange="window.location.href=this.value;">
+            <option value="#a2025"> 2025 </option>
+            <option value="#a2024"> 2024 </option>
+            <option value="#a2023"> 2023 </option>
+            <option value="#a2022"> 2022 </option>
+            <option value="#a2021"> 2021 </option>
+            <option value="#a2020"> 2020 </option>
+            <option value="#a2019"> 2019 </option>
+            <option value="#a2018"> 2018 </option>
+            <option value="#a2017"> 2017 </option>
+            <option value="#a2016"> 2016 </option>
+            <option value="#a2015"> 2015 </option>
+            <option value="#a2014"> 2014 </option>
+            <option value="#a2013"> 2013 </option>
+            <option value="#a2012"> 2012 </option>
+            <option value="#a2011"> 2011 </option>
+            <option value="#a2010"> 2010 </option>
+            <option value="#a2009"> 2009 </option>
+            <option value="#a2008"> 2008 </option>
+            <option value="#a2007"> 2007 </option>
+            <option value="#a2006"> 2006 </option>
+            <option value="#a2005"> 2005 </option>
+            <option value="#a2004"> 2004 </option>
+            <option value="#a2003"> 2003 </option>
+            <option value="#a2002"> 2002 </option>
+            <option value="#a2001"> 2001 </option>
+            <option value="#a2000"> 2000 </option>
+            <option value="#a1999"> 1999 </option>
+            <option value="#a1998"> 1998 </option>
+            <option value="#a1997"> 1997 </option>
+            <option value="#a1996"> 1996 </option>
   </select>
 </div>
 
 
-<!-- ####### Display the year selection when ALL papers are visible ################## -->
-<div style="position: fixed; width: 100vw;   left: 5px; top: 130px;  overflow-y: scroll;  height: 90%; ">  
+<div class="show_conference_selection">
+  Conference:
+  <select id="conferenceSelect" onchange="filterByConference(this.value)">
+    <option value="ALL">All Conferences</option>
+    <option value="SBCCI">SBCCI</option>
+    <option value="ICECS">ICECS</option>
+    <option value="ISCAS">ISCAS</option>
+    <option value="IBERCHIP">IBERCHIP</option>
+    <option value="IFIP-VLSI-SOC">IFIP-VLSI-SOC</option>
+    <option value="ISVLSI">ISVLSI</option>
+    <option value="LASCAS">LASCAS</option>
+    <option value="SOC">SOC</option>
+    <option value="DATE">DATE</option>
+    <option value="RSP">RSP</option>
+    <option value="SBESC">SBESC</option>
+    <option value="RECOSOC">RECOSOC</option>
+    <option value="DCIS">DCIS</option>
+    <option value="SOCC">SOCC</option>
+    <option value="ISQED">ISQED</option>
+    <option value="PATMOS">PATMOS</option>
+    <option value="FPL">FPL</option>
+    <option value="LATW">LATW</option>
+    <option value="FIE">FIE</option>
+    <option value="NOCS">NOCS</option>
+    <option value="SPL">SPL</option>
+    <option value="Reconfig">Reconfig</option>
+    <option value="RAW">RAW</option>
+    <option value="SCI">SCI</option>
+    <option value="SBMICRO">SBMICRO</option>
+    <option value="NEWCAS">NEWCAS</option>
+    <option value="GLSVLSI">GLSVLSI</option>
+    <option value="LATS">LATS</option>
+    <option value="WSCAD">WSCAD</option>
+    <option value="DFT">DFT</option>
+    <option value="DSD">DSD</option>
+    <option value="INDIN">INDIN</option>
+    <option value="BEC">BEC</option>
+    <option value="ACES-MB">ACES-MB</option>
+    <option value="CODES+ISSS">CODES+ISSS</option>
+    <option value="SIM">SIM</option>
+    <option value="SIES">SIES</option>
+    <option value="VTS">VTS</option>
+    <option value="ICCD">ICCD</option>
+    <option value="REC">REC</option>
+    <option value="ETS">ETS</option>
+    <option value="ITC">ITC</option>
+    <option value="ASP-DAC">ASP-DAC</option>
+    <option value="SCS">SCS</option>
+    <option value="COBEP">COBEP</option>
+    <option value="FPGA">FPGA</option>
+    <option value="ICTEM">ICTEM</option>
+    <option value="HLDVT">HLDVT</option>
+    <option value="SBrT">SBrT</option>
+    <option value="MWSCAS">MWSCAS</option>
+    <option value="CBRN">CBRN</option>
+    <option value="SCTF">SCTF</option>
+  </select>
+</div>
+
+
+
+<div class="div_conferences">  
 
   <!-- Conference counter bar (blue), initially hidden -->
-  <p id="confCount" class="year confbar" style="display:none;"></p>
+  <p id="confCount" class="year" style="display:none;"></p>
 
 
 <!-- ########################################################################################## -->
@@ -2666,9 +2700,8 @@
 
 </ol>
 
-<p> &nbsp; </p>
- &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 03/set/2025 
-<p> &nbsp; </p>
+<p> &nbsp;&nbsp; &nbsp;&nbsp; </p>
+<p> &nbsp;&nbsp; &nbsp;&nbsp; </p>
 
 </div>
 </body>
