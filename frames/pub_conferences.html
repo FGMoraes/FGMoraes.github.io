@@ -16,6 +16,10 @@
                 { position: fixed;  top:  80px;   left:  550px;    
                   font-weight: bold; font-size: 12pt;   color: black;  }
 
+       .show_conference_selection 
+                { position: fixed;  top:  80px;   left:  750px;    
+                  font-weight: bold; font-size: 12pt;   color: black;  }
+
         .div_conferences 
                 { position: fixed;  top:  120px;  left:    5px;    overflow-y: scroll;
                   height: 90%;  width: 98%; }
@@ -160,6 +164,80 @@
           return encrypted;
     }
 
+    // ####################################################################################-     
+     function filterByConference2(conf) {
+         // Pega somente os <li>, ignora <p class="year">
+          var allItems = document.querySelectorAll("li");
+
+          allItems.forEach(function(item) {
+              var text = item.innerHTML;
+              if (conf === "ALL") {
+                  item.style.display = "list-item";
+              } else if (text.includes("In: " + conf + ",")) {
+                  item.style.display = "list-item";
+              } else {
+                  item.style.display = "none";
+              }
+          });
+    }
+
+function filterByConference(conf) {
+  // Articles (list items)
+  var allItems = document.querySelectorAll("ol li");
+  // Year headers
+  var yearHeaders = document.querySelectorAll("p.year");
+  // “Year” selector block (optional: hide while filtering by conf)
+  var yearSelectorBlocks = document.getElementsByClassName("show_year_selection");
+
+  if (conf === "ALL") {
+    // Restore: show all articles
+    allItems.forEach(function (item) {
+      item.style.display = "list-item";
+      item.style.visibility = "visible";
+    });
+    // Show year headers again
+    yearHeaders.forEach(function (yh) {
+      yh.style.display = "block";
+      yh.style.visibility = "visible";
+    });
+    // Show the "Year" selector again (if it was visible originally)
+    if (yearSelectorBlocks.length > 0) {
+      yearSelectorBlocks[0].style.display = "block";
+      yearSelectorBlocks[0].style.visibility = "visible";
+    }
+    return;
+  }
+
+  // Hide all first
+  allItems.forEach(function (item) {
+    item.style.display = "none";
+    item.style.visibility = "hidden";
+  });
+
+  // Hide all year headers (requested behavior)
+  yearHeaders.forEach(function (yh) {
+    yh.style.display = "none";
+    yh.style.visibility = "hidden";
+  });
+
+  // Optionally hide the "Year" selector while a conference is active
+  if (yearSelectorBlocks.length > 0) {
+    yearSelectorBlocks[0].style.display = "none";
+    yearSelectorBlocks[0].style.visibility = "hidden";
+  }
+
+  // Show only items whose HTML contains: In: <conf>,
+  // (matches your entries, e.g., “In: SBCCI, 2025 <br>”)
+  var match = "In: " + conf + ",";
+  allItems.forEach(function (item) {
+    if (item.innerHTML.indexOf(match) !== -1) {
+      item.style.display = "list-item";
+      item.style.visibility = "visible";
+    }
+  });
+}
+
+
     // ####################################################################################-
     function countArticlesPerYear() {
          var years = document.getElementsByClassName('year');
@@ -194,6 +272,7 @@
         countArticlesPerYear();
         type_paper(0);  // To ensure all papers are visible initially
     };
+
 
    </script>
 
@@ -265,6 +344,67 @@
             <option value="#a1996"> 1996 </option>
   </select>
 </div>
+
+<div class="show_conference_selection">
+  Conference:
+  <select id="conferenceSelect" onchange="filterByConference(this.value)">
+    <option value="ALL">All Conferences</option>
+    <option value="SBCCI">SBCCI</option>
+    <option value="ICECS">ICECS</option>
+    <option value="ISCAS">ISCAS</option>
+    <option value="IBERCHIP">IBERCHIP</option>
+    <option value="IFIP-VLSI-SOC">IFIP-VLSI-SOC</option>
+    <option value="ISVLSI">ISVLSI</option>
+    <option value="LASCAS">LASCAS</option>
+    <option value="SOC">SOC</option>
+    <option value="DATE">DATE</option>
+    <option value="RSP">RSP</option>
+    <option value="SBESC">SBESC</option>
+    <option value="RECOSOC">RECOSOC</option>
+    <option value="DCIS">DCIS</option>
+    <option value="SOCC">SOCC</option>
+    <option value="ISQED">ISQED</option>
+    <option value="PATMOS">PATMOS</option>
+    <option value="FPL">FPL</option>
+    <option value="LATW">LATW</option>
+    <option value="FIE">FIE</option>
+    <option value="NOCS">NOCS</option>
+    <option value="SPL">SPL</option>
+    <option value="Reconfig">Reconfig</option>
+    <option value="RAW">RAW</option>
+    <option value="SCI">SCI</option>
+    <option value="SBMICRO">SBMICRO</option>
+    <option value="NEWCAS">NEWCAS</option>
+    <option value="GLSVLSI">GLSVLSI</option>
+    <option value="LATS">LATS</option>
+    <option value="WSCAD">WSCAD</option>
+    <option value="DFT">DFT</option>
+    <option value="DSD">DSD</option>
+    <option value="INDIN">INDIN</option>
+    <option value="BEC">BEC</option>
+    <option value="ACES-MB">ACES-MB</option>
+    <option value="CODES+ISSS">CODES+ISSS</option>
+    <option value="SIM">SIM</option>
+    <option value="SIES">SIES</option>
+    <option value="VTS">VTS</option>
+    <option value="ICCD">ICCD</option>
+    <option value="REC">REC</option>
+    <option value="ETS">ETS</option>
+    <option value="ITC">ITC</option>
+    <option value="ASP-DAC">ASP-DAC</option>
+    <option value="SCS">SCS</option>
+    <option value="COBEP">COBEP</option>
+    <option value="FPGA">FPGA</option>
+    <option value="ICTEM">ICTEM</option>
+    <option value="HLDVT">HLDVT</option>
+    <option value="SBrT">SBrT</option>
+    <option value="MWSCAS">MWSCAS</option>
+    <option value="CBRN">CBRN</option>
+    <option value="SCTF">SCTF</option>
+  </select>
+</div>
+
+
 
 <div class="div_conferences">  
 
