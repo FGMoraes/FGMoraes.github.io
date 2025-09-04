@@ -67,7 +67,7 @@
     var conf = document.getElementById("conferenceSelect");
     if (subj) subj.value = "0";
     if (year) year.value = "0";
-    if (conf) conf.value = "ALL";
+    if (conf) conf.value = "0";
 
     // hide conference counter
     if (confCountBar) { confCountBar.style.display = "none"; confCountBar.textContent = ""; }
@@ -84,7 +84,7 @@
 
     // Reset other controls
     var year = document.getElementById("yearSelect"); if (year) year.value = "0";
-    var conf = document.getElementById("conferenceSelect"); if (conf) conf.value = "ALL";
+    var conf = document.getElementById("conferenceSelect"); if (conf) conf.value = "0";
 
     // Hide years and counter bar, hide all items
     hideElements(years);
@@ -109,7 +109,7 @@
 
     // Reset other controls
     var subj = document.getElementById("subjectSelect"); if (subj) subj.value = "0";
-    var conf = document.getElementById("conferenceSelect"); if (conf) conf.value = "ALL";
+    var conf = document.getElementById("conferenceSelect"); if (conf) conf.value = "0";
 
     // Hide all items and year headers
     hideElements(allItems);
@@ -139,7 +139,7 @@
     var years = realYearHeaders();
     var confCountBar = document.getElementById("confCount");
 
-    if (conf === "ALL") { showAll(); return; }
+    if (conf === "0") { showAll(); return; }
 
     // Reset other controls
     var subj = document.getElementById("subjectSelect"); if (subj) subj.value = "0";
@@ -267,62 +267,114 @@
     }
 
     // ####################################################################################-  
+     function generateReport() {
+      // Helper: escape a string for use inside RegExp
+      function escapeRegex(s) {
+        return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      }
 
+      // Build the list of conference NAMES from the <select>, supporting BOTH:
+      //  - numeric option values (IDs) with optional global CONF_MAP
+      //  - string option values that already contain the conference name
+      var confSelect = document.getElementById("conferenceSelect");
+      if (!confSelect) { alert("conferenceSelect not found."); return; }
 
+      var seen = new Set();
+      var conferences = [];
+      Array.from(confSelect.options).forEach(opt => {
+        var rawVal = (opt.value || "").trim();
+        var label  = (opt.textContent || "").trim();
 
-      function generateReport() {
-        var confSelect = document.getElementById("conferenceSelect");
-        var conferences = Array.from(confSelect.options)
-                               .map(opt => opt.value)
-                               .filter(v => v !== "ALL");
+        // Normalize "ALL"
+        if (rawVal.toUpperCase() === "ALL" || label.toUpperCase().includes("ALL")) return;
 
-        var allItems = document.querySelectorAll("ol li");
-        var reportLines = [];
+        var id = Number.parseInt(rawVal, 10);
+        var name = null;
 
-        conferences.forEach(conf => {
-          var count = 0;
-          var yearsSet = new Set();
+        if (!Number.isNaN(id)) {
+          // Numeric IDs → try CONF_MAP; fall back to label
+          if (typeof CONF_MAP !== "undefined" && CONF_MAP && CONF_MAP[id]) {
+            name = CONF_MAP[id];
+          } else {
+            name = label; // safe fallback
+          }
+        } else {
+          // Non-numeric → treat the value itself as the conference name
+          name = rawVal || label;
+        }
 
-          allItems.forEach(item => {
-            if (item.innerHTML.indexOf("In: " + conf + ",") !== -1) {
-              count++;
-              var m = item.innerHTML.match(/In:\s*[^,]+,\s*(\d{4})/);
-              if (m) yearsSet.add(m[1]);
-            }
-          });
+        if (name && !seen.has(name)) {
+          seen.add(name);
+          conferences.push(name);
+        }
+      });
 
-          if (count > 0) {
-            var years = Array.from(yearsSet).sort((a,b) => b.localeCompare(a));
+      // Collect all list items once
+      var allItems = Array.from(document.querySelectorAll("ol li"));
+      var lines = [];
 
-            // Nome fixo com 15 caracteres, contagem com 2 dígitos
-            var confName = conf.padEnd(15, " ");
-            var countStr = String(count).padStart(2, " ");
+      // --- Section 1: Publications by conference ---
+      conferences.forEach(confName => {
+        var count = 0;
+        var yearsSet = new Set();
+        // robust text-based matching: "In: <CONF>, <YEAR>"
+        var confPattern = new RegExp("In:\\s*" + escapeRegex(confName) + ",\\s*(\\d{4})");
 
-            reportLines.push(confName + " " + countStr + " [" + years.join(", ") + "]");
+        allItems.forEach(item => {
+          var txt = item.textContent || "";
+          var m = txt.match(confPattern);
+          if (m) {
+            count++;
+            yearsSet.add(m[1]);
           }
         });
 
-        // Nova janela com <pre>
-        var reportWin = window.open("", "ReportWindow");
-        if (!reportWin) {
-          alert("Pop-up blocked. Please allow pop-ups for this site.");
-          return;
+        if (count > 0) {
+          var years = Array.from(yearsSet).sort((a, b) => b.localeCompare(a));
+          var confFixed = (confName + "               ").slice(0, 15); // pad/truncate to 15 chars
+          var countStr  = String(count).padStart(2, " ");
+          lines.push(confFixed + " " + countStr + " [" + years.join(", ") + "]");
         }
-        var doc = reportWin.document;
-        doc.open();
-        doc.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Conference Report</title></head><body></body></html>');
-        doc.close();
+      });
 
-        var pre = doc.createElement("pre");
-        pre.style.fontFamily = "monospace";
-        pre.style.fontSize = "12pt";
-        pre.textContent = reportLines.join("\n");
-        doc.body.appendChild(pre);
-      }
+      // --- Section 2: Publications by year ---
+      var yearHeaders = Array.from(document.querySelectorAll("p.year"))
+        .filter(el => el.id !== "confCount");
+
+      var perYear = [];
+      var grandTotal = 0;
+      yearHeaders.forEach(yh => {
+        var y = yh.id.substring(1); // drop leading 'a'
+        var ol = document.getElementById("ol" + y);
+        var n = ol ? ol.getElementsByTagName("li").length : 0;
+        grandTotal += n;
+        perYear.push({ year: y, n: n });
+      });
+      perYear.sort((a, b) => b.year.localeCompare(a.year));
+
+      lines.push("");
+      lines.push("Publicações por ano:");
+      perYear.forEach(({ year, n }) => { lines.push(year + ": " + n); });
+      lines.push("Total: " + grandTotal);
+
+      // Render report in a popup
+      var reportWin = window.open("", "ReportWindow");
+      if (!reportWin) { alert("Pop-up blocked. Please allow pop-ups for this site."); return; }
+
+      var doc = reportWin.document;
+      doc.open();
+      doc.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Conference Report</title></head><body></body></html>');
+      doc.close();
+
+      var pre = doc.createElement("pre");
+      pre.style.fontFamily = "monospace";
+      pre.style.fontSize = "10pt";
+      pre.textContent = lines.join("\n");
+      doc.body.appendChild(pre);
+    }
 
 
 </script>
-
 
 
 </head>
@@ -336,19 +388,19 @@
 
 <!-- ####################################### Select a subject form #############-->
 
-<div style="position: fixed; width: 100vw;  left: 30px; top: 40px;  font-weight: bold; font-size: 12pt;   color: black; ">
+<div style="position: fixed; width: 100vw;  left: 30px; top: 45px;  font-weight: bold; font-size: 12pt;   color: black; ">
 
 
-  <h2>Published Papers in Conferences and Symposiums</h2>
+  <h2>Published Papers in Conferences</h2>
 
   <!-- (1) ALL button -->
-  &nbsp;&nbsp;&nbsp;&nbsp;Show all papers:&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;All papers:&nbsp;
   <button id="btnAll" onclick="showAll()" style="margin-right: 16px;">ALL</button>
 
   <!-- (2) Subject selector -->
-  Select Paper by Subject or Year:&nbsp;
+   Paper Subject:&nbsp;
   <select id="subjectSelect" onchange="selectSubject(this.value)">
-      <option value="0">ALL papers</option>
+      <option value="0">select</option>
       <option value="1">MPSoC and many-cores</option>
       <option value="2">Security</option>
       <option value="3">Fault Tolerance</option>
@@ -367,7 +419,7 @@
   <!-- (3) Year selector -->
   Year:&nbsp;
   <select id="yearSelect" onchange="selectYear(this.value)">
-      <option value="0">ALL years</option>
+      <option value="0">select</option>
       <!-- options auto-filled on load -->
   </select>
 
@@ -376,7 +428,7 @@
   <!-- (4) Conference selector -->
   Conference:&nbsp;
   <select id="conferenceSelect" onchange="selectConference(this.value)">
-      <option value="ALL">All conferences</option>
+      <option value="0">select</option>
       <option value="SBCCI">SBCCI</option>
       <option value="ICECS">ICECS</option>
       <option value="ISCAS">ISCAS</option>
@@ -439,7 +491,7 @@
 
 
 <!-- ####### Display the year selection when ALL papers are visible ################## -->
-<div style="position: fixed; width: 100vw;   left: 5px; top: 130px;  overflow-y: scroll;  height: 90%; ">  
+<div style="position: fixed; width: 100vw;   left: 5px; top: 130px;  overflow-y: scroll;  height: 85%; ">  
 
   <!-- Conference counter bar (blue), initially hidden -->
   <p id="confCount" class="year confbar" style="display:none;"></p>
