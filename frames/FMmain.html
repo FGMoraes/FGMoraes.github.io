@@ -288,8 +288,12 @@
             <a class="personalizar-button" HREF="adv_tcc.html"> TCC </a>
           </td>
           <td class="w15">
-            <a class="personalizar-button" HREF="../hemps/memphis.html"> Memphis MPSoC </a>
-          </td>
+             <select class="personalizar-select" onChange="window.open(this.options[this.selectedIndex].value,'_top')" name="     website">
+                <option value=""> Research </option>
+                <option value="https://github.com/gaph-pucrs/RS5">                   RS5 processor </option>
+                <option value="https://github.com/gaph-pucrs/Memphis-V">             Memphis-V </option>
+                <option value="https://www.inf.pucrs.br/hemps/memphis.html">         Memphis </option>
+             </select>          </td>
         </tr>
         <!-- ****** MENUS - SEGUNDA LINHA  **************************************************************************************************** -->
         <tr>
@@ -306,13 +310,14 @@
           <td class="w15">
             <select class="personalizar-select" onchange="window.open(this.options[this.selectedIndex].value,'_top')" name="website">
               <option value=""> My citations </option>
+              <option value="http://orcid.org/0000-0001-6126-6847"> Orcid </option>
               <option value="http://scholar.google.com/citations?user=XNjum_8AAAAJ"> Google Scholar </option>
               <option value="https://dblp.org/pid/m/FernandoGehmMoraes.html"> DBLP </option>
-              <option value="http://dl.acm.org/author_page.cfm?id=81100359054"> Acad. ACM </option>
+              <option value="http://dl.acm.org/author_page.cfm?id=81100359054">  Acad. ACM </option>
               <option value="http://www.scopus.com/authid/detail.url?authorId=7005891217"> Scopus </option>
-              <option value="http://www.researcherid.com/rid/F-7488-2012"> ResearcherID </option>
-              <option value="http://orcid.org/0000-0001-6126-6847"> Orcid </option>
               <option value="pub_bibbase.html"> BibBase </option>
+            </select>
+          </td>
             </select>
           </td>
           <td class="w15">
@@ -321,7 +326,7 @@
               <option value="../99AK.pdf"> 98AK ECo - Grade</option>
               <option value="http://www.pucrs.br/politecnica-prov/wp-content/uploads/sites/166/2017/11/fluxograma.computacao.4450.pdf"> 4450 ECo - Grade</option>
               <option value="http://www.pucrs.br"> Site PUCRS </option>
-              <option value="http://www.pucrs.br/politecnica/programa-de-pos-graduacao-em-ciencia-da-computacao"> PPGCC </option>
+              <option value="https://portal.pucrs.br/ensino/mestrado-e-doutorado/ciencia-da-computacao/"> PPGCC </option>
               <option value="http://www.pucrs.br/politecnica"> Politecnica </option>
               <option value="http://www.pucrs.br/politecnica/curso/engenharia-de-computacao/"> Eco - Informações Gerais </option>
               <option value="http://www.politecnica.pucrs.br/programas/"> Eco - Programas Disciplinas</option>
@@ -346,13 +351,9 @@
             <select class="personalizar-select" onchange="window.open(this.options[this.selectedIndex].value,'_top')" name="website">
               <option value=""> General </option>
               <option value="../docs/padrao_teses_dissertacoes_monografias_PPGCC_14set2021.pdf"> Formato Monog. </option>
-              <!-- <option value="../docs/cal_2023.pdf"> Cal. PUC 2023 </option> -->
               <option value="https://groups.google.com/g/gaph"> GAPH-L </option>
               <option value="scholar.htm"> H PPGCC </option>
               <option value="FMfotos.html"> Photos </option>
-              <!-- <option value="FMdicas.htm"> Dicas </option> -->
-              <!-- <option value="http://www.inf.pucrs.br/calazans">  Ney </option> -->
-              <option value="https://www.lboro.ac.uk/departments/meme/staff/luciano-ost/"> Ost </option>
             </select>
           </td>
         </tr>
@@ -482,7 +483,7 @@
         </div>
       
         <div class="caixa">
-          <a target="_blank" href="http://www.pucrs.br/politecnica/programa-de-pos-graduacao-em-ciencia-da-computacao/">
+          <a target="_blank" href="https://portal.pucrs.br/ensino/mestrado-e-doutorado/ciencia-da-computacao/">
             <img alt="ppgcc" SRC="../figs/puc_nota7.jpeg" height="200">
           </a>
         </div>
@@ -612,7 +613,7 @@
         </tr>
       </table>
       <hr>
-      <p class="atual"> Last update: July 30, 2025 </p>
+      <p class="atual"> Last update: September 5, 2025 </p>
     </div>
   </body>
 </html>
