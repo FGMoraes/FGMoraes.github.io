@@ -179,7 +179,6 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
 
 /* Estado :hover do Card */
 .card:hover {
-    /* Aplicar o transform SOMENTE no hover */
     transform: translateY(-6px) scale(1.03);
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16); /* Sombra mais forte no hover */
 }
@@ -205,12 +204,8 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
 
 /* Mantenha o :hover para desktops para uma experiência rápida */
 @media (hover: hover) {
-    .main-nav li:hover > a, .main-nav li:hover > span {
-        background: var(--secondary);
-    }
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
+    .main-nav li:hover > a, .main-nav li:hover > span { background: var(--secondary); }
+    .dropdown:hover .dropdown-content { display: block; }
 }
 
 /* Regra para ativar via clique/toque em dispositivos móveis */
@@ -379,8 +374,8 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
       <article class="card card--tight">
           <h3> Academic Background </h3>
                <ul>
-                    <li>  Ph.D. in Microelectronics,  <a href="http://www.lirmm.fr" rel="noopener" target="_blank">  LIRMM  </a>, 1994  </li>
-                    <li>  M.Sc. in Computer Science,  <a href="http://www.inf.ufrgs.br" rel="noopener" target="_blank"> PPGC‑UFRGS </a>, 1990  </li>
+                    <li>  Ph.D. in Microelectronics,  <a href="http://www.lirmm.fr" rel="noopener" target="_blank">  LIRMM  </a>, 1994  </li> <br> 
+                    <li>  M.Sc. in Computer Science,  <a href="http://www.inf.ufrgs.br" rel="noopener" target="_blank"> PPGC‑UFRGS </a>, 1990  </li><br> 
                     <li>  B.S. in Electrical Engineering,  <a href="http://www.ufrgs.br/delet" rel="noopener" target="_blank"> EE‑UFRGS </a> , 1987 </li>
                </ul>
       </article>
@@ -388,17 +383,19 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
       <article class="card card--tight">
             <h3>  Research Interests </h3>
                  <ul>
-                      <li> Microelectronics;  VLSI/ASIC design and verification. </li>
-                      <li> Security and reliability in embedded systems. </li>
-                      <li> Multiprocessor SoCs (MPSoCs) and Networks‑on‑Chip (NoCs). </li>
-                      <li> Rapid prototyping with FPGAs;  EDA/CAD tools.</li>
-                      <li> Applications in telecommunications. </li>
+                      <li> RISC-V processors </li>
+                      <li> Microelectronics: digital ASIC design </li>
+                      <li> Manycores and Networks‑on‑Chip (NoCs) </li>
+                      <li> Security and reliability in embedded systems </li>
+                      <li> Hardware acceleration </li>
+                      <li> Rapid prototyping with FPGAs </li>
+                      <li> Applications in telecommunications </li>
                   </ul>
       </article>
       
       <article class="card card--tight">
             <h3> Short CV </h3>
-            <p>  Fernando Moraes received the Electrical Engineering and M.Sc. degrees from UFRGS, Porto Alegre, Brazil, in 1987 and 1990, respectively, and the Ph.D. from LIRMM, France, in 1994 (&ldquo;Très Honorable avec Félicitations du Jury&rdquo;). He is a Full Professor at PUCRS (since 2002) and served as an Invited Professor at Université de Montpellier in 1998, 1999, 2000, and 2017. He has authored 58 peer‑reviewed journal articles and over 280 conference papers on VLSI, many‑cores, NoCs, cryptography, and ML accelerators. He advised 33 M.Sc. and 20 Ph.D. theses (with additional co‑advising). He serves on the program committees of SBCCI, ISVLSI, NoCs, and DATE, and is an Associate Editor of IEEE TCAS‑II (since 2024). Primary interests include microelectronics, FPGAs, reconfigurable architectures, security, NoCs, and MPSoCs.
+            <p>  Fernando Moraes received the Electrical Engineering and M.Sc. degrees from UFRGS, Porto Alegre, Brazil, in 1987 and 1990, respectively, and the Ph.D. from LIRMM, France, in 1994 (<i>Très Honorable avec Félicitations du Jury</i>). He is a Full Professor at PUCRS (since 2002) and served as an Invited Professor at Université de Montpellier in 1998, 1999, 2000, and 2017. He has authored 63 peer‑reviewed journal articles and over 280 conference papers on VLSI, many‑cores, NoCs, cryptography, and ML accelerators. He advised 35 M.Sc. and 22 Ph.D. theses. He serves on the program committees of SBCCI, ISVLSI, NoCs, and DATE, and is an Associate Editor of IEEE TCAS‑II (since 2024). Primary interests include microelectronics, FPGAs, reconfigurable architectures, security, NoCs, and MPSoCs.
            </p>
       </article>
 
@@ -542,7 +539,7 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
       </ul>
      </div>
 
-     <p class="last-update"> Last update: September 5, 2025 </p>
+     <p class="last-update"> Last update: September 6, 2025 </p>
 
     </div>
    </section>
