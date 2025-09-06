@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
 
   <script>
+
    var picPaths = ['../figs/wordle_1.png', '../figs/wrodle_2.png']; 
 
       var curPic = -1; 
@@ -29,6 +30,53 @@
         imgCont = document.getElementById('imgBanner'); 
         swapImage(); 
       }
+
+        // --- SCRIPT PARA MENU DROPDOWN RESPONSIVO ---
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleciona todos os itens de menu que são dropdowns
+            const dropdowns = document.querySelectorAll('.main-nav .dropdown');
+
+            dropdowns.forEach(function(dropdown) {
+                // Encontra o gatilho (o span ou link principal dentro do dropdown li)
+                const trigger = dropdown.querySelector('span, a');
+
+                if (trigger) {
+                    trigger.addEventListener('click', function(event) {
+                        // Impede que o clique no link (se for um link) navegue imediatamente
+                        // Apenas se o dropdown tiver subitens.
+                        if (dropdown.classList.contains('dropdown')) {
+                            event.preventDefault();
+                        }
+
+                        // Verifica se o menu clicado já está aberto
+                        const isActive = dropdown.classList.contains('dropdown-active');
+
+                        // 1. Fecha todos os outros menus abertos
+                        closeAllDropdowns();
+
+                        // 2. Abre ou fecha o menu atual
+                        if (!isActive) {
+                            dropdown.classList.add('dropdown-active');
+                        }
+                    });
+                }
+            });
+
+            // Função para fechar todos os dropdowns abertos
+            function closeAllDropdowns() {
+                document.querySelectorAll('.main-nav .dropdown.dropdown-active').forEach(function(activeDropdown) {
+                    activeDropdown.classList.remove('dropdown-active');
+                });
+            }
+
+            // Event listener global para fechar os menus ao clicar fora deles
+            document.addEventListener('click', function(event) {
+                // Verifica se o clique foi fora da área do menu de navegação
+                if (!event.target.closest('.main-nav')) {
+                    closeAllDropdowns();
+                }
+            });
+        });
   </script>
   <style>
 
@@ -154,6 +202,28 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
   .dropdown-content{position:static; box-shadow:none; border:none}
   h1{font-size:clamp(20pt,16pt + 2vw,24pt)} h2{font-size:clamp(14pt,12pt + 1.2vw,18pt)}
 }
+
+/* Mantenha o :hover para desktops para uma experiência rápida */
+@media (hover: hover) {
+    .main-nav li:hover > a, .main-nav li:hover > span {
+        background: var(--secondary);
+    }
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+}
+
+/* Regra para ativar via clique/toque em dispositivos móveis */
+.dropdown-active .dropdown-content {
+    display: block;
+}
+
+/* Estilo opcional para indicar qual menu está aberto */
+.dropdown-active > span, .dropdown-active > a {
+    background-color: var(--secondary);
+}
+
+
   </style>
 
  </head>
