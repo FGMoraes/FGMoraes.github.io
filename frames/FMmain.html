@@ -11,7 +11,14 @@
 
   <script>
 
-   var picPaths = ['../figs/wordle_1.png', '../figs/wrodle_2.png']; 
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('a[href^="http"]').forEach(a => {
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener");
+      });
+   });
+
+   var picPaths = ['../figs/wordle_1.png', '../figs/wordle_2.png']; 
 
       var curPic = -1; 
       //preload the images for smooth animation
@@ -110,7 +117,7 @@ h2 {
     color: var(--accent); 
     font-size: 18pt;
     border-bottom: 2px solid var(--accent);
-    padding-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
     margin-bottom: var(--space-3);
 }
 h3{font-size:15pt; margin-bottom:var(--space-2)}
@@ -145,20 +152,29 @@ section{padding-block:var(--space-5)} section:nth-of-type(even){ background: #f4
 .header-contact{font-size:9pt; color:var(--muted); text-align:right; color: #ffffff; min-width:14rem}
 
 .main-nav{background:#fff; border-bottom:1px solid var(--border); position:sticky; top:0; z-index:999}
-.main-nav ul{display:grid; grid-template-columns:repeat(6,auto); grid-auto-rows:auto; justify-content:center; gap:3pt; list-style:none}
+.main-nav ul{display:grid; grid-template-columns:repeat(6,auto); grid-auto-rows:auto; justify-content:center; list-style:none; column-gap: 1.5rem}
 .main-nav li{position:relative}
-.main-nav a,.main-nav span{display:block; padding:var(--space-3) var(--space-4); color: var(--accent); font-weight:700}
+.main-nav a,.main-nav span{display:block; padding:var(--space-2) var(--space-2); color: var(--accent); font-weight:800}
 .main-nav li:hover>a,.main-nav li:hover>span{background:var(--secondary)}
 
 .dropdown-content{display:none; position:absolute; inset-block-start:100%; background:#fff; min-width:14rem; border:1px solid var(--border); box-shadow:0 6px 14px rgba(0,0,0,.12); z-index:200}
-.dropdown-content a{padding:var(--space-3) var(--space-4); color:#000; font-weight:400}
+.dropdown-content a{padding:var(--space-3) var(--space-4); color:#000; font-weight:500}
 .dropdown:hover .dropdown-content{display:block}
 .dropdown span::after{content:" ▼"; font-size:10pt}
 
 a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
 
-.ext-links{display:grid; grid-template-columns:repeat(7,1fr); justify-items:center; align-items:center; width:min(90%,70rem); margin-inline:auto; gap:var(--space-4); list-style:none}
+.ext-links{display:grid; grid-template-columns:repeat(6,1fr); justify-items:center; align-items:center; width:min(90%,70rem); margin-inline:auto;  list-style:none}
 .ext-links img{height:2rem; width:auto; margin-inline:auto}
+
+/* efeito de zoom em hover para as imagens da seção ext-links */
+.ext-links img {
+  transition: transform 0.3s ease; /* animação suave */
+}
+
+.ext-links img:hover {
+  transform: scale(1.2); /* aumenta 20% */
+}
 
 .grid{display:grid; gap:var(--space-5)} .grid.cols-3{grid-template-columns:repeat(3,1fr)} .grid.cols-4{grid-template-columns:repeat(4,1fr)}
 
@@ -180,7 +196,7 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
 /* Estado :hover do Card */
 .card:hover {
     transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16); /* Sombra mais forte no hover */
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6); /* Sombra mais forte no hover */
 }
 
 .card.card--tight{height:210px; overflow-y:auto}
@@ -232,7 +248,7 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
    <div class="container header-content">
 
     <div class="header-logo">
-     <a href="http://www.pucrs.br" rel="noopener" target="_blank">  <img alt="PUCRS" src="../figs/pucrs.png"/>  </a>
+     <a href="https://portal.pucrs.br/ensino-e-pesquisa/">  <img alt="PUCRS" src="../figs/pucrs.png"/>  </a>
     </div>
 
     <div class="header-title">
@@ -240,7 +256,7 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
       <p>   Professor at PUCRS -  School of Technology  <br>
             Member of: IEEE (Senior) &bull;  SBC &bull;  SBMicro <br>
             CNPq Research Productivity Grant -  Level A  <br>
-            <a href="http://www.pucrs.br/pesquisadores/fernando-gehm-moraes" rel="noopener" target="_blank"> PUCRS Researchers Profile </a>
+            <a href="http://www.pucrs.br/pesquisadores/fernando-gehm-moraes"> PUCRS Researchers Profile </a>
       </p>
     </div>
 
@@ -268,9 +284,10 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
      <li class="dropdown">
             <span>  Research </span>
               <div class="dropdown-content">
-               <a href="https://github.com/gaph-pucrs/RS5" rel="noopener" target="_blank">           RS5 processor </a>
-               <a href="https://github.com/gaph-pucrs/Memphis-V" rel="noopener" target="_blank">     Memphis-V     </a>
-               <a href="https://www.inf.pucrs.br/hemps/memphis.html" rel="noopener" target="_blank"> Memphis      </a>
+               <a href="http://dgp.cnpq.br/dgp/espelhogrupo/763059">  GAPH Group   </a>
+               <a href="https://github.com/gaph-pucrs/RS5">           RS5 processor </a>
+               <a href="https://github.com/gaph-pucrs/Memphis-V">     Memphis-V     </a>
+               <a href="https://www.inf.pucrs.br/hemps/memphis.html"> Memphis       </a>
              </div>
       </li>
       <li class="dropdown">
@@ -284,47 +301,47 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
      <li class="dropdown">
             <span> My citations </span>
                 <div class="dropdown-content">
-                   <a href="http://orcid.org/0000-0001-6126-6847" rel="noopener" target="_blank">  Orcid  </a>
-                   <a href="https://scholar.google.com/citations?user=XNjum_8AAAAJ" rel="noopener" target="_blank"> Google Scholar </a>
-                   <a href="https://dblp.org/pid/m/FernandoGehmMoraes.html" rel="noopener" target="_blank">   DBLP   </a>
-                   <a href="http://dl.acm.org/author_page.cfm?id=81100359054" rel="noopener" target="_blank">  Acad. ACM   </a>
-                   <a href="http://www.scopus.com/authid/detail.url?authorId=7005891217" rel="noopener" target="_blank"> Scopus  </a>
+                   <a href="http://orcid.org/0000-0001-6126-6847">  Orcid  </a>
+                   <a href="https://scholar.google.com/citations?user=XNjum_8AAAAJ"> Google Scholar </a>
+                   <a href="https://dblp.org/pid/m/FernandoGehmMoraes.html">   DBLP   </a>
+                   <a href="http://dl.acm.org/author_page.cfm?id=81100359054">  Acad. ACM   </a>
+                   <a href="http://www.scopus.com/authid/detail.url?authorId=7005891217"> Scopus  </a>
                    <a href="pub_bibbase.html">  BibBase  </a>
                 </div>
      </li>
      <li class="dropdown">
             <span> PUCRS  </span>
             <div class="dropdown-content">
-             <a href="http://www.pucrs.br" rel="noopener" target="_blank"> PUCRS </a>
-             <a href="http://www.pucrs.br/politecnica" rel="noopener" target="_blank"> Politécnica </a>
-             <a href="https://portal.pucrs.br/ensino/mestrado-e-doutorado/ciencia-da-computacao/" rel="noopener" target="_blank"> PPGCC </a>
-             <a href="../99AK.pdf" rel="noopener" target="_blank">  ECo -  Grade 98AK </a>
-             <a href="http://www.pucrs.br/politecnica-prov/wp-content/uploads/sites/166/2017/11/fluxograma.computacao.4450.pdf" target="_blank">  ECo -  Grade 4450</a>
-             <a href="http://www.pucrs.br/politecnica/curso/engenharia-de-computacao/" rel="noopener" target="_blank"> ECo -  Informações Gerais  </a>
-             <a href="http://www.politecnica.pucrs.br/programas/" rel="noopener" target="_blank"> ECo -   Disciplinas </a>
-             <a href="http://www.pucrs.br/grade-corpo-docente/dados-do-curso/?slug=engenharia-de-computacao" target="_blank"> ECo -  PPC </a>
+             <a href="https://portal.pucrs.br/ensino-e-pesquisa/"> PUCRS </a>
+             <a href="http://www.pucrs.br/politecnica"> Politécnica </a>
+             <a href="https://portal.pucrs.br/ensino/mestrado-e-doutorado/ciencia-da-computacao/"> PPGCC </a>
+             <a href="../99AK.pdf">  ECo -  Grade 98AK </a>
+             <a href="http://www.pucrs.br/politecnica-prov/wp-content/uploads/sites/166/2017/11/fluxograma.computacao.4450.pdf">  ECo -  Grade 4450</a>
+             <a href="http://www.pucrs.br/politecnica/curso/engenharia-de-computacao/"> ECo -  Informações Gerais  </a>
+             <a href="http://www.politecnica.pucrs.br/programas/"> ECo -   Disciplinas </a>
+             <a href="http://www.pucrs.br/grade-corpo-docente/dados-do-curso/?slug=engenharia-de-computacao"> ECo -  PPC </a>
 
-             <a href="http://www.pucrs.br/biblioteca" rel="noopener" target="_blank"> Biblioteca </a>
+             <a href="http://www.pucrs.br/biblioteca"> Biblioteca </a>
             </div>
      </li>
      <li class="dropdown">
             <span> Administrative </span>
             <div class="dropdown-content">
-               <a href="http://moodle.pucrs.br" rel="noopener" target="_blank">  MOODLE  </a>
-               <a href="https://sarc.pucrs.br/Default/" rel="noopener" target="_blank"> SARC </a>
-               <a href="https://webapp.pucrs.br/atas" rel="noopener" target="_blank"> Notas Grad </a>
-               <a href="https://webapp.pucrs.br/ataspos" rel="noopener" target="_blank"> Notas Pós </a>
-               <a href="https://portalvalorizza.pucrs.br/loginprofessor.aspx" rel="noopener" target="_blank">  PUC Carreiras </a>
-               <a href="https://webapp.pucrs.br/sipesq/" rel="noopener" target="_blank"> SIPESQ </a>
-               <a href="http://webapp.pucrs.br/sibic" rel="noopener" target="_blank">  IC PUCRS </a>
-               <a href="http://impressora.pucrs.br/SafePrint/Home/Login" rel="noopener" target="_blank"> Imp. 3213 </a>
+               <a href="http://moodle.pucrs.br">  MOODLE  </a>
+               <a href="https://sarc.pucrs.br/Default/"> SARC </a>
+               <a href="https://webapp.pucrs.br/atas"> Notas Grad </a>
+               <a href="https://webapp.pucrs.br/ataspos"> Notas Pós </a>
+               <a href="https://portalvalorizza.pucrs.br/loginprofessor.aspx">  PUC Carreiras </a>
+               <a href="https://webapp.pucrs.br/sipesq/"> SIPESQ </a>
+               <a href="http://webapp.pucrs.br/sibic">  IC PUCRS </a>
+               <a href="http://impressora.pucrs.br/SafePrint/Home/Login"> Imp. 3213 </a>
             </div>
      </li>
      <li class="dropdown">
             <span>  General </span>
             <div class="dropdown-content">
-               <a href="../docs/padrao_teses_dissertacoes_monografias_PPGCC_14set2021.pdf" rel="noopener" target="_blank"> Formato Monog.  </a>
-               <a href="https://groups.google.com/g/gaph" rel="noopener" target="_blank"> GAPH‑L </a>
+               <a href="../docs/padrao_teses_dissertacoes_monografias_PPGCC_14set2021.pdf"> Formato Monog.  </a>
+               <a href="https://groups.google.com/g/gaph"> GAPH‑L </a>
                <a href="scholar.htm">  H PPGCC  </a>
                <a href="FMfotos.html">  Photos </a>
             </div>
@@ -338,26 +355,23 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
    <section aria-label="Academic profiles">
     <div class="container">
      <ul class="ext-links">
-      <li> <a href="http://lattes.cnpq.br/2509301929350826" rel="noopener" target="_blank">
-           <img alt="Lattes" src="../figs/logo-curriculo.png"/> </a>
+      <li> <a href="http://lattes.cnpq.br/2509301929350826">
+           <img alt="Lattes" src="../figs/lattes.jpg"/> </a>
       </li>
-      <li> <a href="https://scholar.google.com/citations?user=XNjum_8AAAAJ" rel="noopener" target="_blank">
+      <li> <a href="https://scholar.google.com/citations?user=XNjum_8AAAAJ">
            <img alt="Google Scholar" src="../figs/google_scholar_logo.gif"/> </a>
       </li>
-      <li> <a href="https://dblp.org/pid/m/FernandoGehmMoraes.html" rel="noopener" target="_blank">
+      <li> <a href="https://dblp.org/pid/m/FernandoGehmMoraes.html">
            <img alt="DBLP" src="../figs/dblp.png"/> </a>
       </li>
-      <li> <a href="http://orcid.org/0000-0001-6126-6847" rel="noopener" target="_blank">
+      <li> <a href="http://orcid.org/0000-0001-6126-6847">
             <img alt="ORCID" src="../figs/orcid.png"/> </a>
       </li>
-      <li> <a href="http://www.linkedin.com/in/moraesfg" rel="noopener" target="_blank">
-          <img alt="LinkedIn" src="../figs/linked.png"/> </a>
-      </li>
-      <li> <a href="https://www.scopus.com/authid/detail.uri?authorId=7005891217" rel="noopener" target="_blank">
+      <li> <a href="https://www.scopus.com/authid/detail.uri?authorId=7005891217">
           <img alt="Scopus" src="../figs/scopust.png"/> </a>
       </li>
-      <li>
-           <a href="https://www.inf.pucrs.br/gaph" rel="noopener" target="_blank"> <strong> GAPH Group </strong> </a>
+      <li> <a href="http://www.linkedin.com/in/moraesfg">
+          <img alt="LinkedIn" src="../figs/linked.png"/> </a>
       </li>
      </ul>
     </div>
@@ -374,9 +388,9 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
       <article class="card card--tight">
           <h3> Academic Background </h3>
                <ul>
-                    <li>  Ph.D. in Microelectronics,  <a href="http://www.lirmm.fr" rel="noopener" target="_blank">  LIRMM  </a>, 1994  </li> <br> 
-                    <li>  M.Sc. in Computer Science,  <a href="http://www.inf.ufrgs.br" rel="noopener" target="_blank"> PPGC‑UFRGS </a>, 1990  </li><br> 
-                    <li>  B.S. in Electrical Engineering,  <a href="http://www.ufrgs.br/delet" rel="noopener" target="_blank"> EE‑UFRGS </a> , 1987 </li>
+                    <li>  Ph.D. in Microelectronics,  <a href="http://www.lirmm.fr">  LIRMM  </a>, 1994  </li> <br> 
+                    <li>  M.Sc. in Computer Science,  <a href="http://www.inf.ufrgs.br"> PPGC‑UFRGS </a>, 1990  </li><br> 
+                    <li>  B.S. in Electrical Engineering,  <a href="http://www.ufrgs.br/delet"> EE‑UFRGS </a> , 1987 </li>
                </ul>
       </article>
 
@@ -413,35 +427,35 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
 
       <article class="card">
            <h3> IEEE Access, 2024 </h3>
-           <p> <a href="https://dx.doi.org/10.1109/ACCESS.2024.3416812" rel="noopener" target="_blank">
+           <p> <a href="https://dx.doi.org/10.1109/ACCESS.2024.3416812">
                Hardware Acceleration of Crystals‑Kyber in Low‑Complexity Embedded Systems with RISC‑V Instruction Set Extensions </a> 
            </p>
-           <a href="../figs/GA_carlos.jpg" rel="noopener" target="_blank">   <img alt="Kyber hardware acceleration graphic" src="../figs/GA_carlos.jpg"/> </a>
+           <a href="../figs/GA_carlos.jpg">   <img alt="Kyber hardware acceleration graphic" src="../figs/GA_carlos.jpg"/> </a>
       </article>
 
 
       <article class="card">
             <h3> IEEE Access, 2023 </h3>
-             <p>  <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=10328560" rel="noopener" target="_blank">
+             <p>  <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=10328560">
                   A Comprehensive Framework for Systemic Security Management in NoC‑Based Many-Cores  </a>
             </p>
-            <a href="../figs/a_compre.jpg" rel="noopener" target="_blank"> <img alt="Systemic security framework illustration" src="../figs/a_compre.jpg"/> </a>
+            <a href="../figs/a_compre.jpg"> <img alt="Systemic security framework illustration" src="../figs/a_compre.jpg"/> </a>
       </article>
 
       <article class="card">
             <h3>  IEEE Access, 2021 </h3>
-             <p>  <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=9612218" rel="noopener" target="_blank">
+             <p>  <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=9612218">
                    Detection and Countermeasures of Security Attacks and Faults on NoC‑Based Many‑Cores </a>
             </p>
-            <a href="../figs/a_detec.jpg" rel="noopener" target="_blank"> <img alt="Detection and countermeasures graphic" src="../figs/a_detec.jpg"/> </a>
+            <a href="../figs/a_detec.jpg"> <img alt="Detection and countermeasures graphic" src="../figs/a_detec.jpg"/> </a>
       </article>
 
       <article class="card">
              <h3>   IEEE Access, 2020</h3>
-              <p>  <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=9200593" rel="noopener" target="_blank">
+              <p>  <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=9200593">
                    SDN‑Based Secure Application Admission and Execution for Many‑Cores  </a>
               </p>
-              <a href="../figs/a_sdn.jpg" rel="noopener" target="_blank"> <img alt="SDN‑based security illustration" src="../figs/a_sdn.jpg"/> </a>
+              <a href="../figs/a_sdn.jpg"> <img alt="SDN‑based security illustration" src="../figs/a_sdn.jpg"/> </a>
       </article>
 
      </div>
@@ -456,31 +470,31 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
      <div class="grid cols-3">
 
           <article class="card card--tight">
-              <a href="../docs/GROW_2025-Moraes.pdf" rel="noopener" target="_blank"> <img alt="GROW 2025 talk cover" src="../figs/talkgrow.png"/> </a>
+              <a href="../docs/GROW_2025-Moraes.pdf"> <img alt="GROW 2025 talk cover" src="../figs/talkgrow.png"/> </a>
           </article>
 
           <article class="card card--tight">
-                 <a href="../docs/many_core_security.pdf" rel="noopener" target="_blank"> <img alt="Many‑core security talk cover" src="../figs/talksecurity.png"/> </a>
+                 <a href="../docs/many_core_security.pdf"> <img alt="Many‑core security talk cover" src="../figs/talksecurity.png"/> </a>
           </article>
 
           <article class="card card--tight">
-               <a href="../hemps/memphis.html" target="_blank">  <img alt="hemps" src="../figs/hemps.png"/>  </a>
+               <a href="../hemps/memphis.html">  <img alt="hemps" src="../figs/hemps.png"/>  </a>
           </article>
 
           <article class="card card--tight">
              <h3> Open Access Surveys</h3>
              <ul>
-                <li> <a href="../docs/journals/jics_elisa.pdf" rel="noopener" target="_blank">
+                <li> <a href="../docs/journals/jics_elisa.pdf">
                    A Complementary Survey of Radiation‑Induced Soft Error Research: Facilities, Particles, Devices and Trends </a> <br>
                      Journal of Integrated Circuits and Systems, vol. 19, no. 2, 2024.
                 </li>
                 <li>
-                 <a href="https://dx.doi.org/10.1561/1000000060" rel="noopener" target="_blank">
+                 <a href="https://www.nowpublishers.com/article/Details/EDA-060">
                    From CNN to DNN Hardware Accelerators: A Survey on Design, Exploration, Simulation, and Frameworks </a><br>
                     Foundations and Trends&reg; in Electronic Design Automation, vol. 13(4), pp. 270-344, March 2023.
                 </li>
                 <li>
-                 <a href="https://doi.org/10.29292/jics.v16i2.485" rel="noopener" target="_blank">
+                 <a href="https://doi.org/10.29292/jics.v16i2.485">
                    A Survey on Security Mechanisms for NoC‑based Many‑Core SoCs </a> <br>
                    Journal of Integrated Circuits and Systems, vol. 16(2), pp. 1-15, November 2021.
               </li>
@@ -488,7 +502,7 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
           </article>
 
           <article class="card card--tight">
-               <a href="https://portal.pucrs.br/ensino/mestrado-e-doutorado/ciencia-da-computacao/" rel="noopener" target="_blank">
+               <a href="https://portal.pucrs.br/ensino/mestrado-e-doutorado/ciencia-da-computacao/">
                   <img alt="PPGCC PUCRS rating" src="../figs/puc_nota7.jpeg"/> </a>
           </article>
 
@@ -508,41 +522,41 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
      <h2> News </h2>
      <div aria-label="Latest news items" class="news-list" role="region">
       <ul>
-         <li>September/25 — GAPH group at Chip in the Jungle <a href="../fotos/jungle.jpeg" rel="noopener" target="_blank"><img src="../fotos/jungle.jpeg" alt="SBCCI"/></a> &nbsp; and best paper
+         <li>September/25 — GAPH group at Chip in the Jungle <a href="../fotos/jungle.jpeg"><img src="../fotos/jungle.jpeg" alt="SBCCI"/></a> &nbsp; and best paper
               <a HREF="../figs/best_sbcci_Angelo.jpg"><img ALT=" " SRC="../figs/best_sbcci_Angelo.jpg"></a> 
          </li>
-        <li>June/24 — Paper published at <a href="https://dx.doi.org/10.1109/ACCESS.2024.3416812" rel="noopener" target="_blank">IEEE Access</a> — <strong>Hardware Acceleration of Crystals-Kyber in Low-Complexity Embedded Systems with RISC-V Instruction Set Extensions</strong>.</li>
-        <li>November/23 — Paper published at <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=10328560" rel="noopener" target="_blank">IEEE Access</a> — <strong>A Comprehensive Framework for Systemic Security Management in NoC-based Many-cores</strong>.</li>
-        <li>October/23 — Highlight at the XXIV PUCRS Undergraduate Research Fair: <em>CoolChip — Gerenciamento Térmico e de Lifetime em Sistemas Manycore</em>, student Vitor Balbinot Zanini. <a href="../fotos/vitor.jpeg" rel="noopener" target="_blank"><img src="../fotos/vitor.jpeg" alt="Vitor Zanini"/></a></li>
-        <li>October/23 — Paper published at <a href="https://link.springer.com/article/10.1007/s10470-023-02190-8" rel="noopener" target="_blank">Analog Integrated Circuits and Signal Processing</a> — <strong>Chronos-V: a Many-core High-level Model with Support for Management Techniques</strong>.</li>
-        <li>March/23 — Paper published at <a href="https://www.nowpublishers.com/article/Details/EDA-060" rel="noopener" target="_blank">Foundations and Trends® in EDA</a> — <strong>From CNN to DNN Hardware Accelerators</strong>.</li>
-        <li>November/22 — Paper published at <a href="https://ieeexplore.ieee.org/document/9960733" rel="noopener" target="_blank">IEEE TCAS-II</a> — <strong>A Comprehensive Evaluation of Convolutional Hardware Accelerators</strong>.</li>
-        <li>September/22 — Paper published at <a href="https://doi.org/10.1109/TCSI.2022.3204932" rel="noopener" target="_blank">IEEE TCAS-I</a> — <strong>A Fast, Accurate, and Comprehensive PPA Estimation of Convolutional Hardware Accelerators</strong>.</li>
-        <li>November/21 — Paper published at <a href="https://doi.org/10.1109/ACCESS.2021.3127468" rel="noopener" target="_blank">IEEE Access</a> — <strong>Detection and Countermeasures of Security Attacks and Faults on NoC-based Many-Cores</strong>.</li>
-        <li>August/21 — Paper published at <a href="https://doi.org/10.1109/TCSI.2021.3104644" rel="noopener" target="_blank">IEEE TCAS-I</a> — <strong>A High-level Modeling Framework for Estimating Hardware Metrics of CNN Accelerators</strong>.</li>
-        <li>July/21 — Paper published at <a href="https://doi.org/10.1145/3458511" rel="noopener" target="_blank">ACM TOCS</a> — <strong>Modular and Distributed Management of Many-Core SoCs</strong>.</li>
-        <li>May/2021 — 25 years at PUCRS — Medalha Irmão Afonso. <a href="../figs/diploma.jpg" rel="noopener" target="_blank"><img src="../figs/medalha_transparente_pequena.png" alt="PUCRS medal"/></a></li>
-        <li>March/21 — Paper published at <a href="https://dx.doi.org/10.1109/MDAT.2021.3068914" rel="noopener" target="_blank">IEEE Design &amp; Test</a> — <strong>Hardware Accelerator for Runtime Temperature Estimation in Many-cores</strong>.</li>
-        <li>February/21 — Paper published at <a href="https://doi.org/10.1049/cdt2.12017" rel="noopener" target="_blank">IET Computers and Digital Techniques</a> — <strong>Evaluation of the Soft Error Assessment Consistency of a JIT-based Virtual Platform Simulator</strong>.</li>
-        <li>January/21 — Papers published at <a href="https://dx.doi.org/10.1109/MDAT.2021.3049710" rel="noopener" target="_blank">IEEE Design &amp; Test</a> and <a href="https://dx.doi.org/10.1007/s10470-020-01756-0" rel="noopener" target="_blank">Analog Integrated Circuits and Signal Processing</a>.</li>
-        <li>September/20 — Paper published at IEEE Access: <strong>SDN-Based Secure Application Admission and Execution for Many-Cores</strong>. <a href="https://ieeexplore.ieee.org/document/9200593" rel="noopener" target="_blank">link</a> <em>Open Access</em>.</li>
-        <li>June/20 — Paper published at IEEE Access: <strong>A Systemic and Secure SDN Framework for NoC-based Many-cores</strong>. <a href="https://ieeexplore.ieee.org/document/9109286" rel="noopener" target="_blank">link</a> <em>Open Access</em>.</li>
-        <li>March/20 — Paper published at Analog Integrated Circuits and Signal Processing: <strong>System management recovery in NoC-based many-core systems</strong>. <a href="http://link.springer.com/article/10.1007/s10470-020-01631-y" rel="noopener" target="_blank">link</a></li>
+        <li>June/24 — Paper published at <a href="https://dx.doi.org/10.1109/ACCESS.2024.3416812">IEEE Access</a> — <strong>Hardware Acceleration of Crystals-Kyber in Low-Complexity Embedded Systems with RISC-V Instruction Set Extensions</strong>.</li>
+        <li>November/23 — Paper published at <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=10328560">IEEE Access</a> — <strong>A Comprehensive Framework for Systemic Security Management in NoC-based Many-cores</strong>.</li>
+        <li>October/23 — Highlight at the XXIV PUCRS Undergraduate Research Fair: <em>CoolChip — Gerenciamento Térmico e de Lifetime em Sistemas Manycore</em>, student Vitor Balbinot Zanini. <a href="../fotos/vitor.jpeg"><img src="../fotos/vitor.jpeg" alt="Vitor Zanini"/></a></li>
+        <li>October/23 — Paper published at <a href="https://link.springer.com/article/10.1007/s10470-023-02190-8">Analog Integrated Circuits and Signal Processing</a> — <strong>Chronos-V: a Many-core High-level Model with Support for Management Techniques</strong>.</li>
+        <li>March/23 — Paper published at <a href="https://www.nowpublishers.com/article/Details/EDA-060">Foundations and Trends® in EDA</a> — <strong>From CNN to DNN Hardware Accelerators</strong>.</li>
+        <li>November/22 — Paper published at <a href="https://ieeexplore.ieee.org/document/9960733">IEEE TCAS-II</a> — <strong>A Comprehensive Evaluation of Convolutional Hardware Accelerators</strong>.</li>
+        <li>September/22 — Paper published at <a href="https://doi.org/10.1109/TCSI.2022.3204932">IEEE TCAS-I</a> — <strong>A Fast, Accurate, and Comprehensive PPA Estimation of Convolutional Hardware Accelerators</strong>.</li>
+        <li>November/21 — Paper published at <a href="https://doi.org/10.1109/ACCESS.2021.3127468">IEEE Access</a> — <strong>Detection and Countermeasures of Security Attacks and Faults on NoC-based Many-Cores</strong>.</li>
+        <li>August/21 — Paper published at <a href="https://doi.org/10.1109/TCSI.2021.3104644">IEEE TCAS-I</a> — <strong>A High-level Modeling Framework for Estimating Hardware Metrics of CNN Accelerators</strong>.</li>
+        <li>July/21 — Paper published at <a href="https://doi.org/10.1145/3458511">ACM TOCS</a> — <strong>Modular and Distributed Management of Many-Core SoCs</strong>.</li>
+        <li>May/2021 — 25 years at PUCRS — Medalha Irmão Afonso. <a href="../figs/diploma.jpg"><img src="../figs/medalha_transparente_pequena.png" alt="PUCRS medal"/></a></li>
+        <li>March/21 — Paper published at <a href="https://dx.doi.org/10.1109/MDAT.2021.3068914">IEEE Design &amp; Test</a> — <strong>Hardware Accelerator for Runtime Temperature Estimation in Many-cores</strong>.</li>
+        <li>February/21 — Paper published at <a href="https://doi.org/10.1049/cdt2.12017">IET Computers and Digital Techniques</a> — <strong>Evaluation of the Soft Error Assessment Consistency of a JIT-based Virtual Platform Simulator</strong>.</li>
+        <li>January/21 — Papers published at <a href="https://dx.doi.org/10.1109/MDAT.2021.3049710">IEEE Design &amp; Test</a> and <a href="https://dx.doi.org/10.1007/s10470-020-01756-0">Analog Integrated Circuits and Signal Processing</a>.</li>
+        <li>September/20 — Paper published at IEEE Access: <strong>SDN-Based Secure Application Admission and Execution for Many-Cores</strong>. <a href="https://ieeexplore.ieee.org/document/9200593">link</a> <em>Open Access</em>.</li>
+        <li>June/20 — Paper published at IEEE Access: <strong>A Systemic and Secure SDN Framework for NoC-based Many-cores</strong>. <a href="https://ieeexplore.ieee.org/document/9109286">link</a> <em>Open Access</em>.</li>
+        <li>March/20 — Paper published at Analog Integrated Circuits and Signal Processing: <strong>System management recovery in NoC-based many-core systems</strong>. <a href="http://link.springer.com/article/10.1007/s10470-020-01631-y">link</a></li>
         <li>September/19 — SBCCI'19 Best Paper Finalist: <strong>Fine-grain Temperature Monitoring for Many-Core Systems</strong>.</li>
         <li>August/19 — Design Automation for Embedded Systems Journal: <strong>Memphis: a Framework for Heterogeneous Many-core SoCs Generation and Validation</strong>.</li>
         <li>May/19 — JSA and TEC Journals: <strong>The Power Impact of Hardware and Software Actuators on Self-Adaptable Many-core Systems</strong> and <strong>Self-Adaptive QoS Management at Communication and Computation Levels for Many-Core SoCs</strong>.</li>
         <li>January/19 — JSA Journal: <strong>Hierarchical adaptive multi-objective resource management for many-core systems</strong>.</li>
         <li>December/18 — BRAFITEC mission to France for PUCRS–Polytech Montpellier double degree.</li>
-        <li>August/18 — New papers at the <a href="https://wp.ufpel.edu.br/chipinthepampa2018/sbcci-2018-technical-program/" rel="noopener" target="_blank">SBCCI conference</a>.</li>
-        <li>May/18 — Post-doctoral fellowship approved for Marcelo Ruaro — <a href="http://fapergs.rs.gov.br/upload/arquivos/201805/14151748-resultado-preliminar-analise-de-merito-edital-04-2018.pdf" rel="noopener" target="_blank">FAPERGS</a>.</li>
+        <li>August/18 — New papers at the <a href="https://wp.ufpel.edu.br/chipinthepampa2018/sbcci-2018-technical-program/">SBCCI conference</a>.</li>
+        <li>May/18 — Post-doctoral fellowship approved for Marcelo Ruaro — <a href="http://fapergs.rs.gov.br/upload/arquivos/201805/14151748-resultado-preliminar-analise-de-merito-edital-04-2018.pdf">FAPERGS</a>.</li>
         <li>April/18 — Two Computer Engineering students to Montpellier via BRAFITEC: Gelmar Luiz Da Costa and Lucas Zini.</li>
         <li>September/17 — Microelectronics Journal: <em>BrNoC: A broadcast NoC for control messages in many-core systems</em>.</li>
-        <li>March/17 — <a href="http://capes.gov.br/images/stories/download/editais/11042017-Edital-24-2016-Brafitec-resultado-listagem.pdf" rel="noopener" target="_blank">BRAFITEC FORCINT</a>: Mobility project approved.</li>
-        <li>January/17 — <a href="http://aufildeleau.polytech.univ-montp2.fr/N-180-9-fevrier-2017_193.html" rel="noopener" target="_blank">Invited Professor in France</a>.</li>
+        <li>March/17 — <a href="http://capes.gov.br/images/stories/download/editais/11042017-Edital-24-2016-Brafitec-resultado-listagem.pdf">BRAFITEC FORCINT</a>: Mobility project approved.</li>
+        <li> January/17 — Invited Professor in France</a></li>
       </ul>
      </div>
 
-     <p class="last-update"> Last update: September 6, 2025 </p>
+     <p class="last-update"> Last update: September 7, 2025 </p>
 
     </div>
    </section>
