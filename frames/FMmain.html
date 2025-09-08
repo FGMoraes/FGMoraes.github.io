@@ -234,7 +234,15 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
     background-color: var(--secondary);
 }
 
+figure {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+}
 
+#imgBanner {
+  height: 200px;   /* define altura */
+  width: auto;    /* mantém proporção */
+}
   </style>
 
  </head>
@@ -397,7 +405,7 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
       <article class="card card--tight">
             <h3>  Research Interests </h3>
                  <ul>
-                      <li> RISC-V processors </li>
+                      <li> RISC-V processors and Instruction Set Extensions (ISEs) </li>
                       <li> Microelectronics: digital ASIC design </li>
                       <li> Manycores and Networks‑on‑Chip (NoCs) </li>
                       <li> Security and reliability in embedded systems </li>
@@ -409,7 +417,7 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
       
       <article class="card card--tight">
             <h3> Short CV </h3>
-            <p>  Fernando Moraes received the Electrical Engineering and M.Sc. degrees from UFRGS, Porto Alegre, Brazil, in 1987 and 1990, respectively, and the Ph.D. from LIRMM, France, in 1994 (<i>Très Honorable avec Félicitations du Jury</i>). He is a Full Professor at PUCRS (since 2002) and served as an Invited Professor at Université de Montpellier in 1998, 1999, 2000, and 2017. He has authored 63 peer‑reviewed journal articles and over 280 conference papers on VLSI, many‑cores, NoCs, cryptography, and ML accelerators. He advised 35 M.Sc. and 22 Ph.D. theses. He serves on the program committees of SBCCI, ISVLSI, NoCs, and DATE, and is an Associate Editor of IEEE TCAS‑II (since 2024). Primary interests include microelectronics, FPGAs, reconfigurable architectures, security, NoCs, and MPSoCs.
+            <p>  Fernando Moraes received the Electrical Engineering and M.Sc. degrees from UFRGS, Porto Alegre, Brazil, in 1987 and 1990, respectively, and the Ph.D. from LIRMM, France, in 1994 (<i>Très Honorable avec Félicitations du Jury</i>). He is a Full Professor at PUCRS (since 2002) and served as an Invited Professor at Université de Montpellier in 1998, 1999, 2000, and 2017. SBMICRO <a href="https://sbmicro.org.br/institucional/diretoria"">  Financial Director </a> for the period  2024-2026. He has authored 63 peer‑reviewed journal articles and over 280 conference papers on VLSI, many‑cores, NoCs, cryptography, and ML accelerators. He advised 35 M.Sc. and 22 Ph.D. theses. He serves on the program committees of SBCCI, ISVLSI, NoCs, and DATE, and is an Associate Editor of IEEE TCAS‑II (since 2024). Primary interests include microelectronics, FPGAs, reconfigurable architectures, security, NoCs, and MPSoCs. 
            </p>
       </article>
 
@@ -470,6 +478,10 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
      <div class="grid cols-3">
 
           <article class="card card--tight">
+              <a href="../docs/soc_wimed_2025.pdf"> <img alt="GROW 2025 talk cover" src="../figs/wimed.png"/> </a>
+          </article>
+
+          <article class="card card--tight">
               <a href="../docs/GROW_2025-Moraes.pdf"> <img alt="GROW 2025 talk cover" src="../figs/talkgrow.png"/> </a>
           </article>
 
@@ -504,10 +516,6 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
           <article class="card card--tight">
                <a href="https://portal.pucrs.br/ensino/mestrado-e-doutorado/ciencia-da-computacao/">
                   <img alt="PPGCC PUCRS rating" src="../figs/puc_nota7.jpeg"/> </a>
-          </article>
-
-          <article class="card card--tight">
-              <figure> <img alt="Word cloud banner" id="imgBanner" src="../figs/wordle_1.png"/>  </figure>
           </article>
 
      </div>
@@ -556,7 +564,9 @@ a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
       </ul>
      </div>
 
-     <p class="last-update"> Last update: September 7, 2025 </p>
+       <figure> <img  alt="Word cloud banner" id="imgBanner" src="../figs/wordle_1.png"/>  </figure>
+
+     <p class="last-update"> Last update: September 8, 2025 </p>
 
     </div>
    </section>
