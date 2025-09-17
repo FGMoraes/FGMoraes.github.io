@@ -88,207 +88,258 @@
             });
         });
   </script>
-  <style>
 
-:root{
-  --primary:#003366;  --secondary:#f0f4f8;  --accent:#4a90e2;  --text:#333;  --muted:#666;  --wash:#f9f9f9;  --border:#ddd; 
-  --radius:10px;  --space-2:0.5rem;  --space-3:0.75rem;  --space-4:1rem;  --space-5:1.2rem; 
-}
+<style>
+        /* =========================================================
+           VARIÁVEIS E RESET
+           ========================================================= */
+        :root{
+          --primary:#003366;
+          --secondary:#f0f4f8;
+          --accent:#4a90e2;
+          --text:#333;
+          --muted:#666;
+          --wash:#f9f9f9;
+          --border:#ddd;
+          --radius:10px;
+          --space-2:0.5rem;
+          --space-3:0.75rem;
+          --space-4:1rem;
+          --space-5:1.2rem;
+        }
 
-*{box-sizing:border-box; margin:0; padding:0}
+        *{ box-sizing:border-box; margin:0; padding:0; }
+        html{ height:100%; }
+        body{
+          min-height:100%;
+          font-family:'Lato',sans-serif;
+          color:var(--text);
+          background:#fff;
+          font-size:11pt;
+          line-height:1.35;
+        }
 
-html { height: 100%;}
+        a{ color:var(--accent); text-decoration:none; transition:color .2s ease; }
+        a:hover{ text-decoration:underline; color:var(--primary); }
+        a:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; }
 
-body {
-    min-height: 100%; 
-    font-family: 'Lato', sans-serif; 
-    color: var(--text); 
-    background: #fff; 
-    font-size: 11pt; 
-    line-height: 1.35;
-}
+        img{ max-width:100%; display:block; }
 
-a{color:var(--accent); text-decoration:none; transition:color .2s ease}
-a:hover{text-decoration:underline; color:var(--primary)}
-img{max-width:100%; display:block}
+        /* =========================================================
+           TIPOGRAFIA
+           ========================================================= */
+        h1,h3{ font-family:'Roboto Slab',serif; color:var(--primary); }
+        h1{ font-size:28pt; }
+        h2{
+          color:var(--accent);
+          font-size:18pt;
+          border-bottom:2px solid var(--accent);
+          padding-bottom:var(--space-2);
+          margin-bottom:var(--space-3);
+        }
+        h3{ font-size:15pt; margin-bottom:var(--space-2); }
 
-.container { width: 90%;   max-width: 90%;    margin-inline: auto; }
+        /* =========================================================
+           LAYOUT BASE
+           ========================================================= */
+        .container { width: 95%;   max-width: 95%;    margin-inline: auto; }
 
-h1, h3{font-family:'Roboto Slab',serif; color:var(--primary)}
-h1{font-size:28pt} 
-h2 {
-    color: var(--accent); 
-    font-size: 18pt;
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: var(--space-2);
-    margin-bottom: var(--space-3);
-}
-h3{font-size:15pt; margin-bottom:var(--space-2)}
+        section{ padding-block:var(--space-5); }
+        section:nth-of-type(even){ background:#f4f7fa; }
 
-section{padding-block:var(--space-5)} section:nth-of-type(even){ background: #f4f7fa; }
+        .grid{ display:grid; gap:var(--space-5); }
+        .grid.cols-3{ grid-template-columns:repeat(3,1fr); }
+        .grid.cols-4{ grid-template-columns:repeat(4,1fr); }
 
-.site-header {
-    background: var(--primary); /* Usar a cor primária como fundo */
-    color: #ffffff; /* Definir cor de texto padrão do header como branco */
-    border-bottom: none; /* Remover a borda inferior, desnecessária com fundo escuro */
-    padding-block: var(--space-5);
-}
-site-header .header-content{
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.site-header .header-content > *{ min-width: 0; }
-.site-header .header-content > :nth-child(1){ flex: 1 1 0; }
-.site-header .header-content > :nth-child(2){ flex: 2 1 0; }
-.site-header .header-content > :nth-child(3){ flex: 1 1 0; }
+        /* =========================================================
+           HEADER (25% - 50% - 25%)
+           ========================================================= */
+        .site-header{
+          background:var(--primary);
+          color:#fff;
+          padding-block:var(--space-5);
+        }
+        .site-header .header-content{
+          display:flex;
+          align-items:center;
+          gap:1rem;
+          flex-wrap:wrap;
+        }
+        .site-header .header-content > *{ min-width:0; }
+        .site-header .header-content > :nth-child(1){ flex:1 1 0; } /* 25% */
+        .site-header .header-content > :nth-child(2){ flex:2 1 0; } /* 50% */
+        .site-header .header-content > :nth-child(3){ flex:1 1 0; } /* 25% */
 
-/* optional alignment */
-.site-header .header-title{ text-align: center; }
-.site-header .header-contact{ text-align: right; }
+        .site-header .header-title{ text-align:center; }
+        .site-header .header-contact{ text-align:right; }
 
-.header-content{display:flex; justify-content:space-between; align-items:center; gap:var(--space-5); flex-wrap:wrap}
+        .logos{
+          --pucrs-h:80px;
+          display:inline-flex;
+          align-items:center;
+          gap:20px;
+        }
+        .logos img{ height:var(--pucrs-h); width:auto; }
+        .logos img.logo--nota{ height:calc(var(--pucrs-h) * 1.3); }
 
-.logos{
-  --pucrs-h: 80px;          /* base height for the PUCRS logo */
-  display: inline-flex;
-  align-items: center;      /* vertical centering */
-  gap: 20px;                 /* space between logos */
-}
-.logos img{
-  display: block;
-  height: var(--pucrs-h);
-  width: auto;
-}
-.logos img.logo--nota{ height: calc(var(--pucrs-h) * 1.3);  /* ~20% taller than PUCRS logo */ }
+        .header-title{ flex:1; text-align:center; padding-inline:var(--space-3); }
+        .header-title h1{ color:#fff; }
+        .header-title p{ color:var(--secondary); }
+        .header-title a{ color:#a9cfff; }
+        .header-title a:hover{ color:#fff; }
 
+        .header-contact{
+          font-size:9pt;
+          text-align:right;
+          color:#fff;      
+          min-width:14rem;
+        }
 
-.header-title{flex:1; text-align:center; padding-inline:var(--space-3)} 
+        /* =========================================================
+           NAVEGAÇÃO PRINCIPAL (sticky + dropdown)
+           ========================================================= */
+        .main-nav{
+          background:#fff;
+          border-bottom:1px solid var(--border);
+          position:sticky; top:0; z-index:999;
+        }
+        .main-nav ul{
+          display:grid;
+          grid-template-columns:repeat(6,auto);
+          grid-auto-rows:auto;
+          justify-content:center;
+          list-style:none;
+          column-gap:1.5rem;
+        }
+        .main-nav li{ position:relative; }
+        .main-nav a,
+        .main-nav span{
+          display:block;
+          padding:var(--space-2) var(--space-2);
+          color:var(--accent);
+          font-weight:800;
+        }
 
-/* Ajustar a cor dos links e texto secundário dentro do header invertido */
-.header-title h1 {
-    color: #ffffff; /* Título principal em branco */
-}
+        /* Dropdown */
+        .dropdown-content{
+          display:none;
+          position:absolute;
+          inset-block-start:100%;
+          background:#fff;
+          min-width:14rem;
+          border:1px solid var(--border);
+          box-shadow:0 6px 14px rgba(0,0,0,.12);
+          z-index:200;
+        }
+        .dropdown-content a{ padding:var(--space-3) var(--space-4); color:#000; font-weight:500; }
+        .dropdown span::after{ content:" ▼"; font-size:10pt; }
 
-.header-title p, .header-contact {
-    color: var(--secondary); /* Usar o cinza claro original para o texto secundário */
-}
-.header-title a {
-    color: #a9cfff; /* Um azul mais claro para links sobre fundo escuro */
-}
-.header-title a:hover {
-    color: #ffffff;
-}
-.header-contact{font-size:9pt; color:var(--muted); text-align:right; color: #ffffff; min-width:14rem}
+        /* Ativação por clique/toque (classe controlada via JS) */
+        .dropdown-active .dropdown-content{ display:block; }
+        .dropdown-active > span,
+        .dropdown-active > a{ background-color:var(--secondary); }
 
-.main-nav{background:#fff; border-bottom:1px solid var(--border); position:sticky; top:0; z-index:999}
-.main-nav ul{display:grid; grid-template-columns:repeat(6,auto); grid-auto-rows:auto; justify-content:center; list-style:none; column-gap: 1.5rem}
-.main-nav li{position:relative}
-.main-nav a,.main-nav span{display:block; padding:var(--space-2) var(--space-2); color: var(--accent); font-weight:800}
-.main-nav li:hover>a,.main-nav li:hover>span{background:var(--secondary)}
+        /* =========================================================
+           LINKS EXTERNOS (ícones)
+           ========================================================= */
+        .ext-links{
+          display:grid;
+          grid-template-columns:repeat(6,1fr);
+          justify-items:center;
+          align-items:center;
+          width:min(90%,70rem);
+          margin-inline:auto;
+          list-style:none;
+        }
+        .ext-links img{
+          height:2.2rem;
+          width:auto;
+          margin-inline:auto;
+          transition:transform .3s ease;
+        }
+        .ext-links img:hover{ transform:scale(1.25); } /* ~25% */
 
-.dropdown-content{display:none; position:absolute; inset-block-start:100%; background:#fff; min-width:14rem; border:1px solid var(--border); box-shadow:0 6px 14px rgba(0,0,0,.12); z-index:200}
-.dropdown-content a{padding:var(--space-3) var(--space-4); color:#000; font-weight:500}
-.dropdown:hover .dropdown-content{display:block}
-.dropdown span::after{content:" ▼"; font-size:10pt}
+        /* =========================================================
+           CARTÕES (cards)
+           ========================================================= */
+        .card{
+          background:#fff;
+          border:1px solid var(--border);
+          border-radius:var(--radius);
+          padding:var(--space-5);
+          overflow:auto;
+          font-size:11pt;
+          transition:transform .2s ease, box-shadow .2s ease;
+          box-shadow:0 6px 14px rgba(0,0,0,.12);
+          position:relative; /* abaixo do menu sticky (z-index:999) */
+          z-index:1;
+        }
+        .card:hover{
+          transform:translateY(-6px) scale(1.03);
+          box-shadow:0 10px 22px rgba(0,0,0,.6);
+        }
 
-a:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+        .card.card--tight{ height:210px; overflow-y:auto; }
 
-.ext-links{display:grid; grid-template-columns:repeat(6,1fr); justify-items:center; align-items:center; width:min(90%,70rem); margin-inline:auto;  list-style:none}
-.ext-links img{height:2.2rem; width:auto; margin-inline:auto}
+        /* Centraliza imagem em cards apenas com imagem */
+        .card--tight > a{ display:grid; place-items:center; height:100%; }
+        .card--tight img{ margin-top:-10px; height:190px; width:auto; }
 
-/* efeito de zoom em hover para as imagens da seção ext-links */
-.ext-links img {
-  transition: transform 0.3s ease; /* animação suave */
-}
+        /* Ajustes específicos por seção */
+        #research .card--tight ul{ padding-left:6px; }
+        #about .card--tight ul li{ margin-left:6px; }
 
-.ext-links img:hover {
-  transform: scale(1.25); /* aumenta 20% */
-}
+        /* =========================================================
+           SEÇÃO DE NOTÍCIAS
+           ========================================================= */
+        .news-list{
+          border:1px solid var(--border);
+          border-radius:var(--radius);
+          background:#fff;
+          padding:var(--space-5);
+          font-size:10pt;
+          line-height:1;
+          max-height:15rem;
+          overflow:auto;
+        }
+        .news-list ul{ list-style:disc; padding-inline-start:1.25rem; }
+        .news-list li{ padding-block:.45rem; border-bottom:1px solid #eee; }
+        .news-list li:last-child{ border-bottom:0; }
+        .news-list img{
+          height:1.875rem;
+          vertical-align:middle;
+          margin-inline-start:.5rem;
+          display:inline;
+        }
+        .last-update{ color:#6a6a6a; font-size:10pt; margin-top:var(--space-3); }
 
-.grid{display:grid; gap:var(--space-5)} .grid.cols-3{grid-template-columns:repeat(3,1fr)} .grid.cols-4{grid-template-columns:repeat(4,1fr)}
+        /* =========================================================
+           BANNER
+           ========================================================= */
+        figure{ display:flex; justify-content:center; }
+        #imgBanner{ height:200px; width:auto; }
 
-/* Estado Padrão do Card */
-.card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: var(--space-5);
-    overflow: auto;
-    font-size: 11pt;
-    transition: transform .2s ease, box-shadow .2s ease;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-    position: relative; /* Define um contexto de empilhamento para o card */
-    z-index: 1;         /* Garante que este contexto esteja abaixo do menu (z-index: 100) */
-}
+        /* =========================================================
+           MEDIA QUERIES
+           ========================================================= */
+        /* Desktop com suporte a hover */
+        @media (hover:hover){
+          .main-nav li:hover > a,
+          .main-nav li:hover > span{ background:var(--secondary); }
+          .dropdown:hover .dropdown-content{ display:block; }
+        }
 
+        /* Dispositivos <= 64rem */
+        @media (max-width:64rem){
+          .grid.cols-3,
+          .grid.cols-4{ grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); }
+          .header-contact{ text-align:center; min-width:auto; }
+          .dropdown-content{ position:static; box-shadow:none; border:none; }
+          h1{ font-size:clamp(20pt,16pt + 2vw,24pt); }
+          h2{ font-size:clamp(14pt,12pt + 1.2vw,18pt); }
+        }
 
-/* Estado :hover do Card */
-.card:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6); /* Sombra mais forte no hover */
-}
-
-.card.card--tight{height:210px; overflow-y:auto; }
-
-/* center the image inside image-only cards */
-.card--tight > a {
-  display: grid;
-  place-items: center; 
-  height: 100%;
-}
-
-.card--tight img {
-               margin-top: -10px;
-
-  height:190px;
-  width:auto;
-}
-
-#research .card--tight ul{padding-left:6px} 
-#about    .card--tight ul li{margin-left:6px}
-
-.news-list{border:1px solid var(--border); border-radius:var(--radius); background:#fff; padding:var(--space-5); font-size:10pt; line-height:1.35; max-height:15rem; overflow:auto}
-.news-list ul{list-style:disc; padding-inline-start:1.25rem}
-.news-list li{padding-block:.45rem; border-bottom:1px solid #eee}
-.news-list li:last-child{border-bottom:0}
-.news-list img{height:1.875rem; vertical-align:middle; margin-inline-start:.5rem; display:inline}
-
-.last-update{color:#6a6a6a; font-size:10pt; margin-top:var(--space-3)}
-
-@media (max-width:64rem){
-  .grid.cols-3,.grid.cols-4{grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))}
-  .header-contact{text-align:center; min-width:auto}
-  .dropdown-content{position:static; box-shadow:none; border:none}
-  h1{font-size:clamp(20pt,16pt + 2vw,24pt)} h2{font-size:clamp(14pt,12pt + 1.2vw,18pt)}
-}
-
-/* Mantenha o :hover para desktops para uma experiência rápida */
-@media (hover: hover) {
-    .main-nav li:hover > a, .main-nav li:hover > span { background: var(--secondary); }
-    .dropdown:hover .dropdown-content { display: block; }
-}
-
-/* Regra para ativar via clique/toque em dispositivos móveis */
-.dropdown-active .dropdown-content {
-    display: block;
-}
-
-/* Estilo opcional para indicar qual menu está aberto */
-.dropdown-active > span, .dropdown-active > a {
-    background-color: var(--secondary);
-}
-
-figure {
-  display: flex;
-  justify-content: center; /* centraliza horizontalmente */
-}
-
-#imgBanner {
-  height: 200px;   /* define altura */
-  width: auto;    /* mantém proporção */
-}
-  </style>
+</style>
 
  </head>
 
@@ -308,8 +359,8 @@ figure {
 
     <div class="header-title">
       <h1>   FERNANDO GEHM MORAES   </h1>
-      <p>   Professor at PUCRS -  School of Technology  <br>
-            Member of: IEEE (Senior) &bull;  SBC &bull;  SBMicro <br>
+      <p>   Professor at PUCRS &nbsp;&bull;&nbsp;  School of Technology &nbsp;&bull;&nbsp; PPGCC <br>
+            Member of: IEEE (Senior) &nbsp;&bull;&nbsp;  SBC &nbsp;&bull;&nbsp;  SBMicro <br>
             CNPq Research Productivity Grant -  Level A  <br>
             <a href="http://www.pucrs.br/pesquisadores/fernando-gehm-moraes"> PUCRS Researchers Profile </a>
       </p>
@@ -612,7 +663,7 @@ figure {
 
      <figure> <img  alt="Word cloud banner" id="imgBanner" src="figs/wordle_1.png"/>  </figure>
 
-     <p class="last-update"> Last update: September 18, 2025 </p>
+     <p class="last-update"> Last update: September 17, 2025 </p>
 
     </div>
    </section>
