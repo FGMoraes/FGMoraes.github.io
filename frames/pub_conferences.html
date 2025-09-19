@@ -381,24 +381,27 @@
 
 <body>
 
-<!-- *********** MENU DE TOPO - INCLUI UM ARQUIVO EXTERNO ********************* -->
-<div style="position: fixed; width: 100vw;  left: 0px; top: 0px; z-index: 20; height: 45px;  background: #003366; ">
-    <object width="100%" height="60" type="text/html" data="menu_top.html"></object>
+<!-- *********** MENU DE TOPO COM ESTILO ********************* -->
+<div class="top-menu-bar">
+  <object
+    id="menuTop"
+    class="menu-top-object"
+    width="100%"
+    type="text/html"
+    data="menu_top.html?title=Published%20Papers%20in%20Conferences&v=2">
+  </object>
 </div>
 
 <!-- ####################################### Select a subject form #############-->
 
-<div style="position: fixed; width: 100vw;  left: 30px; top: 45px;  font-weight: bold; font-size: 12pt;   color: black; ">
-
-
-  <h2>Published Papers in Conferences</h2>
+<div style="position: fixed; width: 100vw; top: 40px; left: 0; font-weight: bold; font-size: 12pt;   color: red; ">
 
   <!-- (1) ALL button -->
   &nbsp;&nbsp;&nbsp;&nbsp;All papers:&nbsp;
   <button id="btnAll" onclick="showAll()" style="margin-right: 16px;">ALL</button>
 
   <!-- (2) Subject selector -->
-   Paper Subject:&nbsp;
+   Subject:&nbsp;
   <select id="subjectSelect" onchange="selectSubject(this.value)">
       <option value="0">select</option>
       <option value="1">MPSoC and many-cores</option>
