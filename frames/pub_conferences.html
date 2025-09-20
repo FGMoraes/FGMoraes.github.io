@@ -37,10 +37,6 @@
            margin-left:  2vw;
            width: 96vw;
           }
-
-.top-menu-bar2 { height:90px;  background: #003366;  
-}
-
   </style>
 
 
@@ -376,29 +372,26 @@
       doc.body.appendChild(pre);
     }
 
-
 </script>
-
 
 </head>
 
 <body>
 
 <!-- *********** MENU DE TOPO COM ESTILO ********************* -->
-<div class="top-menu-bar2">
+<div class="top-menu-bar">
   <object
     id="menuTop"
     class="menu-top-object"
     width="100%"
     type="text/html"
-
     data="menu_top.html?title=Published%20Papers%20in%20Conferences&v=2">
   </object>
 </div>
 
 <!-- ####################################### Select a subject form #############-->
 
-<div style="position: fixed;  border-style: none; width: 100vw; top: 100px; left: 0; font-weight: bold; font-size: 12pt;   color: red; ">
+<div style="position: fixed;  z-index: 999; border-style: none; width: 100vw; top: 100px; left: 0; font-weight: bold; font-size: 12pt;   color: red; ">
 
   <!-- (1) ALL button -->
   &nbsp;&nbsp;
@@ -499,7 +492,7 @@
 
 
 <!-- ####### Display the year selection when ALL papers are visible ################## -->
-<div style="position: fixed; width: 100vw;   left: 5px; top: 130px;  overflow-y: scroll;  height: 85%; ">  
+<div style="position: fixed; width: 100vw;   left: 5px; top: 140px;  overflow-y: scroll;  height: 85%; ">  
 
   <!-- Conference counter bar (blue), initially hidden -->
   <p id="confCount" class="year confbar" style="display:none;"></p>
