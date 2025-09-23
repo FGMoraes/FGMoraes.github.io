@@ -3,105 +3,86 @@
       <meta charset="utf-8"/>
       <title>  Fernando Gehm Moraes </title>
       <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-      <link href="pubs.css" rel="stylesheet" type="text/css"/>
      
      <STYLE type="text/css">
-            b { font-weight: bold;
-               font-family: Helvetica,Verdana,Arial;
-                font-size: 10pt;
-                border-style: none;
-                color: navy;
-               }
   
-              .personalizar-select{
-                border: 1px solid navy;
-                border-radius: 5px;
-                height: 20px;
-                color: blue;
-                font-family: Helvetica,Verdana,Arial;
-                font-size: 9pt;
-                font-weight: bold; 
-                width: 180px; 
-                border-radius: 5px;
-              }
+           .personalizar-select{
+             border: 1px solid  #003366;
+             border-radius: 5px;
+             color: blue;
+             font-family:  Roboto, "Helvetica Neue", Arial, sans-serif;
+             font-size: 9pt;
+             font-weight: bold; 
+             width: 190px; 
+             border-radius: 5px;
+           }
 
           table.a {  width: 100%;  }
           td.a {  width: 5%;  }
           td.c {  width: 22.5%;  }
 
-            #menu-title {
-              margin-left: 40px;   
-            }
+          h2 {   background: #003366;
+                 font-family: Roboto, "Helvetica Neue", Arial,  sans-serif;
+                 font-weight: bold;
+                 font-size: 14pt;
+                 margin-left: 40pt; 
+                 color:white;}
       </STYLE>
 
 </head>
 
  <body>
-
-  <div class="menu-bar-row">
-
-   <div class="menu-controls">
-
-        <center>
+   
         <table class="a">
 
            <tr>
-
-                <td class="a">
-                    <a href="../index.html" target="_top"> &nbsp; &nbsp; <img ALT="H" SRC="../figs/home.png"  width="25">  </a>
-                </td>
-
-                <td class="a">
-                </td>
-
-                <td class="c">
-                      <select class="personalizar-select" onChange="window.open(this.options[this.selectedIndex].value,'_top')" name="website">
-                              <option value=""> Select Publication Type </option>
-                              <option value="pub_journals.html"> Journals </option>
-                              <option value="pub_conferences.html"> Conferences </option>
-                              <option value="pub_reports.html"> Research Rep </option>
-                              <option value="pub_monografias.html" > Monografias </option>
-                      </select>
-               </td>
-
-                <td class="c">
-                      <select class="personalizar-select" onChange="window.open(this.options[this.selectedIndex].value,'_top')" name="website">
-                              <option value=""> Text of Advised Students </option>
-                              <option value="adv_thesis.html"> Thesis </option>
-                              <option value="adv_master.html"> Dissertations </option>
-                              <option value="adv_tcc.html"> TCC </option>
-                      </select>  
-               </td>  
-
-               <td  class="c">
-                      <select class="personalizar-select" onChange="window.open(this.options[this.selectedIndex].value,'_top')" name="     website">
-                         <option value=""> Research </option>
-                         <option value="http://dgp.cnpq.br/dgp/espelhogrupo/763059">          GAPH </option>
-                         <option value="https://github.com/gaph-pucrs/RS5">                   RS5 processor </option>
-                         <option value="https://github.com/gaph-pucrs/Memphis-V">             Memphis-V </option>
-                         <option value="https://www.inf.pucrs.br/hemps/memphis.html">         Memphis </option>
-                      </select>
-                </td>
-
-                 <td class="c">
-                    <!-- <select onChange="window.open(this.value)"> -->
-                     <select class="personalizar-select" onChange="window.open(this.options[this.selectedIndex].value,'_top')" name="website">  
-                                <option value=""> Go to My Citations </option>
-                                <option value="http://orcid.org/0000-0001-6126-6847"> Orcid </option>
-                                <option value="http://scholar.google.com/citations?user=XNjum_8AAAAJ"> Google Scholar </option>
-                                <option value="https://dblp.org/pid/m/FernandoGehmMoraes.html"> DBLP </option>
-                                <option value="http://dl.acm.org/author_page.cfm?id=81100359054">  Acad. ACM </option>
-                                <option value="http://www.scopus.com/authid/detail.url?authorId=7005891217"> Scopus </option>
-                                <option value="pub_bibbase.html"> BibBase </option>
-                        </select>  
-                </td>
-
+             <td class="a">
+                 <a href="../index.html" target="_top"> &nbsp; &nbsp; <img ALT="H" SRC="../figs/home.png"  width="25">  </a>
+             </td>
+             <td class="a">
+             </td>
+             <td class="c">
+                 <select class="personalizar-select" onChange="window.open(this.options[this.selectedIndex].value,'_top')" name="website">
+                   <option value=""> Select Publication Type </option>
+                   <option value="pub_journals.html">    Journals </option>
+                   <option value="pub_conferences.html"> Conferences </option>
+                   <option value="pub_reports.html">     Research Rep </option>
+                   <option value="pub_monografias.html"> Monografias </option>
+                 </select>
+             </td>
+             <td class="c">
+                 <select class="personalizar-select" onChange="window.open(this.options[this.selectedIndex].value,'_top')" name="website">
+                   <option value=""> Text of Advised Students </option>
+                   <option value="adv_thesis.html"> Thesis </option>
+                   <option value="adv_master.html"> Dissertations </option>
+                   <option value="adv_tcc.html">    TCC </option>
+                 </select>  
+             </td>  
+             <td class="c">
+                 <select class="personalizar-select" onChange="window.open(this.options[this.selectedIndex].value,'_top')" name="website">
+                   <option value=""> Research </option>
+                   <option value="http://dgp.cnpq.br/dgp/espelhogrupo/763059">    GAPH </option>
+                   <option value="https://github.com/gaph-pucrs/RS5">             RS5 processor </option>
+                   <option value="https://github.com/gaph-pucrs/Memphis-V">       Memphis-V </option>
+                   <option value="https://www.inf.pucrs.br/hemps/memphis.html">   Memphis </option>
+                 </select>
+             </td>
+             <td class="c">
+                 <select class="personalizar-select" onChange="window.open(this.options[this.selectedIndex].value,'_top')" name="website">  
+                   <option value=""> Go to My Citations </option>
+                   <option value="http://orcid.org/0000-0001-6126-6847">                        Orcid </option>
+                   <option value="http://scholar.google.com/citations?user=XNjum_8AAAAJ">       Google Scholar </option>
+                   <option value="https://dblp.org/pid/m/FernandoGehmMoraes.html">              DBLP </option>
+                   <option value="http://dl.acm.org/author_page.cfm?id=81100359054">            Acad. ACM </option>
+                   <option value="http://www.scopus.com/authid/detail.url?authorId=7005891217"> Scopus </option>
+                   <option value="pub_bibbase.html"> BibBase </option>
+                 </select>  
+             </td>
           </tr>
-
         </table> 
-   </div>
+  
+      <center>
       <h2 id="menu-title">  S  </h2>
-  </div>
 
   <script>
    (function(){
