@@ -1,4 +1,16 @@
 
+// --- injected by ChatGPT: quantity-based color palette (darker = more)
+function _valueShade(n, arr){
+  try{
+    var vals = Array.isArray(arr) ? arr.map(function(x){ return (x && typeof x.n==='number')? x.n : 0; }) : [n];
+    var min = Math.min.apply(null, vals);
+    var max = Math.max.apply(null, vals);
+    var t = (max===min)? 0.5 : ((n - min) / (max - min));
+    var lightness = 85 - t * (85 - 35); // 85% light -> 35% dark
+    return "hsl(220 70% " + lightness.toFixed(1) + "%)"; // blue scale
+  } catch(e){ return "hsl(220 70% 60%)"; }
+}
+
 /* --- extracted block #1 --- */
 // ---- helpers ----
   function hideElements(nodeList) {
@@ -302,25 +314,22 @@
     doc.open();
     doc.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Conference Report</title>' +
       '<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:16px}'+
-      'h1{font-size:18px;margin:0 0 8px} .row{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}'+
-      '.box{flex:1 1 520px;min-width:320px} pre{font:12px/1.4 monospace;background:#f6f8fa;padding:12px;border-radius:8px;overflow:auto;max-height:70vh}'+
+      'h1{font-size:18px;margin:0 0 8px} .row{display:flex;gap:0px;align-items:flex-start;flex-wrap:wrap}'+
+      '.box{flex:1 1 0px;min-width:320px} pre{font:12px/1.4 monospace;background:#f6f8fa;padding:12px;border-radius:8px;overflow:auto;max-height:170vh}'+
       'canvas{width:100%;height:360px;max-height:60vh;border:1px solid #ddd;border-radius:8px}'+
-      '.note{font-size:12px;color:#555;margin-top:6px}'+
       '</style></head><body></body></html>');
     doc.close();
 
     // Layout
-    var h1 = doc.createElement("h1"); h1.textContent = "Conference Report & Yearly Publications";
+    var h1 = doc.createElement("h1"); h1.textContent = "Conference Report & Yearly Publications (Total: " + grandTotal + ")" ;
     var row = doc.createElement("div"); row.className = "row";
     row.style.flexDirection = "column";   // <-- add this line
     var chartBox = doc.createElement("div"); chartBox.className = "box";
     var preBox = doc.createElement("div"); preBox.className = "box";
     var canvas = doc.createElement("canvas"); canvas.width = 1200; canvas.height = 450; // DPR-safe sizing handled below
-    var note = doc.createElement("div"); note.className = "note"; note.textContent = "X: year  |  Y: number of publications";
     var pre = doc.createElement("pre"); pre.textContent = lines.join("\n");
 
     chartBox.appendChild(canvas);
-    chartBox.appendChild(note);
     preBox.appendChild(pre);
     row.appendChild(chartBox);
     row.appendChild(preBox);
@@ -382,6 +391,7 @@
         var hue = Math.round((i / data.length) * 300); // 0..300
         ctx.fillStyle = "hsl(" + hue + " 70% 50%)";
         var h = (d.n / maxY) * plotH;
+        ctx.fillStyle = _valueShade(d.n, data);
         ctx.fillRect(x, padT + plotH - h, barW, h);
 
         // Value label
