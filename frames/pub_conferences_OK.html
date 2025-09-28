@@ -39,8 +39,341 @@
           }
   </style>
 
-<!-- made by ChatGPT -->
-<script src="pub_conferences.js" defer></script>
+
+<script>
+  // ---- helpers ----
+  function hideElements(nodeList) {
+    nodeList.forEach(function(el){ el.style.visibility = "hidden"; el.style.display = "none"; });
+  }
+  function realYearHeaders() {
+    var years = Array.from(document.querySelectorAll("p.year"));
+    return years.filter(function(el){ return el.id !== "confCount"; });
+  }
+
+  // (1) ALL button
+  function showAll() {
+    var allItems = document.querySelectorAll("ol li");
+    var years = realYearHeaders();
+    var confCountBar = document.getElementById("confCount");
+
+    // show everything
+    allItems.forEach(function(el){ el.style.visibility = "visible"; el.style.display = "list-item"; });
+    years.forEach(function(el){ el.style.visibility = "visible"; el.style.display = "block"; });
+
+    // reset controls
+    var subj = document.getElementById("subjectSelect");
+    var year = document.getElementById("yearSelect");
+    var conf = document.getElementById("conferenceSelect");
+    if (subj) subj.value = "0";
+    if (year) year.value = "0";
+    if (conf) conf.value = "0";
+
+    // hide conference counter
+    if (confCountBar) { confCountBar.style.display = "none"; confCountBar.textContent = ""; }
+  }
+
+  // (2) Subject selector
+  function selectSubject(val) {
+    var PAPER_CLASSES = ["general","Cmpsoc","Csec","Cfault","Cenergy","Cnoc","CSDN","Cmapping","Cmigration","Cfpga","CRV5","CML"];
+    var allItems = document.querySelectorAll("ol li");
+    var years = realYearHeaders();
+    var confCountBar = document.getElementById("confCount");
+
+    if (val === "0") { showAll(); return; }
+
+    // Reset other controls
+    var year = document.getElementById("yearSelect"); if (year) year.value = "0";
+    var conf = document.getElementById("conferenceSelect"); if (conf) conf.value = "0";
+
+    // Hide years and counter bar, hide all items
+    hideElements(years);
+    if (confCountBar) { confCountBar.style.display = "none"; confCountBar.textContent = ""; }
+    hideElements(allItems);
+
+    // Show only items of the selected subject
+    var idx = parseInt(val, 10);
+    var cls = PAPER_CLASSES[idx];
+    Array.from(document.getElementsByClassName(cls)).forEach(function(el){
+      el.style.display = "list-item"; el.style.visibility = "visible";
+    });
+  }
+
+  // (3) Year selector
+  function selectYear(val) {
+    var allItems = document.querySelectorAll("ol li");
+    var years = realYearHeaders();
+    var confCountBar = document.getElementById("confCount");
+
+    if (val === "0") { showAll(); return; }
+
+    // Reset other controls
+    var subj = document.getElementById("subjectSelect"); if (subj) subj.value = "0";
+    var conf = document.getElementById("conferenceSelect"); if (conf) conf.value = "0";
+
+    // Hide all items and year headers
+    hideElements(allItems);
+    hideElements(years);
+
+    // Show selected year header and its items
+    var yearId = "a" + val;      // e.g., "2025" -> "a2025"
+    var olId   = "ol" + val;     // e.g., "2025" -> "ol2025"
+    var yhdr = document.getElementById(yearId);
+    var ylist = document.getElementById(olId);
+    if (yhdr) { yhdr.style.display = "block"; yhdr.style.visibility = "visible"; }
+    if (ylist) {
+      Array.from(ylist.getElementsByTagName("li")).forEach(function(el){
+        el.style.display = "list-item"; el.style.visibility = "visible";
+      });
+    }
+
+    // Hide conference counter
+    if (confCountBar) { confCountBar.style.display = "none"; confCountBar.textContent = ""; }
+
+    if (yhdr) { yhdr.scrollIntoView({ behavior: 'instant', block: 'start' }); }
+  }
+
+  // (4) Conference selector
+  function selectConference(conf) {
+    var allItems = document.querySelectorAll("ol li");
+    var years = realYearHeaders();
+    var confCountBar = document.getElementById("confCount");
+
+    if (conf === "0") { showAll(); return; }
+
+    // Reset other controls
+    var subj = document.getElementById("subjectSelect"); if (subj) subj.value = "0";
+    var year = document.getElementById("yearSelect"); if (year) year.value = "0";
+
+    // Hide all items and years
+    hideElements(allItems);
+    hideElements(years);
+
+    // Show only items containing "In: <conf>,"
+    var match = "In: " + conf + ",";
+    var count = 0;
+    allItems.forEach(function(item){
+      if (item.innerHTML.indexOf(match) !== -1) {
+        item.style.display = "list-item";
+        item.style.visibility = "visible";
+        count++;
+      }
+    });
+
+    // Update blue conference counter (before the list)
+    if (confCountBar) {
+      var total = getTotalArticles();
+      confCountBar.textContent = conf + " (" + count + " articles from " + total + ")";
+      confCountBar.style.display = "block";
+      confCountBar.style.visibility = "visible";
+    }
+  }
+
+  // ---- Counters ----
+  function getTotalArticles() {
+    var years = realYearHeaders();
+    var total = 0;
+    years.forEach(function(y){
+      var ol = document.getElementById("ol" + y.id.substring(1));
+      if (ol) total += ol.getElementsByTagName("li").length;
+    });
+    return total;
+  }
+
+  function countArticlesPerYear() {
+    var years = realYearHeaders();
+    var total = 0;
+    years.forEach(function(y){
+      var ol = document.getElementById("ol" + y.id.substring(1));
+      if (ol) total += ol.getElementsByTagName("li").length;
+    });
+    years.forEach(function(y){
+      var ol = document.getElementById("ol" + y.id.substring(1));
+      if (ol) {
+        var n = ol.getElementsByTagName("li").length;
+        var baseText = y.textContent.split(" (")[0];
+        y.textContent = baseText + " (" + n + " articles from " + total + ")";
+      }
+    });
+  }
+
+  // Populate "Year" select dynamically
+  function populateYearSelect() {
+    var sel = document.getElementById("yearSelect");
+    if (!sel) return;
+    var years = realYearHeaders().map(function(y){ return y.id.substring(1); })
+                 .sort(function(a,b){ return b.localeCompare(a); });
+    while (sel.options.length > 1) sel.remove(1);
+    years.forEach(function(y){
+      var opt = document.createElement("option");
+      opt.value = y;
+      opt.textContent = " " + y + " ";
+      sel.appendChild(opt);
+    });
+  }
+
+  window.onload = function() {
+    countArticlesPerYear();
+    populateYearSelect();
+    showAll();
+  };
+
+
+      // ####################################################################################-
+    function checkPassword(url) {
+           const actualEncryptedArray = [432, 160, 72, 208, 240, 64, 704, 584, 600, 584, 576];
+           let savedPassword = sessionStorage.getItem("savedPassword");
+       
+           if (savedPassword) {
+               const encryptedSavedPassword = encrypt(savedPassword);
+               if (arraysEqual(encryptedSavedPassword, actualEncryptedArray)) {
+                   window.location = "../docs/papers/" + url + ".pdf";
+                   return;
+               }
+           }
+       
+           let input = prompt("Please enter the password (or e-mail to fernando.moraes@pucrs.br");
+           const encryptedInput = encrypt(input);
+       
+           if (arraysEqual(encryptedInput, actualEncryptedArray)) {
+               sessionStorage.setItem("savedPassword", input);
+               window.location = "../docs/papers/" + url + ".pdf";
+           } else {
+               alert("Incorrect password!");
+           }
+    }
+
+    // ####################################################################################-
+    function arraysEqual(a, b) {
+          if (a === b) return true;
+          if (a == null || b == null) return false;
+          if (a.length !== b.length) return false;
+      
+          for (let i = 0; i < a.length; i++) {
+              if (a[i] !== b[i]) return false;
+          }
+          return true;
+    }
+
+    // ####################################################################################-
+    function encrypt(plainText) {
+          let encrypted = [];
+          for (let i = 0; i < plainText.length; i++) {
+              let charCode = plainText.charCodeAt(i);
+              charCode = (charCode ^ 123) << 3;
+              encrypted.push(charCode);
+          }
+          return encrypted;
+    }
+
+    // ####################################################################################-  
+     function generateReport() {
+      // Helper: escape a string for use inside RegExp
+      function escapeRegex(s) {
+        return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      }
+
+      // Build the list of conference NAMES from the <select>, supporting BOTH:
+      //  - numeric option values (IDs) with optional global CONF_MAP
+      //  - string option values that already contain the conference name
+      var confSelect = document.getElementById("conferenceSelect");
+      if (!confSelect) { alert("conferenceSelect not found."); return; }
+
+      var seen = new Set();
+      var conferences = [];
+      Array.from(confSelect.options).forEach(opt => {
+        var rawVal = (opt.value || "").trim();
+        var label  = (opt.textContent || "").trim();
+
+        // Normalize "ALL"
+        if (rawVal.toUpperCase() === "ALL" || label.toUpperCase().includes("ALL")) return;
+
+        var id = Number.parseInt(rawVal, 10);
+        var name = null;
+
+        if (!Number.isNaN(id)) {
+          // Numeric IDs → try CONF_MAP; fall back to label
+          if (typeof CONF_MAP !== "undefined" && CONF_MAP && CONF_MAP[id]) {
+            name = CONF_MAP[id];
+          } else {
+            name = label; // safe fallback
+          }
+        } else {
+          // Non-numeric → treat the value itself as the conference name
+          name = rawVal || label;
+        }
+
+        if (name && !seen.has(name)) {
+          seen.add(name);
+          conferences.push(name);
+        }
+      });
+
+      // Collect all list items once
+      var allItems = Array.from(document.querySelectorAll("ol li"));
+      var lines = [];
+
+      // --- Section 1: Publications by conference ---
+      conferences.forEach(confName => {
+        var count = 0;
+        var yearsSet = new Set();
+        // robust text-based matching: "In: <CONF>, <YEAR>"
+        var confPattern = new RegExp("In:\\s*" + escapeRegex(confName) + ",\\s*(\\d{4})");
+
+        allItems.forEach(item => {
+          var txt = item.textContent || "";
+          var m = txt.match(confPattern);
+          if (m) {
+            count++;
+            yearsSet.add(m[1]);
+          }
+        });
+
+        if (count > 0) {
+          var years = Array.from(yearsSet).sort((a, b) => b.localeCompare(a));
+          var confFixed = (confName + "               ").slice(0, 15); // pad/truncate to 15 chars
+          var countStr  = String(count).padStart(2, " ");
+          lines.push(confFixed + " " + countStr + " [" + years.join(", ") + "]");
+        }
+      });
+
+      // --- Section 2: Publications by year ---
+      var yearHeaders = Array.from(document.querySelectorAll("p.year"))
+        .filter(el => el.id !== "confCount");
+
+      var perYear = [];
+      var grandTotal = 0;
+      yearHeaders.forEach(yh => {
+        var y = yh.id.substring(1); // drop leading 'a'
+        var ol = document.getElementById("ol" + y);
+        var n = ol ? ol.getElementsByTagName("li").length : 0;
+        grandTotal += n;
+        perYear.push({ year: y, n: n });
+      });
+      perYear.sort((a, b) => b.year.localeCompare(a.year));
+
+      lines.push("");
+      lines.push("Publicações por ano:");
+      perYear.forEach(({ year, n }) => { lines.push(year + ": " + n); });
+      lines.push("Total: " + grandTotal);
+
+      // Render report in a popup
+      var reportWin = window.open("", "ReportWindow");
+      if (!reportWin) { alert("Pop-up blocked. Please allow pop-ups for this site."); return; }
+
+      var doc = reportWin.document;
+      doc.open();
+      doc.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Conference Report</title></head><body></body></html>');
+      doc.close();
+
+      var pre = doc.createElement("pre");
+      pre.style.fontFamily = "monospace";
+      pre.style.fontSize = "10pt";
+      pre.textContent = lines.join("\n");
+      doc.body.appendChild(pre);
+    }
+
+</script>
+
 </head>
 
 <body>
@@ -2443,7 +2776,7 @@
 </ol>
 
 <hr>
-&nbsp;&nbsp; 28/set/2025 
+&nbsp;&nbsp; 19/set/2025 
 <hr>
 
 </div>
