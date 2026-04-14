@@ -1,85 +1,142 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
-
-<title> MICROELETRONICA </title>
-<link href="estilo_disciplina_novo.css" rel="stylesheet" type="text/css">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Material de Microeletrônica</title>
+  <link href="estilo_disciplina_moderno.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
+  <main class="page">
+    <header class="hero">
+      <a class="home-link" href="../index.html" target="_top" aria-label="Voltar para a página inicial">
+        <img alt="Home" src="../figs/home.png"> Página inicial
+      </a>
+      <h1>Material de Microeletrônica</h1>
+      <p>Repositório com as lâminas, laboratórios, listas de exercícios, materiais de apoio e vídeos para a disciplina.</p>
+    </header>
 
-<h1> <a href="../index.html" target="_top"> <img ALT="H" SRC="../figs/home.png"  width="25"> </a> MATERIAL DE MICROELETRONICA</h1>
+    <nav class="quick-nav" aria-label="Navegação rápida">
+      <a href="#laminas">Lâminas</a>
+      <a href="#laboratorios">Laboratórios</a>
+      <a href="#exercicios">Exercícios</a>
+      <a href="#acesso">Acesso e Linux</a>
+      <a href="#videos">Vídeos</a>
+      <a href="#artigo">Artigo</a>
+    </nav>
 
-<P> &nbsp; </P>
+    <section class="content-grid">
+      <article class="section-card wide" id="laminas">
+        <div class="section-header">
+          <span class="icon" aria-hidden="true">▣</span>
+          <div>
+            <h2>Lâminas</h2>
+            <p>Material de aula organizado por tópicos da disciplina.</p>
+          </div>
+        </div>
+        <ul class="link-list two-columns">
+          <li><a href="microel_slides_01.pdf" target="_blank"><span><span class="tag">01</span>Introdução e Dispositivos MOS</span></a></li>
+          <li><a href="microel_slides_02.pdf" target="_blank"><span><span class="tag">02</span>Inversor: comportamento estático e dinâmico</span></a></li>
+          <li><a href="microel_slides_03.pdf" target="_blank"><span><span class="tag">03</span>Portas lógicas estáticas</span></a></li>
+          <li><a href="microel_slides_04.pdf" target="_blank"><span><span class="tag">04</span>Dimensionamento de Portas Lógicas</span></a></li>
+          <li><a href="microel_slides_05.pdf" target="_blank"><span><span class="tag">05</span>Portas lógicas dinâmicas</span></a></li>
+          <li><a href="microel_slides_06.pdf" target="_blank"><span><span class="tag">06</span>Processo de fabricação CMOS</span></a></li>
+          <li><a href="microel_slides_07.pdf" target="_blank"><span><span class="tag">07</span>Circuitos sequenciais estáticos</span></a></li>
+          <li><a href="microel_slides_08.pdf" target="_blank"><span><span class="tag">08</span>Circuitos sequenciais dinâmicos</span></a></li>
+          <li><a href="microel_slides_09.pdf" target="_blank"><span><span class="tag">09</span>Circuitos aritméticos</span></a></li>
+          <li><a href="microel_slides_10.pdf" target="_blank"><span><span class="tag">10</span>Multiplicação e Divisão: conceitos básicos</span></a></li>
+          <li><a href="microel_slides_11.pdf" target="_blank"><span><span class="tag">11</span>Metodologias de projeto</span></a></li>
+        </ul>
+      </article>
 
-<h2> Lâminas </h2>
+      <article class="section-card" id="laboratorios">
+        <div class="section-header">
+          <span class="icon" aria-hidden="true">⚙</span>
+          <div>
+            <h2>Laboratórios</h2>
+            <p>Atividades práticas de simulação, layout e fluxo de projeto.</p>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="lab1_transistor.pdf" target="_blank"><span><span class="tag">LAB1</span>Simulação Spice do Transistor</span></a></li>
+          <li><a href="lab2_inversor.pdf" target="_blank"><span><span class="tag">LAB2</span>Simulação Spice do Inversor</span></a></li>
+          <li><a href="lab3_nand_nor.pdf" target="_blank"><span><span class="tag">LAB3</span>Simulação Spice de portas NAND/NOR</span></a></li>
+          <li><a href="lab4_layout_Inversor.pdf" target="_blank"><span><span class="tag">LAB4</span>Projeto de Porta Lógica com Cadence</span></a></li>
+          <li><a href="lab5_flops.pdf" target="_blank"><span><span class="tag">LAB5</span>Simulação Spice de Flip-Flops</span></a></li>
+          <li><a href="lab6_cadence_design_flow_28nm.pdf" target="_blank"><span><span class="tag">LAB6</span>Síntese Standard-Cells com Cadence</span></a></li>
+        </ul>
+      </article>
 
-<ul>
-       <li>  <a href="microel_slides_01.pdf" target="_blank">  Introdução e Dispositivos MOS   </a>  </li>
-       <li>  <a href="microel_slides_02.pdf" target="_blank">  Inversor - comportamento estático e dinâmico   </a>  </li>
-       <li>  <a href="microel_slides_03.pdf" target="_blank">  Portas lógicas estáticas       </a>  </li>
-       <li>  <a href="microel_slides_04.pdf" target="_blank">  Dimensionamento de Portas Lógicas  </a>  </li>
-       <li>  <a href="microel_slides_05.pdf" target="_blank">  Portas lógicas dinâmicas              </a>  </li>
-       <li>  <a href="microel_slides_06.pdf" target="_blank">  Processo de fabricação CMOS     </a>  </li>
-       <li>  <a href="microel_slides_07.pdf" target="_blank">  Circuitos sequenciais estáticos  </a>  </li>
-       <li>  <a href="microel_slides_08.pdf" target="_blank">  Circuitos sequenciais dinâmicos  </a>  </li>
-       <li>  <a href="microel_slides_09.pdf" target="_blank">  Circuitos aritméticos            </a>  </li>
-       <li>  <a href="microel_slides_10.pdf" target="_blank">  Multiplicação e Divisão: conceitos básicos  </a>  </li>
-       <li>  <a href="microel_slides_11.pdf" target="_blank">  Metodologias de projeto             </a>  </li>
-</ul>
+      <article class="section-card" id="exercicios">
+        <div class="section-header">
+          <span class="icon" aria-hidden="true">✓</span>
+          <div>
+            <h2>Listas de exercícios</h2>
+            <p>Exercícios organizados por unidade.</p>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="lista_microeletronica_unidade_1.pdf" target="_blank"><span><span class="tag">U1</span>Unidade 1</span></a></li>
+          <li><a href="lista_microeletronica_unidade_2.pdf" target="_blank"><span><span class="tag">U2</span>Unidade 2</span></a></li>
+          <li><a href="lista_microeletronica_unidade_2bis.pdf" target="_blank"><span><span class="tag">U2b</span>Unidade 2b</span></a></li>
+        </ul>
+      </article>
 
-<h2> Laboratórios </h2>
+      <article class="section-card" id="acesso">
+        <div class="section-header">
+          <span class="icon" aria-hidden="true">⌘</span>
+          <div>
+            <h2>Acesso externo e Linux</h2>
+            <p>Guias de acesso remoto e comandos básicos.</p>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="help/acesso_XPRA.pdf" target="_blank">Acesso externo via XPRA recomendado</a></li>
+          <li><a href="help/acesso_Mobaxterm.pdf" target="_blank">Acesso externo via Mobaxterm para Windows</a></li>
+          <li><a href="help/acesso_VNC.pdf" target="_blank">Acesso externo via VNC antigo</a></li>
+          <li><a href="help/linux-cheat-sheet.png" target="_blank">Ajuda com comandos Linux</a></li>
+        </ul>
+      </article>
 
-<ul>  
-           <li>  <a href="lab1_transistor.pdf" target="_blank">         LAB1 - Simulação Spice do Transistor  </a>  </li>
-           <li>  <a href="lab2_inversor.pdf" target="_blank">           LAB2 - Simulação Spice do Inversor    </a>  </li>
-           <li>  <a href="lab3_nand_nor.pdf" target="_blank">           LAB3 - Simulação Spice de portas NAND/NOR </a>  </li>
-           <li>  <a href="lab4_layout_Inversor.pdf" target="_blank">    LAB4 - Projeto de Porta Lógica Utilizando Ferramentas Cadence  </a>  </li>
-           <li>  <a href="lab5_flops.pdf" target="_blank">              LAB5 - Simulação Spice de Flip-Flops  </a>  </li>
-           <li>  <a href="lab6_cadence_design_flow_28nm.pdf" target="_blank">    LAB6 - Síntese Standard-Cells Utilizando Cadence </a>  </li>
-</ul>
+      <article class="section-card" id="artigo">
+        <div class="section-header">
+          <span class="icon" aria-hidden="true">◇</span>
+          <div>
+            <h2>Artigo histórico</h2>
+            <p>Leitura complementar sobre o desenvolvimento inicial de circuitos integrados.</p>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="Recollections_of_Early_Chip_Development_at_Intel.pdf" target="_blank">Recollections of Early Chip Development at Intel</a></li>
+        </ul>
+      </article>
 
-<h2> Lista de exercícios </h2>
+      <article class="section-card wide" id="videos">
+        <div class="section-header">
+          <span class="icon" aria-hidden="true">▶</span>
+          <div>
+            <h2>Vídeos</h2>
+            <p>Materiais audiovisuais de apoio sobre tecnologia, fabricação e dispositivos semicondutores.</p>
+          </div>
+        </div>
+        <ul class="link-list two-columns">
+          <li><a href="https://www.bbc.com/portuguese/media-49794325?ocid=socialflow_facebook" target="_blank">Como o chip revolucionou o mundo — BBC</a></li>
+          <li><a href="https://www.youtube.com/watch?v=2ehSCWoaOqQ" target="_blank">Fábrica da Intel — 7 nm</a></li>
+          <li><a href="https://www.youtube.com/watch?v=TXxw1kdF5_Q" target="_blank">Investing in FinFET Technology Leadership — ARM</a></li>
+          <li><a href="https://www.youtube.com/watch?v=c-3p8moNXfI" target="_blank">New FinFET Semiconductor Structure and Function</a></li>
+          <li><a href="https://www.youtube.com/watch?v=WVLGKq9An28" target="_blank">Working in the Clean Room — Inside the Fab — Intel</a></li>
+          <li><a href="https://www.youtube.com/watch?v=UvluuAIiA50" target="_blank">GLOBALFOUNDRIES — Sand to Silicon</a></li>
+          <li><a href="https://www.youtube.com/watch?v=4Q_n4vdyZzc" target="_blank">Semiconductor Technology at TSMC</a></li>
+          <li><a href="https://www.youtube.com/watch?v=IcrBqCFLHIY" target="_blank">Vídeo didático sobre o transistor</a></li>
+          <li><a href="https://www.youtube.com/watch?v=M-wNC3Z3ZX4" target="_blank">Fábrica de chips de memória</a></li>
+          <li><a href="https://www.youtube.com/watch?v=d9SWNLZvA8g" target="_blank">Intel 22 nm</a></li>
+          <li><a href="https://www.youtube.com/watch?v=gBAKXvsaEiw" target="_blank">Chip Manufacturing Process — Philips Factory</a></li>
+          <li><a href="https://www.youtube.com/watch?v=TtuUANbaEFI" target="_blank">Catching a Single Transistor</a></li>
+        </ul>
+      </article>
+    </section>
 
-<ul>  
-           <li>  <a href="lista_microeletronica_unidade_1.pdf" target="_blank">     Unidade 1  </a>  </li>
-           <li>  <a href="lista_microeletronica_unidade_2.pdf" target="_blank">     Unidade 2  </a>  </li>
-           <li>  <a href="lista_microeletronica_unidade_2bis.pdf" target="_blank">  Unidade 2b </a>  </li>
-</ul>
-
-<h2><strong>Auxílio com Acesso Externo e Linux </strong></h4>
-<ul>  
-           <li>  <a href="help/acesso_XPRA.pdf" target="_blank">        Acesso externo via XPRA (recomendado)       </a>  </li>
-           <li>  <a href="help/acesso_Mobaxterm.pdf" target="_blank">   Acesso externo via Mobaxterm (para Windows)  </a>  </li>
-           <li>  <a href="help/acesso_VNC.pdf" target="_blank">         Acesso externo via VNC (antigo)             </a>  </li>
-           <li>  <a href="help/linux-cheat-sheet.png" target="_blank">  AJUDA COM COMANDOS LINUX   </a>  </li>
-</ul>
-
-<h2>Vídeos</h2>
-  <ul>
-
-    <li> <a href="https://www.bbc.com/portuguese/media-49794325?ocid=socialflow_facebook"> Como o chip revolucionou o mundo (<b>**</b>) - texto e vídeo da BBC </a> </li>
-    <li> <a href="https://www.youtube.com/watch?v=2ehSCWoaOqQ" target="_blank"> Fábrica da Intel - 7nm </a> &nbsp;&nbsp;&nbsp; </li> 
-    <li> <a href="https://www.youtube.com/watch?v=TXxw1kdF5_Q" target="_blank"> Investing in FinFET Technology Leadership Presented by ARM </a> &nbsp;&nbsp;&nbsp; </li> 
-    <li> <a href="https://www.youtube.com/watch?v=c-3p8moNXfI" target="_blank"> New FinFet Semiconductor Structure and Function </a> &nbsp;&nbsp;&nbsp;  </li> 
-    <li> <a href="https://www.youtube.com/watch?v=WVLGKq9An28" target="_blank"> Working in the Clean Room | Inside the Fab | Intel </a> &nbsp;&nbsp;&nbsp; </li> 
-    <li> <a href="https://www.youtube.com/watch?v=UvluuAIiA50" target="_blank"> GLOBALFOUNDRIES Sand to Silicon </a> &nbsp;&nbsp;&nbsp; </li> 
-    <li> <a href="https://www.youtube.com/watch?v=4Q_n4vdyZzc" target="_blank"> Semiconductor Technology at TSMC </a> &nbsp;&nbsp;&nbsp; </li> 
-    <li> <a href="https://www.youtube.com/watch?v=IcrBqCFLHIY" target="_blank"> Vídeo didático sobre o transistor </a> <b>*</b> &nbsp;&nbsp;&nbsp; </li> 
-    <li> <a href="https://www.youtube.com/watch?v=M-wNC3Z3ZX4" target="_blank"> Fábrica de chips de memória </a> &nbsp;&nbsp;&nbsp; </li> 
-    <li> <a href="https://www.youtube.com/watch?v=d9SWNLZvA8g" target="_blank"> Intel 22nm </a> &nbsp;&nbsp;&nbsp; </li> 
-    <li> <a href="https://www.youtube.com/watch?v=gBAKXvsaEiw" target="_blank"> Chip Manufacturing Process - Philips Factory </a> &nbsp;&nbsp;&nbsp; </li> 
-    <li> <a href="https://www.youtube.com/watch?v=TtuUANbaEFI" target="_blank"> Catching a single Transistor </a> &nbsp;&nbsp;&nbsp; </li> 
-
-   </ul>
-
-<h2>Artigo da Intel mostrando como eram feitos os circuitos integrados</h2>
-    <ul>
-              <li> <a href="Recollections_of_Early_Chip_Development_at_Intel.pdf" target="_blank">Recollections of Early Chip Development at Intel  </a>  </li>  
-     </ul>
-
-<h2> &nbsp; </h2>
-
+    <p class="footer-note">Moraes - 14/abri/2026.</p>
+  </main>
 </body>
 </html>
