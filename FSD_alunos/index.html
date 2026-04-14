@@ -1,218 +1,113 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Fundamentos de Sistemas Digitais</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 2em;
-            padding: 2em;
-        }
-        h1 {
-            color: #2c3e50;
-        }
-        ul {
-            padding-left: 5em;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundamentos de Sistemas Digitais</title>
+  <link href="../estilo_disciplina.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+  <main class="page">
+    <header class="hero">
+      <a class="home-link" href="../index.html" target="_top">
+        <img alt="Home" src="../figs/home.png"> Página inicial
+      </a>
+      <h1>Fundamentos de Sistemas Digitais</h1>
+      <p>Material de apoio organizado por unidades, com lâminas, listas de exercícios, soluções e arquivos para atividades práticas.</p>
+    </header>
 
-        
+    <nav class="quick-nav" aria-label="Navegação rápida">
+      <a href="#unidade-1">Unidade 1</a>
+      <a href="#unidade-2">Unidade 2</a>
+      <a href="#systemverilog-combinacional">SystemVerilog</a>
+      <a href="#unidade-3">Unidade 3</a>
+      <a href="#unidade-4">Unidade 4</a>
+    </nav>
 
-<h1><a href="../index.html" target="_top"> <img ALT="H" SRC="../figs/home.png"  width="25"> </a> Fundamentos de Sistemas Digitais</h1>
+    <section class="content-grid">
+      <article class="section-card wide" id="unidade-1">
+        <div class="section-header">
+          <span class="icon">01</span>
+          <div>
+            <h2>Unidade 1 — Álgebra Booleana e Otimização Lógica</h2>
+            <p>Fundamentos de portas lógicas, álgebra booleana e mapas de Karnaugh.</p>
+          </div>
+        </div>
+        <ul class="link-list two-columns">
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/01_portas_logicas.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Apresentação da Disciplina e Portas Lógicas</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/01_exercicios_portas_logicas.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Exercícios sobre Portas Lógicas</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/01_exercicios_portas_logicas_solucoes.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Solução dos Exercícios sobre Portas Lógicas</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/02_minimizacao_booleana.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Álgebra Booleana e Mapas de Karnaugh</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/02_Exercicios_Simplificacao_Logica.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Exercícios de Simplificação Lógica</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/02_Exercicios_Simplificacao_Logica_solucao.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Solução dos Exercícios de Minimização Booleana</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/02_Exercicios_Mapa_Karnaugh.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Exercícios sobre Mapas de Karnaugh</span></a></li>
+        </ul>
+      </article>
 
+      <article class="section-card wide" id="unidade-2">
+        <div class="section-header">
+          <span class="icon">02</span>
+          <div>
+            <h2>Unidade 2 — Circuitos Digitais Combinacionais</h2>
+            <p>Codificadores, decodificadores, comparadores, multiplexadores, PLA, ROM, aritmética binária, ULA e multiplicadores.</p>
+          </div>
+        </div>
+        <ul class="link-list two-columns">
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/03_combinacionais.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Circuitos Combinacionais</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/03_Exercicios_Circuitos_Combinacionais.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Lista de Exercícios de Circuitos Combinacionais</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/03_Exercicios_Circuitos_Combinacionais_solucao.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Solução da Lista de Exercícios</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/03_Laboratorio_Combinacionais_LOGISIM.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Aula Prática com Logisim</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/logisim-evolution-3.9.0-all.jar" rel="noopener" target="_blank"><span><span class="tag">JAR</span>Logisim Evolution 3.9.0</span></a></li>
+        </ul>
+      </article>
 
-<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-<p> &nbsp;</p><p> &nbsp;</p> 
-<h3><span style="border-left: 12px solid black; border-bottom: 5px solid black; padding-left: 10pt; padding-top: 10pt;  padding-bottom: 10pt; color: #ff0000; font-size: 20px;"><strong>
-     Unidade 1 - Álgebra Booleana e Otimização Lógica</strong></span></h3>
-<p> &nbsp;</p> 
+      <article class="section-card" id="systemverilog-combinacional">
+        <div class="section-header">
+          <span class="icon">SV</span>
+          <div>
+            <h2>Circuitos Combinacionais com SystemVerilog</h2>
+            <p>Material introdutório para modelagem e simulação de circuitos combinacionais.</p>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/04_Introducao_SystemVerilog_Combinacionais.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Introdução à SystemVerilog</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/04_comb_sv_alunos.zip" rel="noopener" target="_blank"><span><span class="tag">ZIP</span>Material de Apoio para Simulação</span></a></li>
+        </ul>
+      </article>
 
-<p><span style="color: #0000ff; font-size: 18px;"><strong>Portas Lógicas</strong></span></p>
+      <article class="section-card" id="unidade-3">
+        <div class="section-header">
+          <span class="icon">03</span>
+          <div>
+            <h2>Unidade 3 — Circuitos Digitais Sequenciais</h2>
+            <p>Latches, flip-flops, modelagem RTL e máquinas de estados finitos.</p>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/05_sequenciais_RTL_SV.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Circuitos Sequenciais, RTL e Flip-Flops</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/05_seq_sv_alunos.zip" rel="noopener" target="_blank"><span><span class="tag">ZIP</span>Material de Apoio para Flip-Flops e RTL</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/06_sequenciais_FSM_SV.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Máquinas de Estados Finitos</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/06_FSM_sv_alunos.zip" rel="noopener" target="_blank"><span><span class="tag">ZIP</span>Material de Apoio para FSMs</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/exercicios_FSD_U2_SV.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Lista de Exercícios das Unidades 2 e 3</span></a></li>
+        </ul>
+      </article>
 
-<ul>
-  <li> <p> Apresentação da Disciplina e Portas Lógicas  
-       <a href="https://fgmoraes.github.io/FSD_alunos/01_portas_logicas.pdf" rel="noopener" target="_blank">
-        (PDF) </p> </a> 
-        
-  </li>
+      <article class="section-card wide" id="unidade-4">
+        <div class="section-header">
+          <span class="icon">04</span>
+          <div>
+            <h2>Unidade 4 — Projeto Guiado: NanoCPU</h2>
+            <p>Introdução à arquitetura de computadores por meio de um projeto guiado em SystemVerilog.</p>
+          </div>
+        </div>
+        <ul class="link-list two-columns">
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/07_Nano_CPU.pdf" rel="noopener" target="_blank"><span><span class="tag">PDF</span>Lâminas Utilizadas em Aula</span></a></li>
+          <li><a href="https://fgmoraes.github.io/FSD_alunos/07_nano_cpu.zip" rel="noopener" target="_blank"><span><span class="tag">ZIP</span>Material de Apoio para Simulação</span></a></li>
+        </ul>
+      </article>
+    </section>
 
-  <li> <p> Exercícios sobre Portas Lógicas 
-       <a href="https://fgmoraes.github.io/FSD_alunos/01_exercicios_portas_logicas.pdf" rel="noopener" target="_blank">
-       (PDF)</p> </a> 
-  </li>
-
-  <li> <p>Solução para os Exercícios sobre Portas Lógicas
-       <a href="https://fgmoraes.github.io/FSD_alunos/01_exercicios_portas_logicas_solucoes.pdf" rel="noopener" target="_blank">
-       (PDF)</p> </a> 
-  </li>
-</ul>
-
-
-<p> &nbsp;</p>
-<p><span style="color: #0000ff; font-size: 18px;"><strong>Álgebra Booleana / Mapa de Karnaugh</strong></span></p>
-
-
-<ul>
-  <li><p>Álgebra Booleana e mapas de Karnaugh com soluções da lista de Karnaugh 
-      <a href="https://fgmoraes.github.io/FSD_alunos/02_minimizacao_booleana.pdf" rel="noopener" target="_blank">
-       (PDF)</p> </a> 
-  </li>
-  </li>
-
-  <li> <p> Exercícios de Simplificação Lógica 
-       <a href="https://fgmoraes.github.io/FSD_alunos/02_Exercicios_Simplificacao_Logica.pdf" rel="noopener" target="_blank">
-        (PDF)</p> </a> 
-
-  <li> <p> Solução dos Exercícios de Minimização Booleana 
-        <a href="https://fgmoraes.github.io/FSD_alunos/02_Exercicios_Simplificacao_Logica_solucao.pdf" rel="noopener" target="_blank">
-        (PDF)</p> </a> 
-  </li>
-
-  <li> <p>Exercícios sobre Mapas de Karnaugh 
-       <a href="https://fgmoraes.github.io/FSD_alunos/02_Exercicios_Mapa_Karnaugh.pdf" rel="noopener" target="_blank">
-       (PDF)</p> </a> 
-  </li>
-</ul>
-
-
-<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-<p> &nbsp;</p><p> &nbsp;</p> 
-<h3><span style="border-left: 12px solid black; border-bottom: 5px solid black; padding-left: 10pt; padding-top: 10pt;  padding-bottom: 10pt; color: #ff0000; font-size: 20px;"><strong>
-     Unidade 2 - Circuitos Digitais Combinacionais</strong></span></h3>
-<p> &nbsp;</p> 
-
-
-
-<p><span style="color: #0000ff; font-size: 18px;"><strong>Circuitos Digitais Combinacionais</strong></span></p>
-
-<ul>
-  <li>  <p>Circuitos Combinacionais: Definição de circuitos combinacionais básicos: (1) Codificador/decodificador; (2) Comparadores; (3) Geradores de paridade; (4) Multiplexador/demux; (5) PLA; (6) ROM; (7) numeração binária e SOMA/SUB; (8) ULA; (9) Multiplicador
-       <a href="https://fgmoraes.github.io/FSD_alunos/03_combinacionais.pdf" rel="noopener" target="_blank">
-       (PDF)</p> </a> 
-  </li>
-
-  <li> <p> Lista de exercícios de Circuitos Combinacionais
-    <a href="https://fgmoraes.github.io/FSD_alunos/03_Exercicios_Circuitos_Combinacionais.pdf" rel="noopener" target="_blank">
-       (PDF)</p> </a> 
-  </li>
-
-  <li> <p>Solução da lista de exercícios de Circuitos Combinacionais
-       <a href="https://fgmoraes.github.io/FSD_alunos/03_Exercicios_Circuitos_Combinacionais_solucao.pdf" rel="noopener" target="_blank">
-       (PDF)</p> </a> 
-  </li>
-</ul>
-
-<p> &nbsp;</p>
-<p><span style="color: #0000ff; font-size: 18px;"><strong>Aula prática com o simulador Logisim</strong></span></p>
-
-<ul>
-  <li><p>Arquivo com as instruções para a aula prática 
-       <a href="https://fgmoraes.github.io/FSD_alunos/03_Laboratorio_Combinacionais_LOGISIM.pdf" rel="noopener" target="_blank">
-       (PDF)</p> </a> 
-  </li>
-
-  <li> <p> Arquivo JAR para o logisim 
-       <a href="https://fgmoraes.github.io/FSD_alunos/logisim-evolution-3.9.0-all.jar" rel="noopener" target="_blank">
-       (JAR)</p> </a> 
-  </li>
-
-</ul>
-
-
-
-
-<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-<p> &nbsp;</p><p> &nbsp;</p> 
-<h3><span style="border-left: 12px solid black; border-bottom: 5px solid black; padding-left: 10pt; padding-top: 10pt;  padding-bottom: 10pt; color: #ff0000; font-size: 20px;"><strong>
-     Circuitos Digitais Combinacionais com Modelagem SystemVerilog (final Unidade 2)</strong></span></h3>
-<p> &nbsp;</p> 
-
-
-
-<p><span style="color: #0000ff; font-size: 18px;"><strong>Introdução à SystemVerilog</strong></span></p>
-
-<ul>
-  <li><p> Introdução à SystemVerilog: modelagem de Circuitos Combinacionais
-         <a href="https://fgmoraes.github.io/FSD_alunos/04_Introducao_SystemVerilog_Combinacionais.pdf" rel="noopener" target="_blank">
-        (PDF)</p> </a> 
-  </li>
-
-  <li> <p>Material de apoio para a simulação de Circuitos Combinacionais
-        <a href="https://fgmoraes.github.io/FSD_alunos/04_comb_sv_alunos.zip" rel="noopener" target="_blank">
-        (ZIP)</p> </a> 
-  </li>
-
-</ul>
-
-
-<!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-<p> &nbsp;</p><p> &nbsp;</p> 
-<h3><span style="border-left: 12px solid black; border-bottom: 5px solid black; padding-left: 10pt; padding-top: 10pt;  padding-bottom: 10pt; color: #ff0000; font-size: 20px;"><strong>
-     Unidade 3: Circuitos Digitais  Sequencias</strong></span></h3>
-<p> &nbsp;</p> 
-
-
-<p><span style="color: #0000ff; font-size: 18px;"><strong>Circuitos Digitais Sequencias - RTL e FSM</strong></span></p>
-<ul>
-  <li> <p> Circuitos Sequenciais -Latch, Flip-Flops e Modelagem RTL (modelagem SV) 
-       <a href="https://fgmoraes.github.io/FSD_alunos/05_sequenciais_RTL_SV.pdf" rel="noopener" target="_blank">
-        (PDF)</p> </a> 
-  </li>
-
-   <li> <p>Material de Apoio para Simulação de Flip-Flops e RTL - seq_sv_alunos.zip 
-        <a href="https://fgmoraes.github.io/FSD_alunos/05_seq_sv_alunos.zip" rel="noopener" target="_blank">
-        (ZIP)</p> </a> 
-   </li>
-
-   <li> <p>Máquinas de Estados Finita (modelagem SV) 
-        <a href="https://fgmoraes.github.io/FSD_alunos/06_sequenciais_FSM_SV.pdf" rel="noopener" target="_blank">
-        (PDF)</p> </a> 
-  </li>
-
-   <li> <p>Material de Apoio </a> para Simulação de FSMs - FSM_sv_alunos.zip
-        <a href="https://fgmoraes.github.io/FSD_alunos/06_FSM_sv_alunos.zip" rel="noopener" target="_blank">
-        (ZIP)</p> </a> 
-   </li>
-</ul>
-
-<p> &nbsp;</p>
-
-<p><span style="color: #0000ff; font-size: 18px;"><strong>Lista de Exercícios Unidades 2 e 3 (SV)</strong></span></p>
-<ul>
-  <li> <p> Lista de Exercícios Unidades 2 e 3 (SV)  
-       <a href="https://fgmoraes.github.io/FSD_alunos/exercicios_FSD_U2_SV.pdf" target="_blank" rel="noopener"> 
-        (PDF)</p> </a> 
-  </li>
-</ul>
-
-
-<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-<p> &nbsp;</p><p> &nbsp;</p> 
-<h3><span style="border-left: 12px solid black; border-bottom: 5px solid black; padding-left: 10pt; padding-top: 10pt;  padding-bottom: 10pt; color: #ff0000; font-size: 20px;"><strong>
-     Unidade 4: Projeto Guiado para Introdução à Arquitetura de Computadores - NanoCPU </strong></span></h3>
-<p> &nbsp;</p> 
-
-
-<ul>
-  <li> <p>Acesso às Lâminas Utilizadas em Aula 
-      <a href="https://fgmoraes.github.io/FSD_alunos/07_Nano_CPU.pdf" rel="noopener" target="_blank">
-         (PDF)</p> </a> 
-   </li>
-
-   <li> <p>Material de Apoio Simulação SystemVerilog (SV) 
-        <a href="https://fgmoraes.github.io/FSD_alunos/07_nano_cpu.zip" rel="noopener" target="_blank">
-         (ZIP)</p> </a> 
-   </li>
-</ul>
-
-
-<p> &nbsp;</p>
-<p> &nbsp;</p>
-
-<p><em>Fernando Moraes - 24/fev/2026</em></p>
-
+    <p class="footer-note">Fernando Gehm Moraes - 14/abri/2026.</p>
+  </main>
 </body>
 </html>
