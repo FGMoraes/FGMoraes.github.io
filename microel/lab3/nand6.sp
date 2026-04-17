@@ -117,11 +117,11 @@ v6 i6  0  dc 1.0
 **
 
 **
-*  COMPLETAR AQUI COM AS MEDIDAS PARA A NAND DE 4 ENTRADAS (trocar o nome das medidas e o2 por o5)
+*  COMPLETAR AQUI COM AS MEDIDAS PARA A NAND DE 5 ENTRADAS (trocar o nome das medidas e o2 por o5)
 **
 
 **
-* mede o tempo para a nand de 6 entradas
+*  COMPLETAR AQUI COM AS MEDIDAS PARA A NAND DE 6 ENTRADAS (trocar o nome das medidas e o2 por o5)
 **
  
 .END
