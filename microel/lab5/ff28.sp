@@ -1,5 +1,5 @@
 ********** LAB5 simulação de flip-flops **********
-** FERNANDO MORAES   -  PUCRS -  22/maio/2026  ***
+** FERNANDO MORAES   -  PUCRS -  23/maio/2026  ***
 ******************* TSMC 28 nm *******************
 
 simulator lang=spectre insensitive=no
@@ -59,6 +59,7 @@ X2 Y   ck   nck  X vcc tg
 X3 X   Z           vcc inv
 X4 Z   nck   ck  X vcc inv_tg
 X5 X   Q           vcc inv
+.ic v(X)=0.9
 .ends latch
 
 .subckt ff_static D Q NQ ck nck vcc
@@ -100,7 +101,6 @@ X5 X   Q           vcc inv
 ****************************************************************************************
 
 **** circuit 1 - LATCH ***********
-.ic v(q_latch)=0 
 X1 D q_latch CK nCK vcc latch
 C1 q_latch 0 CL
 
