@@ -56,12 +56,6 @@ a:hover {  background: #ffc97c;  text-decoration:underline;  color: red }
 b { font-weight: bold;
  	color: green }
 
-/*
-.top-menu-bar {
-  position: fixed; height:90px; left: 0; top: 0; width: 100vw; z-index: 20; background: #003366;  
-}
-*/
-
 .top-menu-bar {
   position: fixed; height: 90px; left: 0; top: 0; width: 100vw; z-index: 20;
   background: #ffffff;            /* cor que o Safari 26 amostra */
