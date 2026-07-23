@@ -1,134 +1,110 @@
-/*
- * citations.js - insere a contagem de citacoes em cada linha da tabela de
- * publicacoes e um resumo acima dela, a partir de citations.json.
+/* citations.js - insere a contagem de citacoes como ultima linha de cada entrada.
  *
- * Instalacao: acrescentar uma linha antes de </body> nas paginas desejadas:
- *     <script src="citations.js" defer></script>
+ * Le citations.json (gerado por fetch_citations.py) e acrescenta, ao final da
+ * ultima celula de cada <tr>, uma linha com o numero de citacoes.
  *
- * Nenhuma outra alteracao no HTML e necessaria: o DOI de cada publicacao e
- * lido do proprio link ja presente na linha. Linhas sem DOI sao ignoradas.
- * Se citations.json faltar ou estiver corrompido, a pagina permanece intacta.
- *
- * Observacao: fetch() nao funciona sob file://. Testar por HTTP.
+ * Uso na pagina:  <script src="citations.js" defer></script>
+ * CSS sugerido em pubs.css:
+ *     .citations       { font-size: 0.85em; color: #555; }
+ *     .citations.stale { color: #999; }
  */
 
 (function () {
   "use strict";
 
-  var JSON_URL = "citations.json";
-  var SHOW_SUMMARY = true;     // linha de resumo acima da tabela
-  var LABEL = "cited by";      // rotulo do contador por artigo
+  var JSON_FILE = "citations.json";
 
-  var DOI_RE = /doi\.org\/(10\.[^\s"?#]+)/i;
-
-  function normalize(doi) {
-    return doi.trim().replace(/[.,;]+$/, "").toLowerCase();
+  /* Retorna o DOI nu, em minusculas, a partir de um DOI ou de uma URL doi.org. */
+  function bareDoi(value) {
+    if (!value) { return ""; }
+    return String(value)
+      .trim()
+      .replace(/^https?:\/\/(dx\.)?doi\.org\//i, "")
+      .replace(/[.,;]+$/, "")
+      .toLowerCase();
   }
 
-  function injectStyle() {
-    var css =
-      ".cit-badge{display:inline-block;margin-left:6px;padding:1px 7px;" +
-      "border-radius:9px;background:#f26b18;color:#fff;font-size:11px;" +
-      "font-weight:bold;vertical-align:middle;white-space:nowrap}" +
-      ".cit-badge.cit-zero{background:#bbb}" +
-      ".cit-summary{margin:0 0 10px 6px;font-size:12px;color:#444}" +
-      ".cit-summary strong{color:#f26b18}";
-    var el = document.createElement("style");
-    el.appendChild(document.createTextNode(css));
-    document.head.appendChild(el);
+  /* Converte counts em um mapa {doi_nu: entrada}, aceitando chaves nuas ou URL. */
+  function buildIndex(counts) {
+    var index = {};
+    Object.keys(counts || {}).forEach(function (key) {
+      var entry = counts[key] || {};
+      var doi = bareDoi(entry.doi || key);
+      if (doi) { index[doi] = entry; }
+    });
+    return index;
   }
 
-  function rowDoi(row) {
-    var links = row.querySelectorAll('a[href*="doi.org/"]');
-    for (var i = 0; i < links.length; i++) {
-      var m = DOI_RE.exec(links[i].getAttribute("href") || "");
-      if (m) {
-        return normalize(m[1]);
-      }
-    }
-    return null;
+  /* Localiza o DOI de uma linha: primeiro link para doi.org dentro do <tr>. */
+  function doiOfRow(row) {
+    var link = row.querySelector('a[href*="doi.org/"]');
+    return link ? bareDoi(link.getAttribute("href")) : "";
   }
 
-  function badge(n) {
+  function label(n) {
+    return n === 1 ? "1 citation" : n + " citations";
+  }
+
+  function annotate(row, entry) {
+    var cells = row.cells;
+    if (!cells.length) { return false; }
+
+    var cell = cells[cells.length - 1];          /* ultima celula da entrada */
+    if (cell.querySelector(".citations")) { return false; }  /* nao duplica */
+
+    var n = parseInt(entry.citations, 10);
+    if (isNaN(n)) { return false; }
+
     var span = document.createElement("span");
-    span.className = "cit-badge" + (n === 0 ? " cit-zero" : "");
-    span.textContent = LABEL + " " + n;
-    span.title = "Fonte: OpenAlex/Crossref. Nao inclui o Google Scholar.";
-    return span;
+    span.className = entry.stale ? "citations stale" : "citations";
+    span.textContent = label(n);
+    if (entry.source) {
+      span.title = "source: " + entry.source + (entry.stale ? " (previous run)" : "");
+    }
+
+    cell.appendChild(document.createElement("br"));
+    cell.appendChild(span);
+    return true;
   }
 
-  function anchorCell(row) {
-    // ultima celula da linha: a que contem os metadados e os links
-    var cells = row.querySelectorAll("td");
-    return cells.length ? cells[cells.length - 1] : null;
-  }
-
-  function summary(data, shown, matched) {
-    var p = document.createElement("p");
-    p.className = "cit-summary";
-    var date = (data.generated || "").slice(0, 10);
-    p.innerHTML =
-      "Citations: <strong>" + shown + "</strong> across " + matched +
-      " indexed articles &middot; source: OpenAlex/Crossref &middot; updated " +
-      date;
-    return p;
-  }
-
-  function apply(data) {
-    var counts = data.counts || {};
+  function apply(payload) {
+    var index = buildIndex(payload.counts);
     var rows = document.querySelectorAll("table tr");
     var total = 0;
-    var matched = 0;
+    var marked = 0;
 
-    for (var i = 0; i < rows.length; i++) {
-      var doi = rowDoi(rows[i]);
-      if (!doi || !Object.prototype.hasOwnProperty.call(counts, doi)) {
-        continue;
+    Array.prototype.forEach.call(rows, function (row) {
+      var doi = doiOfRow(row);
+      if (!doi) { return; }                       /* entradas sem DOI */
+      var entry = index[doi];
+      if (!entry) { return; }                     /* DOI nao resolvido */
+      if (annotate(row, entry)) {
+        marked += 1;
+        total += parseInt(entry.citations, 10) || 0;
       }
-      var n = counts[doi].citations;
-      if (typeof n !== "number") {
-        continue;
-      }
-      total += n;
-      matched += 1;
-      if (n === 0) {
-        continue;
-      }
-      var cell = anchorCell(rows[i]);
-      if (cell) {
-        cell.appendChild(badge(n));
-      }
-    }
+    });
 
-    if (SHOW_SUMMARY && matched > 0) {
-      var table = document.querySelector("table");
-      if (table && table.parentNode) {
-        table.parentNode.insertBefore(summary(data, total, matched), table);
-      }
-    }
+    document.documentElement.setAttribute("data-citations-total", String(total));
+    document.documentElement.setAttribute("data-citations-entries", String(marked));
+    return { entries: marked, total: total };
   }
 
-  function start() {
-    injectStyle();
-    fetch(JSON_URL, { cache: "no-cache" })
+  function run() {
+    fetch(JSON_FILE, { cache: "no-cache" })
       .then(function (resp) {
-        if (!resp.ok) {
-          throw new Error("HTTP " + resp.status);
-        }
+        if (!resp.ok) { throw new Error("HTTP " + resp.status); }
         return resp.json();
       })
       .then(apply)
       .catch(function (err) {
-        // falha silenciosa: a pagina continua utilizavel sem os contadores
-        if (window.console) {
-          console.warn("citations.js: " + err.message);
-        }
+        /* falha na leitura do JSON nao altera a pagina */
+        if (window.console) { console.warn("citations.js:", err.message); }
       });
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", start);
+    document.addEventListener("DOMContentLoaded", run);
   } else {
-    start();
+    run();
   }
 })();

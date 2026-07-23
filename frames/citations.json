@@ -1,267 +1,332 @@
 {
  "counts": {
-  "10.1002/cpe.4034": {
+  "http://doi.org/10.1002/cpe.4034": {
    "citations": 1,
+   "doi": "10.1002/cpe.4034",
    "source": "openalex"
   },
-  "10.1007/s10470-016-0827-9": {
+  "http://doi.org/10.1007/s10470-016-0827-9": {
    "citations": 2,
+   "doi": "10.1007/s10470-016-0827-9",
    "source": "openalex"
   },
-  "10.1007/s10470-020-01631-y": {
+  "http://doi.org/10.1007/s10470-020-01631-y": {
    "citations": 2,
+   "doi": "10.1007/s10470-020-01631-y",
    "source": "openalex"
   },
-  "10.1007/s10470-020-01756-0": {
+  "http://doi.org/10.1007/s10470-020-01756-0": {
    "citations": 1,
+   "doi": "10.1007/s10470-020-01756-0",
    "source": "openalex"
   },
-  "10.1007/s10470-023-02190-8": {
+  "http://doi.org/10.1007/s10470-023-02190-8": {
    "citations": 3,
+   "doi": "10.1007/s10470-023-02190-8",
    "source": "openalex"
   },
-  "10.1007/s10617-019-09223-4": {
+  "http://doi.org/10.1007/s10617-019-09223-4": {
    "citations": 32,
+   "doi": "10.1007/s10617-019-09223-4",
    "source": "openalex"
   },
-  "10.1007/s10617-024-09288-w": {
+  "http://doi.org/10.1007/s10617-024-09288-w": {
    "citations": 0,
+   "doi": "10.1007/s10617-024-09288-w",
    "source": "openalex"
   },
-  "10.1007/s10617-024-09292-0": {
+  "http://doi.org/10.1007/s10617-024-09292-0": {
    "citations": 0,
+   "doi": "10.1007/s10617-024-09292-0",
    "source": "openalex"
   },
-  "10.1016/j.jpdc.2010.09.008": {
+  "http://doi.org/10.1016/j.jpdc.2010.09.008": {
    "citations": 13,
+   "doi": "10.1016/j.jpdc.2010.09.008",
    "source": "openalex"
   },
-  "10.1016/j.jpdc.2010.10.002": {
+  "http://doi.org/10.1016/j.jpdc.2010.10.002": {
    "citations": 12,
+   "doi": "10.1016/j.jpdc.2010.10.002",
    "source": "openalex"
   },
-  "10.1016/j.jpdc.2016.03.009": {
+  "http://doi.org/10.1016/j.jpdc.2016.03.009": {
    "citations": 7,
+   "doi": "10.1016/j.jpdc.2016.03.009",
    "source": "openalex"
   },
-  "10.1016/j.mejo.2017.08.010": {
+  "http://doi.org/10.1016/j.mejo.2017.08.010": {
    "citations": 20,
+   "doi": "10.1016/j.mejo.2017.08.010",
    "source": "openalex"
   },
-  "10.1016/j.sysarc.2014.10.002": {
+  "http://doi.org/10.1016/j.sysarc.2014.10.002": {
    "citations": 5,
+   "doi": "10.1016/j.sysarc.2014.10.002",
    "source": "openalex"
   },
-  "10.1016/j.sysarc.2016.01.005": {
+  "http://doi.org/10.1016/j.sysarc.2016.01.005": {
    "citations": 15,
+   "doi": "10.1016/j.sysarc.2016.01.005",
    "source": "openalex"
   },
-  "10.1016/j.sysarc.2019.01.006": {
+  "http://doi.org/10.1016/j.sysarc.2019.01.006": {
    "citations": 16,
+   "doi": "10.1016/j.sysarc.2019.01.006",
    "source": "openalex"
   },
-  "10.1016/j.sysarc.2019.05.006": {
+  "http://doi.org/10.1016/j.sysarc.2019.05.006": {
    "citations": 1,
+   "doi": "10.1016/j.sysarc.2019.05.006",
    "source": "openalex"
   },
-  "10.1016/j.vlsi.2004.03.003": {
+  "http://doi.org/10.1016/j.vlsi.2004.03.003": {
    "citations": 510,
+   "doi": "10.1016/j.vlsi.2004.03.003",
    "source": "openalex"
   },
-  "10.1049/cdt2.12017": {
+  "http://doi.org/10.1049/cdt2.12017": {
    "citations": 16,
+   "doi": "10.1049/cdt2.12017",
    "source": "openalex"
   },
-  "10.1049/iet-cdt:20060152": {
+  "http://doi.org/10.1049/iet-cdt:20060152": {
    "citations": 38,
+   "doi": "10.1049/iet-cdt:20060152",
    "source": "openalex"
   },
-  "10.1049/iet-cdt:20070111": {
+  "http://doi.org/10.1049/iet-cdt:20070111": {
    "citations": 57,
+   "doi": "10.1049/iet-cdt:20070111",
    "source": "openalex"
   },
-  "10.1049/ip-com:20030589": {
+  "http://doi.org/10.1049/ip-com:20030589": {
    "citations": 3,
+   "doi": "10.1049/ip-com:20030589",
    "source": "openalex"
   },
-  "10.1109/13.925805": {
+  "http://doi.org/10.1109/13.925805": {
    "citations": 68,
+   "doi": "10.1109/13.925805",
    "source": "openalex"
   },
-  "10.1109/access.2020.3000457": {
+  "http://doi.org/10.1109/access.2020.3000457": {
    "citations": 24,
+   "doi": "10.1109/access.2020.3000457",
    "source": "openalex"
   },
-  "10.1109/access.2020.3025206": {
+  "http://doi.org/10.1109/access.2020.3025206": {
    "citations": 8,
+   "doi": "10.1109/access.2020.3025206",
    "source": "openalex"
   },
-  "10.1109/access.2021.3127468": {
+  "http://doi.org/10.1109/access.2021.3127468": {
    "citations": 8,
+   "doi": "10.1109/access.2021.3127468",
    "source": "openalex"
   },
-  "10.1109/access.2023.3336565": {
+  "http://doi.org/10.1109/access.2023.3336565": {
    "citations": 4,
+   "doi": "10.1109/access.2023.3336565",
    "source": "openalex"
   },
-  "10.1109/access.2024.3416812": {
+  "http://doi.org/10.1109/access.2024.3416812": {
    "citations": 15,
+   "doi": "10.1109/access.2024.3416812",
    "source": "openalex"
   },
-  "10.1109/mdat.2021.3049710": {
+  "http://doi.org/10.1109/mdat.2021.3049710": {
    "citations": 7,
+   "doi": "10.1109/mdat.2021.3049710",
    "source": "openalex"
   },
-  "10.1109/mdat.2021.3068914": {
+  "http://doi.org/10.1109/mdat.2021.3068914": {
    "citations": 3,
+   "doi": "10.1109/mdat.2021.3068914",
    "source": "openalex"
   },
-  "10.1109/mdat.2023.3277813": {
+  "http://doi.org/10.1109/mdat.2023.3277813": {
    "citations": 5,
+   "doi": "10.1109/mdat.2023.3277813",
    "source": "openalex"
   },
-  "10.1109/mdat.2025.3600352": {
+  "http://doi.org/10.1109/mdat.2025.3600352": {
    "citations": 0,
+   "doi": "10.1109/mdat.2025.3600352",
    "source": "openalex"
   },
-  "10.1109/mdat.2026.3702044": {
+  "http://doi.org/10.1109/mdat.2026.3702044": {
    "citations": 0,
+   "doi": "10.1109/mdat.2026.3702044",
    "source": "openalex"
   },
-  "10.1109/mdt.2010.106": {
+  "http://doi.org/10.1109/mdt.2010.106": {
    "citations": 148,
+   "doi": "10.1109/mdt.2010.106",
    "source": "openalex"
   },
-  "10.1109/mdt.2010.116": {
+  "http://doi.org/10.1109/mdt.2010.116": {
    "citations": 27,
+   "doi": "10.1109/mdt.2010.116",
    "source": "openalex"
   },
-  "10.1109/mdt.2011.69": {
+  "http://doi.org/10.1109/mdt.2011.69": {
    "citations": 21,
+   "doi": "10.1109/mdt.2011.69",
    "source": "openalex"
   },
-  "10.1109/tc.2012.123": {
+  "http://doi.org/10.1109/tc.2012.123": {
    "citations": 21,
+   "doi": "10.1109/tc.2012.123",
    "source": "openalex"
   },
-  "10.1109/tc.2026.3700461": {
+  "http://doi.org/10.1109/tc.2026.3700461": {
    "citations": 0,
+   "doi": "10.1109/tc.2026.3700461",
    "source": "openalex"
   },
-  "10.1109/tcsi.2021.3104644": {
+  "http://doi.org/10.1109/tcsi.2021.3104644": {
    "citations": 13,
+   "doi": "10.1109/tcsi.2021.3104644",
    "source": "openalex"
   },
-  "10.1109/tcsi.2022.3204932": {
+  "http://doi.org/10.1109/tcsi.2022.3204932": {
    "citations": 8,
+   "doi": "10.1109/tcsi.2022.3204932",
    "source": "openalex"
   },
-  "10.1109/tcsii.2015.2407198": {
+  "http://doi.org/10.1109/tcsii.2015.2407198": {
    "citations": 8,
+   "doi": "10.1109/tcsii.2015.2407198",
    "source": "openalex"
   },
-  "10.1109/tcsii.2022.3223925": {
+  "http://doi.org/10.1109/tcsii.2022.3223925": {
    "citations": 6,
+   "doi": "10.1109/tcsii.2022.3223925",
    "source": "openalex"
   },
-  "10.1109/tetc.2016.2593640": {
+  "http://doi.org/10.1109/tetc.2016.2593640": {
    "citations": 9,
+   "doi": "10.1109/tetc.2016.2593640",
    "source": "openalex"
   },
-  "10.1109/tns.2024.3378689": {
+  "http://doi.org/10.1109/tns.2024.3378689": {
    "citations": 6,
+   "doi": "10.1109/tns.2024.3378689",
    "source": "openalex"
   },
-  "10.1109/tns.2024.3378807": {
+  "http://doi.org/10.1109/tns.2024.3378807": {
    "citations": 4,
+   "doi": "10.1109/tns.2024.3378807",
    "source": "openalex"
   },
-  "10.1109/tns.2025.3585859": {
+  "http://doi.org/10.1109/tns.2025.3585859": {
    "citations": 0,
+   "doi": "10.1109/tns.2025.3585859",
    "source": "openalex"
   },
-  "10.1109/tvlsi.2013.2276538": {
+  "http://doi.org/10.1109/tvlsi.2013.2276538": {
    "citations": 4,
+   "doi": "10.1109/tvlsi.2013.2276538",
    "source": "openalex"
   },
-  "10.1109/tvlsi.2014.2331135": {
+  "http://doi.org/10.1109/tvlsi.2014.2331135": {
    "citations": 13,
+   "doi": "10.1109/tvlsi.2014.2331135",
    "source": "openalex"
   },
-  "10.1145/2362374.2362381": {
+  "http://doi.org/10.1145/2362374.2362381": {
    "citations": 6,
+   "doi": "10.1145/2362374.2362381",
    "source": "openalex"
   },
-  "10.1145/2442116.2442125": {
+  "http://doi.org/10.1145/2442116.2442125": {
    "citations": 42,
+   "doi": "10.1145/2442116.2442125",
    "source": "openalex"
   },
-  "10.1145/3328755": {
+  "http://doi.org/10.1145/3328755": {
    "citations": 4,
+   "doi": "10.1145/3328755",
    "source": "openalex"
   },
-  "10.1145/3458511": {
+  "http://doi.org/10.1145/3458511": {
    "citations": 2,
+   "doi": "10.1145/3458511",
    "source": "openalex"
   },
-  "10.1166/jolpe.2014.1332": {
+  "http://doi.org/10.1166/jolpe.2014.1332": {
    "citations": 15,
+   "doi": "10.1166/jolpe.2014.1332",
    "source": "openalex"
   },
-  "10.1166/jolpe.2017.1502": {
+  "http://doi.org/10.1166/jolpe.2017.1502": {
    "citations": 0,
+   "doi": "10.1166/jolpe.2017.1502",
    "source": "openalex"
   },
-  "10.14209/jcis.2005.10": {
+  "http://doi.org/10.14209/jcis.2005.10": {
    "citations": 0,
+   "doi": "10.14209/jcis.2005.10",
    "source": "openalex"
   },
-  "10.1561/1000000060": {
+  "http://doi.org/10.1561/1000000060": {
    "citations": 6,
+   "doi": "10.1561/1000000060",
    "source": "openalex"
   },
-  "10.29292/jics.v16i2.485": {
+  "http://doi.org/10.29292/jics.v16i2.485": {
    "citations": 3,
+   "doi": "10.29292/jics.v16i2.485",
    "source": "openalex"
   },
-  "10.29292/jics.v19i2.846": {
+  "http://doi.org/10.29292/jics.v19i2.846": {
    "citations": 2,
+   "doi": "10.29292/jics.v19i2.846",
    "source": "openalex"
   },
-  "10.29292/jics.v19i3.907": {
+  "http://doi.org/10.29292/jics.v19i3.907": {
    "citations": 0,
+   "doi": "10.29292/jics.v19i3.907",
    "source": "openalex"
   },
-  "10.29292/jics.v1i1.254": {
+  "http://doi.org/10.29292/jics.v1i1.254": {
    "citations": 0,
+   "doi": "10.29292/jics.v1i1.254",
    "source": "openalex"
   },
-  "10.29292/jics.v3i1.278": {
+  "http://doi.org/10.29292/jics.v3i1.278": {
    "citations": 16,
+   "doi": "10.29292/jics.v3i1.278",
    "source": "openalex"
   },
-  "10.29292/jics.v3i1.281": {
+  "http://doi.org/10.29292/jics.v3i1.281": {
    "citations": 14,
+   "doi": "10.29292/jics.v3i1.281",
    "source": "openalex"
   },
-  "10.29292/jics.v4i1.293": {
+  "http://doi.org/10.29292/jics.v4i1.293": {
    "citations": 4,
+   "doi": "10.29292/jics.v4i1.293",
    "source": "openalex"
   },
-  "10.29292/jics.v7i1.355": {
+  "http://doi.org/10.29292/jics.v7i1.355": {
    "citations": 0,
+   "doi": "10.29292/jics.v7i1.355",
    "source": "openalex"
   },
-  "10.4018/978-1-4666-0912-9.ch014": {
+  "http://doi.org/10.4018/978-1-4666-0912-9.ch014": {
    "citations": 0,
+   "doi": "10.4018/978-1-4666-0912-9.ch014",
    "source": "openalex"
   }
  },
  "dois_found": 65,
  "dois_resolved": 64,
- "generated": "2026-07-23T19:28:18Z",
+ "dois_reused": 0,
+ "generated": "2026-07-23T21:26:18Z",
  "total_citations": 1298,
  "unresolved": [
-  "10.29292/jics.v21i2.1196"
+  "http://doi.org/10.29292/jics.v21i2.1196"
  ]
 }
