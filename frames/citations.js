@@ -17,7 +17,6 @@
 
   var JSON_URL = "citations.json";
   var SHOW_SUMMARY = true;     // linha de resumo acima da tabela
-  var SHOW_ZERO = false;        // exibir tambem os artigos com 0 citacoes
   var LABEL = "cited by";      // rotulo do contador por artigo
 
   var DOI_RE = /doi\.org\/(10\.[^\s"?#]+)/i;
@@ -92,7 +91,7 @@
       }
       total += n;
       matched += 1;
-      if (n === 0 && !SHOW_ZERO) {
+      if (n === 0) {
         continue;
       }
       var cell = anchorCell(rows[i]);
