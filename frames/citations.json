@@ -232,15 +232,35 @@
    "citations": 0,
    "source": "openalex"
   },
+  "10.29292/jics.v1i1.254": {
+   "citations": 0,
+   "source": "openalex"
+  },
+  "10.29292/jics.v3i1.278": {
+   "citations": 16,
+   "source": "openalex"
+  },
+  "10.29292/jics.v3i1.281": {
+   "citations": 14,
+   "source": "openalex"
+  },
+  "10.29292/jics.v4i1.293": {
+   "citations": 4,
+   "source": "openalex"
+  },
   "10.29292/jics.v7i1.355": {
+   "citations": 0,
+   "source": "openalex"
+  },
+  "10.4018/978-1-4666-0912-9.ch014": {
    "citations": 0,
    "source": "openalex"
   }
  },
- "dois_found": 60,
- "dois_resolved": 59,
- "generated": "2026-07-23T19:06:14Z",
- "total_citations": 1264,
+ "dois_found": 65,
+ "dois_resolved": 64,
+ "generated": "2026-07-23T19:28:18Z",
+ "total_citations": 1298,
  "unresolved": [
   "10.29292/jics.v21i2.1196"
  ]
