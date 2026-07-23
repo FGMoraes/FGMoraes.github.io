@@ -155,6 +155,7 @@ def main():
     if missing and not args.no_crossref:
         sys.stderr.write("crossref: consultando %d DOIs ausentes\n" % len(missing))
         for doi in missing:
+            sys.stderr.write("  - %s\n" % doi)
             n = query_crossref(doi, args.mailto)
             if n is not None:
                 counts[doi] = {"citations": n, "source": "crossref"}

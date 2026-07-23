@@ -160,6 +160,10 @@
    "citations": 8,
    "source": "openalex"
   },
+  "10.1109/tcsii.2022.3223925": {
+   "citations": 6,
+   "source": "openalex"
+  },
   "10.1109/tetc.2016.2593640": {
    "citations": 9,
    "source": "openalex"
@@ -184,6 +188,10 @@
    "citations": 13,
    "source": "openalex"
   },
+  "10.1145/2362374.2362381": {
+   "citations": 6,
+   "source": "openalex"
+  },
   "10.1145/2442116.2442125": {
    "citations": 42,
    "source": "openalex"
@@ -204,8 +212,16 @@
    "citations": 0,
    "source": "openalex"
   },
+  "10.14209/jcis.2005.10": {
+   "citations": 0,
+   "source": "openalex"
+  },
   "10.1561/1000000060": {
    "citations": 6,
+   "source": "openalex"
+  },
+  "10.29292/jics.v16i2.485": {
+   "citations": 3,
    "source": "openalex"
   },
   "10.29292/jics.v19i2.846": {
@@ -215,12 +231,16 @@
   "10.29292/jics.v19i3.907": {
    "citations": 0,
    "source": "openalex"
+  },
+  "10.29292/jics.v7i1.355": {
+   "citations": 0,
+   "source": "openalex"
   }
  },
- "dois_found": 55,
- "dois_resolved": 54,
- "generated": "2026-07-23T18:27:16Z",
- "total_citations": 1249,
+ "dois_found": 60,
+ "dois_resolved": 59,
+ "generated": "2026-07-23T19:06:14Z",
+ "total_citations": 1264,
  "unresolved": [
   "10.29292/jics.v21i2.1196"
  ]
