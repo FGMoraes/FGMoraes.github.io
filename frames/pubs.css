@@ -56,8 +56,9 @@ a:hover {  background: #ffc97c;  text-decoration:underline;  color: red }
 b { font-weight: bold;
  	color: green }
 
-.citations       { font-size: 0.85em; color: #555; }
-.citations.stale { color: #999; }
+
+.citations         { font-size: 0.85em; color: #555; }
+.citations.stale   { color: #999; }
 #citations-summary { font-size: 0.9em; color: #555; margin: 0 0 8px 0; }
 
 .top-menu-bar {
