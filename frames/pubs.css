@@ -58,6 +58,7 @@ b { font-weight: bold;
 
 .citations       { font-size: 0.85em; color: #555; }
 .citations.stale { color: #999; }
+#citations-summary { font-size: 0.9em; color: #555; margin: 0 0 8px 0; }
 
 .top-menu-bar {
   position: fixed; height: 90px; left: 0; top: 0; width: 100vw; z-index: 20;
