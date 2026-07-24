@@ -61,6 +61,11 @@ b { font-weight: bold;
 .citations.stale   { color: #999; }
 #citations-summary { font-size: 0.9em; color: #555; margin: 0 0 8px 0; }
 
+.year-marker {
+    background-color: #f26b18;
+    color: black;
+}
+
 .top-menu-bar {
   position: fixed; height: 90px; left: 0; top: 0; width: 100vw; z-index: 20;
   background: #ffffff;            /* cor que o Safari 26 amostra */
