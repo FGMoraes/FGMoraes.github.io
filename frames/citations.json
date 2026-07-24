@@ -319,13 +319,18 @@
    "citations": 0,
    "doi": "10.4018/978-1-4666-0912-9.ch014",
    "source": "openalex"
+  },
+  "http://doi.org/10.48550/arxiv.2007.07829": {
+   "citations": 5,
+   "doi": "10.48550/arxiv.2007.07829",
+   "source": "openalex"
   }
  },
- "dois_found": 65,
- "dois_resolved": 64,
+ "dois_found": 66,
+ "dois_resolved": 65,
  "dois_reused": 0,
- "generated": "2026-07-23T21:26:18Z",
- "total_citations": 1298,
+ "generated": "2026-07-24T13:02:39Z",
+ "total_citations": 1303,
  "unresolved": [
   "http://doi.org/10.29292/jics.v21i2.1196"
  ]
