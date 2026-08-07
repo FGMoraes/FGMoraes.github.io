@@ -1,0 +1,104 @@
+# SimVision Command Script (Wed Dec 11 10:52:45 AM -03 2024)
+#
+# Version 23.09.s013
+#
+# You can restore this configuration with:
+#
+#      xrun -f file_list.f -input wave.tcl
+#
+
+
+#
+# Preferences
+#
+preferences set plugin-enable-svdatabrowser-new 1
+preferences set plugin-enable-groupscope 0
+preferences set plugin-enable-interleaveandcompare 0
+preferences set plugin-enable-waveformfrequencyplot 0
+
+#
+# Simulator
+#
+database require simulator -hints {
+	simulator "xrun -f file_list.f -input wave.tcl"
+}
+
+#
+# Mnemonic Maps
+#
+mmap new  -reuse -name {Boolean as Logic} -radix %b -contents {{%c=FALSE -edgepriority 1 -shape low}
+{%c=TRUE -edgepriority 1 -shape high}}
+mmap new  -reuse -name {Example Map} -radix %x -contents {{%b=11???? -bgcolor orange -label REG:%x -linecolor yellow -shape bus}
+{%x=1F -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=2C -bgcolor red -label ERROR -linecolor white -shape EVENT}
+{%x=* -label %x -linecolor gray -shape bus}}
+
+#
+# Design Browser windows
+#
+if {[catch {window new WatchList -name "Design Browser 1" -geometry 730x500+465+96}] != ""} {
+    window geometry "Design Browser 1" 730x500+465+96
+}
+window target "Design Browser 1" on
+browser using {Design Browser 1}
+browser set -scope [subst  {simulator::[format {nanoCPU_TB}]} ]
+browser set \
+    -signalsort name
+browser yview see [subst  {simulator::[format {nanoCPU_TB}]} ]
+browser timecontrol set -lock 0
+
+#
+# Waveform windows
+#
+if {[catch {window new WaveWindow -name "Waveform 1" -geometry 1010x600+1104+174}] != ""} {
+    window geometry "Waveform 1" 1010x600+1104+174
+}
+window target "Waveform 1" on
+waveform using {Waveform 1}
+waveform sidebar visibility partial
+waveform set \
+    -primarycursor TimeA \
+    -signalnames name \
+    -signalwidth 175 \
+    -units ps \
+    -valuewidth 75
+waveform baseline set -time 0
+
+set id [waveform add -signals [subst  {
+	{simulator::[format {tb.CPU.inst[3:0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{simulator::[format {tb.CPU.reg_bank[0]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{simulator::[format {tb.CPU.reg_bank[1]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{simulator::[format {tb.CPU.reg_bank[2]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{simulator::[format {tb.CPU.reg_bank[3]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{simulator::[format {tb.memory[20]}]}
+	} ]]
+set id [waveform add -signals [subst  {
+	{simulator::[format {tb.memory[21]}]}
+	} ]]
+
+waveform xview limits 0 2000ps
+
+#
+# Waveform Window Links
+#
+
+#
+# Console windows
+#
+console set -windowname Console
+window geometry Console 730x250+261+564
+
+#
+# Layout selection
+#
+

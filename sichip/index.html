@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas Multiprocessados em Chip – Comunicação e Computação</title>
+  <link rel="icon" type="image/jpg" href="../figs/fer_icon.jpg">
+  <link href="../estilo_disciplina.css" rel="stylesheet" type="text/css">
+  <!-- Localizacao dos arquivos (repositorio, figuras, fotos): ver ../nsesd.js -->
+  <script src="../nsesd.js"></script>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <a class="home-link" href="../index.html" target="_top">
+        <img data-figs="home.png" alt="Página inicial">
+        Página inicial
+      </a>
+      <h1>Sistemas Multiprocessados em Chip – Comunicação e Computação</h1>
+      <p>Disciplina 198BR-02 · 2 créditos · Horário: 2AB, 8h00–09h30 · 2023/1</p>
+      <p>Professor: Fernando Gehm Moraes</p>
+    </header>
+
+    <nav class="quick-nav" aria-label="Navegação rápida">
+      <a href="#material">Material de apoio</a>
+      <a href="#cronograma">Cronograma</a>
+      <a href="#bibliografia">Bibliografia</a>
+      <a href="#avaliacao">Avaliação</a>
+      <a href="programa.pdf" target="_blank">Programa da disciplina</a>
+    </nav>
+
+    <section id="principal" class="content-grid">
+      <article class="section-card wide">
+        <div class="section-header">
+          <span class="icon">📘</span>
+          <div>
+            <h2>Objetivos</h2>
+            <p>Sistemas embarcados, comunicação intra-chip, barramentos, redes intra-chip e multiprocessamento.</p>
+          </div>
+        </div>
+        <ul class="link-list">
+        <ol>
+            <li> Compreender os mecanismos de comunicação utilizados em circuitos integrados. </li>
+            <li> Compreender a comunicação por barramentos, e dominar conceitos relacionados a barramentos padronizados. </li>
+            <li> Dominar o conceito de redes intra-chip (NoC), através do estudo de suas características arquiteturais e realização de estudo-de-caso de NoC modelada no nível RTL. </li>
+            <li> Dominar os conceitos relacionados a sistemas multiprocessadas-em-chip (many-cores). </li>
+            <li> Compreender as limitações relacionadas à dissipação de potências nos atuais many-cores (dark silicon) </li>
+            <li> Estudar os problemas relacionados à segurança em many-cores, e avaliar contramedidas implementadas no nível de hardware. </li>
+        </ol>
+        </ul>
+      </article>
+    </section>
+
+    <section id="material" class="content-grid" style="margin-top:22px;">
+      <article class="section-card">
+        <div class="section-header">
+          <span class="icon">🧩</span>
+          <div>
+            <h2>Barramentos</h2>
+            <p>Conceitos, protocolos padronizados, barramentos dedicados e potência em fios.</p>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="1bus/commbook_chap1and2.pdf"><span><span class="tag">Aula 1</span>Slides – Introdução a Barramentos</span></a></li>
+          <li><a href="1bus/cap1_introbus.pdf"><span><span class="tag">Texto</span>Capítulo 1 – Pasricha</span></a></li>
+          <li><a href="1bus/cap2_bus_basics.pdf"><span><span class="tag">Texto</span>Capítulo 2 – Pasricha</span></a></li>
+          <li><a href="1bus/cap3_bus_dedicados.pdf"><span><span class="tag">Aula 2</span>Capítulo 3 – Barramentos padronizados</span></a></li>
+          <li><a href="1bus/amba_axi_and_ace_protocol_spec.pdf"><span><span class="tag">Spec</span>AMBA, AXI and ACE Protocol Specification</span></a></li>
+          <li><a href="1bus/cap5_power.pdf"><span><span class="tag">Texto</span>Capítulo 5 – Power em fios</span></a></li>
+          <li><a href="1bus/aula03_cap8_bus_dedicados.pdf"><span><span class="tag">Aula 3</span>Slides – Barramentos Dedicados</span></a></li>
+          <li><a href="1bus/cap8_bus_dedicados.pdf"><span><span class="tag">Texto</span>Capítulo 8 – Barramentos Dedicados</span></a></li>
+          <li><a href="1bus/aula03_questoes.pdf"><span><span class="tag">Exercício</span>Questões sobre barramentos dedicados</span></a></li>
+        </ul>
+      </article>
+
+      <article class="section-card">
+        <div class="section-header">
+          <span class="icon">🌐</span>
+          <div>
+            <h2>NoCs</h2>
+            <p>Conceitos, topologias, algoritmos de roteamento, Hermes e artigos de referência.</p>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="2noc/intro_NoC.pdf"><span><span class="tag">Aula 4</span>Introdução a NoCs</span></a></li>
+          <li><a href="2noc/nocs_salminem_2007.pdf"><span><span class="tag">Artigo</span>On network-on-chip comparison</span></a></li>
+          <li><a href="2noc/odd-even.pdf"><span><span class="tag">Artigo</span>Algoritmo de roteamento Odd-Even</span></a></li>
+          <li><a href="2noc/hermes.pdf"><span><span class="tag">Hermes</span>Slides da rede Hermes</span></a></li>
+          <li><a href="2noc/codigo_hermes_simplificado.pdf"><span><span class="tag">Hermes</span>Código simplificado</span></a></li>
+          <li><a href="2noc/NOC_DESIGNS_SISCHIP.tar.gz"><span><span class="tag">Código</span>HERMES SIMON, HERMES 3D e testbenches</span></a></li>
+          <li><a href="2noc/Yoon_VCs_MPN.pdf"><span><span class="tag">Discussão</span>Artigo VCs e MPs</span></a></li>
+          <li><a href="2noc/Liu_MultiCS.pdf"><span><span class="tag">Discussão</span>Artigo Multi CS</span></a></li>
+          <li><a href="2noc/PANO_3D_NoC_Interposer.pdf"><span><span class="tag">Discussão</span>Artigo Interposers</span></a></li>
+          <li><a href="2noc/SBCCI_12_Pascal_Vivet_3D.pdf"><span><span class="tag">Tutorial</span>Pascal Vivet – NoC 3D e interposers</span></a></li>
+          <li><a href="2noc/low_diameter_noc.pdf"><span><span class="tag">2020</span>Low-Diameter On-Chip Networks</span></a></li>
+        </ul>
+      </article>
+
+      <article class="section-card">
+        <div class="section-header">
+          <span class="icon">📚</span>
+          <div>
+            <h2>Revisões e origem de NoC</h2>
+            <p>Leituras históricas e surveys sobre redes intra-chip.</p>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="2noc/2016_Evolution_of_Publications_NoCs.pdf"><span><span class="tag">Survey</span>Evolution of Publications in NoC Research</span></a></li>
+          <li><a href="2noc/2014_survey_nocs_kausal.pdf"><span><span class="tag">Survey</span>NoC Architecture and Routing Techniques</span></a></li>
+          <li><a href="2noc/2013_Survey_NoC_Tools.pdf"><span><span class="tag">Survey</span>Network-On-Chip Tools</span></a></li>
+          <li><a href="2noc/2012_survey_nocs_alonso.pdf"><span><span class="tag">Survey</span>NoC and Programming Models for MPSoC</span></a></li>
+          <li><a href="2noc/2009_survey_nocs_agarwal.pdf"><span><span class="tag">Survey</span>NoC Architectures & Contributions</span></a></li>
+          <li><a href="2noc/2006_survey_nocs_bjerregaard.pdf"><span><span class="tag">Survey</span>Research and Practices of NoC</span></a></li>
+          <li><a href="2noc/micro-network.pdf"><span><span class="tag">1992</span>Interconnections/micro-networks for integrated microelectronics</span></a></li>
+          <li><a href="2noc/benini.pdf"><span><span class="tag">2002</span>Networks on Chips: A New SoC Paradigm</span></a></li>
+          <li><a href="2noc/NoC15YEARLATER.pdf"><span><span class="tag">2017</span>Networks on Chips: 15 Years Later</span></a></li>
+        </ul>
+      </article>
+
+      <article class="section-card">
+        <div class="section-header">
+          <span class="icon">🖥️</span>
+          <div>
+            <h2>MPSoCs</h2>
+            <p>Many-cores, dark silicon, aceleradores de hardware, MEMPHIS e OVP.</p>
+          </div>
+        </div>
+        <ul class="link-list">
+          <li><a href="3mpsoc/introducao_mpsocs_moraes.pdf"><span><span class="tag">Intro</span>Introdução à MPSoC</span></a></li>
+          <li><a href="3mpsoc/aula09_wolf_mpsoc.pdf"><span><span class="tag">Artigo</span>Wolf – MPSoC Technology</span></a></li>
+          <li><a href="3mpsoc/aula10_dark_silicon1.pdf"><span><span class="tag">Dark Silicon</span>The EDA Challenges in the Dark Silicon Era</span></a></li>
+          <li><a href="3mpsoc/aula10_dark_silicon2.pdf"><span><span class="tag">Dark Silicon</span>New Trends in Dark Silicon</span></a></li>
+          <li><a href="3mpsoc/Accelerators_and_Coherence.pdf"><span><span class="tag">Aceleradores</span>Accelerators and Coherence</span></a></li>
+          <li><a href="3mpsoc/Domain_Specific_Hardware_Accelerators.pdf"><span><span class="tag">Aceleradores</span>Domain-Specific Hardware Accelerators</span></a></li>
+          <li><a href="3mpsoc/estudo_Domain_Specific_Hardware_Accelerators.pdf"><span><span class="tag">Questões</span>Estudo do artigo sobre aceleradores</span></a></li>
+          <li><a href="3mpsoc/MA-MemphisPresentation.pdf"><span><span class="tag">MEMPHIS</span>Plataforma MEMPHIS</span></a></li>
+        </ul>
+      </article>
+
+      <article class="section-card wide">
+        <div class="section-header">
+          <span class="icon">⚙️</span>
+          <div>
+            <h2>OVP – Open Virtual Platforms</h2>
+            <p>Materiais de apoio e trabalhos práticos com plataformas virtuais.</p>
+          </div>
+        </div>
+        <ul class="link-list two-columns">
+          <li><a href="4ovp/OVP_2023.pdf"><span><span class="tag">Aula</span>Introdução à OVP</span></a></li>
+          <li><a href="4ovp/Exemplo_Peripheral.zip"><span><span class="tag">Exemplo</span>Periférico OVP</span></a></li>
+          <li><a href="4ovp/ovp2021.tar"><span><span class="tag">Material</span>Exercícios de OVP</span></a></li>
+          <li><a href="4ovp/TA_Instructions_Counting.pdf"><span><span class="tag">T1</span>Contagem de instruções</span></a></li>
+          <li><a href="4ovp/Trabalho_OVP_InstructionCounting.zip"><span><span class="tag">T1</span>Material de apoio</span></a></li>
+          <li><a href="4ovp/TB_OVP_Peripheral.pdf"><span><span class="tag">T2</span>Periférico</span></a></li>
+          <li><a href="4ovp/Trabalho_OVP_Peripheral.zip"><span><span class="tag">T2</span>Material de apoio</span></a></li>
+          <li><a href="4ovp/TC_Sort_Shared_Memory.pdf"><span><span class="tag">T3</span>Parallel Sort</span></a></li>
+          <li><a href="4ovp/Trabalho_OVP_SortSharedMemory.zip"><span><span class="tag">T3</span>Material de apoio</span></a></li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="cronograma" class="content-grid" style="margin-top:22px;">
+      <article class="section-card wide">
+        <div class="section-header">
+          <span class="icon">📅</span>
+          <div>
+            <h2>Cronograma das aulas</h2>
+            <p>Organização resumida das aulas, leituras e atividades práticas.</p>
+          </div>
+        </div>
+        <ul class="link-list two-columns">
+          <li><a href="1bus/cap5_power.pdf"><span><span class="tag">06/03</span>Aula 1 – Introdução à comunicação intra-chip e barramentos</span></a></li>
+          <li><a href="1bus/aula03_questoes.pdf"><span><span class="tag">13/03</span>Aula 2 – AMBA e modelos de potência em barramentos</span></a></li>
+          <li><a href="1bus/aula03_cap8_bus_dedicados.pdf"><span><span class="tag">20/03</span>Aula 3 – Arquiteturas de barramento dedicadas</span></a></li>
+          <li><a href="2noc/intro_NoC.pdf"><span><span class="tag">27/03</span>Aula 4 – Conceitos de NoCs, roteamento e controle de fluxo</span></a></li>
+          <li><a href="2noc/odd-even.pdf"><span><span class="tag">03/04</span>Aula 5 – Roteamento Odd-Even e artigos recentes</span></a></li>
+          <li><a href="2noc/hermes.pdf"><span><span class="tag">10/04</span>Aula 6 – Rede HERMES e especificação do trabalho com NoC</span></a></li>
+          <li><a href="#cronograma"><span><span class="tag">17/04</span>Aula 7 – Desenvolvimento do trabalho com NoC</span></a></li>
+          <li><a href="#cronograma"><span><span class="tag">24/04</span>Aula 8 – Apresentação do trabalho com NoC</span></a></li>
+          <li><a href="3mpsoc/aula09_wolf_mpsoc.pdf"><span><span class="tag">08/05</span>Aula 9 – Introdução a MPSoC e discussão do artigo Wolf</span></a></li>
+          <li><a href="3mpsoc/aula10_dark_silicon1.pdf"><span><span class="tag">15/05</span>Aula 10 – Dark silicon</span></a></li>
+          <li><a href="3mpsoc/Accelerators_and_Coherence.pdf"><span><span class="tag">22/05</span>Aula 11 – Aceleradores de hardware</span></a></li>
+          <li><a href="3mpsoc/MA-MemphisPresentation.pdf"><span><span class="tag">29/05</span>Aula 12 – Plataforma MEMPHIS-V</span></a></li>
+          <li><a href="#cronograma"><span><span class="tag">05/06</span>Aula 13 – Desenvolvimento do trabalho com MEMPHIS-V</span></a></li>
+          <li><a href="#cronograma"><span><span class="tag">12/06</span>Aula 14 – Apresentação do trabalho com MEMPHIS-V</span></a></li>
+          <li><a href="4ovp/OVP_2023.pdf"><span><span class="tag">19/06</span>Aula 15 – Introdução à OVP</span></a></li>
+          <li><a href="4ovp/TB_OVP_Peripheral.pdf"><span><span class="tag">26/06</span>Aula 16 – Exercício com OVP e periféricos</span></a></li>
+          <li><a href="#cronograma"><span><span class="tag">03/07</span>Aula 17 – Apresentação da plataforma desenvolvida em OVP</span></a></li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="bibliografia" class="content-grid" style="margin-top:22px;">
+      <article class="section-card wide">
+        <div class="section-header">
+          <span class="icon">📖</span>
+          <div>
+            <h2>Bibliografia</h2>
+            <p>Referências principais para comunicação intra-chip, NoCs, MPSoCs e interconnection networks.</p>
+          </div>
+        </div>
+        <ul class="link-list">
+        <ol>
+            <li> Pasricha, S.; Dutt, N. "ON-CHIP COMMUNICATION ARCHITECTURES: SYSTEM ON CHIP INTERCONNECT". Morgan Kaufmann. 2008. 522p. </li>
+            <li> Duato, J.; Yalamanchili, S.; Ni, L. "INTERCONNECTION NETWORKS". Morgan Kaufmann. 2003. 600p </li>
+            <li> Jerraya, A.; Wolf, W. "MULTIPROCESSOR SYSTEMS-ON-CHIPS", Morgan Kaufmann, 2005, 581p. </li>
+            <li> Dally, W.; Towles, P. "PRINCIPLES AND PRACTICES OF INTERCONNECTION NETWORKS". Morgan Kaufmann. 2003. 600p. </li>
+            <li> Murali, S. “DESIGNING RELIABLE AND EFFICIENT NETWORKS ON CHIPS”. Springer. 2009. 198p. </li>
+            <li> Keckler, S.; Olukotun, K.; Hofstee, H. “MULTICORE PROCESSORS AND SYSTEMS”. Springer. 2009. 300p. </li>
+        </ol>
+      </article>
+    </section>
+
+    <section id="avaliacao" class="content-grid" style="margin-top:22px;">
+      <article class="section-card wide">
+        <div class="section-header">
+          <span class="icon">✅</span>
+          <div>
+            <h2>Avaliação</h2>
+            <p>Distribuição dos pesos das atividades da disciplina.</p>
+          </div>
+        </div>
+        <table>
+            <tr style="background-color:yellow;">
+                <th> 25% </th>
+                <th> 30% </th>
+                <th> 30% </th>
+                <th> 15% </th>
+            </tr>
+            <tr>
+                <td> Participação em Aula - leitura dos artigos </td>
+                <td> Trabalho prático com NoC </td>
+                <td> Trabalho prático com HeMPS </td>
+                <td> Trabalho prático com OVP </td>
+            </tr>
+        </table>
+      </article>
+    </section>
+
+
+
+    <p class="footer-note">Sistemas Multiprocessados em Chip – Comunicação e Computação · 2023/1</p>
+  </main>
+</body>
+</html>

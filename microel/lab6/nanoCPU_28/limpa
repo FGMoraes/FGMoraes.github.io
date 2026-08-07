@@ -1,0 +1,21 @@
+find . \(  -name 'layout'        -o      \
+           -name 'genus.cm*'     -o      \
+           -name 'genus.lo'      -o      \
+           -name 'innovus.*'     -o      \
+           -name '*.log*'        -o      \
+           -name '*.X'          -o      \
+           -name 'summaryReport' -o      \
+           -name '*.log'         -o      \
+           -name 'timing*'       -o      \
+           -name '.cadence'      -o      \
+           -name 'fv'            -o      \
+           -name 'xrun.*'        -o      \
+           -name 'waves.shm'     -o      \
+           -name 'xcelium.d'     -o      \
+           -name '.*.tstamp'    -o      \
+           -name 'nano.*'       -o      \
+           -name 'nano_pr.*'    -o      \
+           -name 'pb.ob'        -o      \
+           -name 'rep_busca_padrao.txt'     -o      \
+           -name 'busca.v'      -o      \
+           -name error \) -print -exec rm  -rf {} \;

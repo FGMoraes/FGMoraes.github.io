@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu &ndash; Fernando Gehm Moraes</title>
+
+<!-- Localizacao dos arquivos (repositorio, figuras, fotos): ver ../nsesd.js -->
+<script src="../nsesd.js"></script>
+
+     <style>
+
+          /* Esta pagina e' carregada dentro de um <object> de altura fixa
+             (--menu-h no pubs.css: 96px, e 104px abaixo de 700px). Ao mexer
+             no layout daqui, conferir se o conteudo ainda cabe naquela
+             altura -- o que passar disso e' cortado.                       */
+
+          body { margin: 0; }
+
+           .personalizar-select{
+             border: 1px solid  #003366;
+             border-radius: 5px;
+             color: blue;
+             font-family:  Roboto, "Helvetica Neue", Arial, sans-serif;
+             font-size: 9pt;
+             font-weight: bold;
+           }
+
+          /* barra de links: flexivel, quebra em varias linhas quando preciso */
+          .bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px 8px;
+            padding: 3px 6px;
+          }
+          .bar .home { flex: 0 0 auto; display: flex; align-items: center; }
+          .bar .home img { display: block; width: 25px; height: auto; }
+          /* largura era 190px fixo: estourava a tela do celular */
+          .bar > select { flex: 1 1 190px; width: 100%; max-width: 190px; min-width: 0; }
+
+          h2 {   background: #003366;
+                 font-family: Roboto, "Helvetica Neue", Arial,  sans-serif;
+                 font-weight: bold;
+                 font-size: 14pt;
+                 line-height: 1.15;
+                 margin: 4px 0 0;
+                 padding: 3px 12px;
+                 text-align: center;
+                 color:white;}
+
+          /* o @media do pubs.css nao alcanca este documento (esta dentro do
+             <object>); o titulo precisa da sua propria regra para larguras
+             pequenas, senao quebra em duas linhas e a segunda e' cortada */
+          @media (max-width: 700px) {
+            h2 { font-size: 11pt; padding: 3px 8px; }
+            /* grade fixa: home na coluna 1 (duas linhas) e 2 selects por linha */
+            .bar {
+              display: grid;
+              grid-template-columns: 28px 1fr 1fr;
+              gap: 4px 6px;
+            }
+            .bar .home { grid-row: 1 / span 2; }
+          }
+      </style>
+
+</head>
+
+ <body>
+
+        <div class="bar">
+             <a class="home" href="../index.html" target="_top">
+                 <img alt="Home" data-figs="home.png" width="25">
+             </a>
+
+             <select class="personalizar-select" onchange="go(this)" aria-label="Publication type">
+               <option value=""> Select Publication Type </option>
+               <option value="pub_journals.html">    Journals </option>
+               <option value="pub_conferences.html"> Conferences </option>
+               <option value="pub_reports.html">     Research Rep </option>
+               <option value="pub_monografias.html"> Monografias </option>
+             </select>
+
+             <select class="personalizar-select" onchange="go(this)" aria-label="Texts of advised students">
+               <option value=""> Text of Advised Students </option>
+               <option value="adv_thesis.html"> Thesis </option>
+               <option value="adv_master.html"> Dissertations </option>
+               <option value="adv_tcc.html">    TCC </option>
+             </select>
+
+             <select class="personalizar-select" onchange="go(this)" aria-label="Research">
+               <option value=""> Research </option>
+               <option value="http://dgp.cnpq.br/dgp/espelhogrupo/763059">    GAPH </option>
+               <option value="https://github.com/gaph-pucrs/RS5">             RS5 processor </option>
+               <option value="https://github.com/gaph-pucrs/Memphis-V">       Memphis-V </option>
+               <option value="../hemps/memphis.html">                         Memphis </option>
+             </select>
+
+             <select class="personalizar-select" onchange="go(this)" aria-label="My citations">
+               <option value=""> Go to My Citations </option>
+               <option value="https://orcid.org/0000-0001-6126-6847">                        Orcid </option>
+               <option value="https://scholar.google.com/citations?user=XNjum_8AAAAJ">       Google Scholar </option>
+               <option value="https://dblp.org/pid/m/FernandoGehmMoraes.html">               DBLP </option>
+               <option value="https://dl.acm.org/profile/81100359054">                       Acad. ACM </option>
+               <option value="https://www.scopus.com/authid/detail.uri?authorId=7005891217"> Scopus </option>
+               <option value="pub_bibbase.html"> BibBase </option>
+             </select>
+        </div>
+
+      <h2 id="menu-title"></h2>
+
+  <script>
+  (function(){
+  /* navega na janela de topo; devolve o select ao estado inicial */
+  window.go = function (sel) {
+    var url = sel.value;
+    sel.selectedIndex = 0;
+    if (url) window.top.location.href = new URL(url, window.location.href).href;
+  };
+
+  /* titulo da pagina que hospeda este menu: vem no ?title=... do <object> */
+  try {
+    var t = new URLSearchParams(window.location.search).get('title');
+    var el = document.getElementById('menu-title');
+    if (t && el) el.textContent = (t.length > 120 ? t.slice(0,120) + '…' : t);
+  } catch(e) {}
+})();
+  </script>
+
+ </body>
+</html>

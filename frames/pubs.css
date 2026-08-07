@@ -1,0 +1,138 @@
+/******************************** inicio dos estilos pubs ***************************/
+/* === Base: modern font stack (colors unchanged) === */
+:root{
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", Inter, Ubuntu, Cantarell, sans-serif;
+  --capa-w: 120px;          /* largura das capas: alterar aqui muda todas as entradas */
+  /* Altura da barra de topo. Medido no menu_top.html com o titulo mais longo
+     ("Monografias dos alunos orientado pelo Moraes"): 63px acima de 900px,
+     86px entre 700 e 860px (os selects quebram em duas linhas) e 93px abaixo
+     de 700px (titulo em duas linhas a 320px). Os valores abaixo tem folga. */
+  --menu-h: 96px;
+}
+body{font-family: var(--font-sans); line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering: optimizeLegibility;}
+
+/* A barra de topo e' fixa: o padding reserva o espaco dela no fluxo da pagina. */
+html, body { margin: 0; }
+body { padding-top: var(--menu-h); }
+
+/* (bloco h1 removido: nenhuma pagina que usa este css tem <h1>) */
+
+h2 {   background: #003366;
+       font-weight: bold;
+       font-size: 14pt;
+       color: white;
+       width: auto;              /* era 100vw: gerava barra de rolagem horizontal */
+       margin: 18px 0 8px;
+       padding: 6px 12px;
+       border-radius: 3px; }
+
+h3 {    font-weight: bold;
+        font-size: 11pt;
+        margin-left: 8pt;
+        color:green}
+
+th  {   font-size: 11pt;
+        height: 80px;
+        background-color:wheat;
+        color: red;
+        text-align: center;
+        border: 0px;
+        width: 35px; }
+
+table { border-collapse: collapse; }
+
+td {    vertical-align: top;      /* alinha o texto com a capa/foto da mesma linha */
+        padding: 8px 10px;
+        border: 0px; }
+
+tr + tr        { border-top: 1px solid #ececec; }
+tbody tr:hover { background: #fafbfd; }
+
+td, ol, li, a                      /* 'ul' removido: nao existe <ul> nestas paginas */
+     {  font-size:  10pt;
+        color: navy;
+     }
+
+ol, li { margin-top: 10px; margin-bottom: 10px; }
+
+/* 'height:auto' cancela o atributo height= do HTML, que em larguras
+   intermediarias deformava as imagens (a largura era limitada por
+   max-width e a altura continuava fixa). O tamanho pretendido volta
+   pelas classes .award/.photo abaixo, que respeitam a proporcao. */
+img { max-width: 100%; height: auto; }
+
+/* min-width impede que a coluna da capa seja esmagada quando a coluna de
+   texto ao lado disputa o espaco em telas estreitas */
+img.capa    { width: var(--capa-w); min-width: var(--capa-w); }
+img.award   { max-height: 150px; }                 /* faixa de premios (topo do adv_tcc) */
+/* min-width: piso para a coluna nao esmagar a miniatura em telas estreitas.
+   36px fica abaixo da largura natural de todas elas a 50px de altura, entao
+   nunca chega a forcar uma largura maior do que a proporcao pede. */
+img.award-s { max-height:  50px; min-width: 36px; } /* premio ao lado de cada entrada */
+img.photo   { max-height: 400px; }                 /* fotos de defesa */
+img.photo-s { max-height: 200px; }                 /* fotos de grupo */
+
+/* tabelas largas demais para o celular rolam dentro da propria caixa */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+A:LINK, A:VISITED { color: #3366FF ;  text-decoration: none; }
+
+a:hover {  background: #ffe3bd;  text-decoration:underline;  color: #b00020 }
+
+b { font-weight: bold;
+ 	color: green }
+
+
+.citations         { font-size: 0.85em; color: #555; }
+.citations.stale   { color: #999; }
+
+#citations-summary { font-size: 0.9em; color: #555; margin: 0 0 8px 8px;
+                     display: inline-block; padding: 3px 10px;
+                     background: #f2f5f9; border: 1px solid #dde3ea; border-radius: 12px; }
+/* sem dados (citations.json indisponivel) nao deixa uma "pilula" vazia na tela */
+#citations-summary:empty { display: none; }
+
+.year-marker {
+    background-color: #f26b18;
+    color: black;
+}
+
+.top-menu-bar {
+  position: fixed; height: var(--menu-h); left: 0; right: 0; top: 0; z-index: 20;
+  background: #ffffff;            /* cor que o Safari 26 amostra */
+  box-shadow: 0 1px 4px rgba(0,0,0,.25);
+}
+
+.top-menu-bar .menu-top-object {  /* o azul visível passa para cá */
+  display: block;
+  width: 100%;
+  height: var(--menu-h);
+  border: 0;
+  background: #003366;
+}
+
+/* corpo das paginas: fluxo normal, abaixo da barra fixa (era position:absolute) */
+.page-body { padding: 10px 8px 32px; }
+
+/* ancoras (#pr1..#pr6, #a2026, ...) nao ficam escondidas sob o menu fixo */
+[id]     { scroll-margin-top: calc(var(--menu-h) + 20px); }
+:target  { background: #fff6d9; }
+
+@media (max-width: 700px) {
+  :root { --menu-h: 104px;        /* o menu de topo passa a ocupar duas linhas */
+          --capa-w: 72px; }       /* capas menores: sobra largura para o texto */
+  h2 { font-size: 12pt; }
+  td, ol, li, a { font-size: 9.5pt; }
+  td { padding: 6px; }
+  .page-body { padding: 8px 6px 32px; }
+  /* tabelas de varias colunas: melhor rolar do que espremer as colunas */
+  .table-scroll > table { min-width: 600px; }
+}
+
+@media print {
+  .top-menu-bar, #filterBar, #btnReport { display: none !important; }
+  body { padding-top: 0; }
+  a { color: #000; text-decoration: none; }
+}
+
+/******************************** fim dos estilos das pubs ***************************/

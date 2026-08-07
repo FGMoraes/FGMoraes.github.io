@@ -1,0 +1,8 @@
+~/Downloads/limpa
+rm lab?.zip
+zip -r lab1.zip lab1
+zip -r lab2.zip lab2
+zip -r lab3.zip lab3
+zip -r lab4.zip lab4
+zip -r lab5.zip lab5
+zip -r lab6.zip lab6
