@@ -6,12 +6,10 @@
   <title>Fernando Gehm Moraes</title>
 
   <meta name="description" content="Fernando Gehm Moraes — Full Professor at PUCRS, Brazil. Research in RISC-V processors, Microelectronics, Manycores, NoCs, and Security.">
-  <link rel="icon" type="image/jpg" href="figs/fer_icon.jpg">
+  <link rel="icon" type="image/jpg" href="https://nsesd.pucrs.br/moraes/figs/fer_icon.jpg">
 
-  <!-- Localizacao dos arquivos (repositorio, figuras, fotos): ver nsesd.js.
-       Precisa vir ANTES do script abaixo, que percorre os links "http". -->
+  <!-- Localizacao dos arquivos (repositorio, figuras, fotos): ver nsesd.js.-->
   <script src="nsesd.js"></script>
-
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,116 +18,98 @@
   <script>
     "use strict";
 
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll('a[href^="http"]').forEach(a => {
-      a.setAttribute("target", "_blank");
-      a.setAttribute("rel", "noopener");
+    document.addEventListener("DOMContentLoaded", function () {
+
+      /* --- Links externos abrem em outra aba ---------------------------
+         Roda DEPOIS do nsesd.js (registrado antes), que ja converteu os
+         data-figs/data-fotos em href absolutos para nsesd.pucrs.br. */
+      document.querySelectorAll('a[href^="http"]').forEach(function (a) {
+        a.setAttribute("target", "_blank");
+        a.setAttribute("rel", "noopener");
       });
-   });
 
-   // --- Rotação: lista de Research Interests / foto do chip / word cloud ---
-   document.addEventListener("DOMContentLoaded", () => {
-     var slides = document.querySelectorAll('#riRotator .ri-slide');
-     if (!slides.length) { return; }
-     var idx = 0;
-     setInterval(function() {
-       idx = (idx + 1) % slides.length;
-       slides.forEach(function(el, j) {
-         el.classList.toggle('is-active', j === idx);
-       });
-     }, 3000);
-   });
+      /* --- Rotacao: Research Interests / foto do chip / word cloud ----- */
+      var slides = document.querySelectorAll('#riRotator .ri-slide');
+      if (slides.length) {
+        var idx = 0;
+        setInterval(function () {
+          idx = (idx + 1) % slides.length;
+          slides.forEach(function (el, j) { el.classList.toggle('is-active', j === idx); });
+        }, 3000);
+      }
 
-        // --- SCRIPT PARA MENU DROPDOWN RESPONSIVO ---
-        document.addEventListener('DOMContentLoaded', function() {
-            // Seleciona todos os itens de menu que são dropdowns
-            const dropdowns = document.querySelectorAll('.main-nav .dropdown');
+      /* --- Menu dropdown responsivo ----------------------------------- */
+      var nav       = document.querySelector('.main-nav');
+      var navToggle = document.querySelector('.nav-toggle');
 
-            dropdowns.forEach(function(dropdown) {
-                // Encontra o gatilho (o span ou link principal dentro do dropdown li)
-                const trigger = dropdown.querySelector('span, a');
-
-                if (trigger) {
-                    // O gatilho é um <span>: sem isto ele não recebe foco nem
-                    // responde ao teclado, e o menu fica inacessível sem mouse.
-                    if (trigger.tagName === 'SPAN') {
-                        trigger.setAttribute('role', 'button');
-                        trigger.setAttribute('tabindex', '0');
-                    }
-                    trigger.setAttribute('aria-expanded', 'false');
-
-                    trigger.addEventListener('click', function(event) {
-                        // Impede que o clique no link (se for um link) navegue imediatamente
-                        // Apenas se o dropdown tiver subitens.
-                        if (dropdown.classList.contains('dropdown')) {
-                            event.preventDefault();
-                        }
-
-                        // Verifica se o menu clicado já está aberto
-                        const isActive = dropdown.classList.contains('dropdown-active');
-
-                        // 1. Fecha todos os outros menus abertos
-                        closeAllDropdowns();
-
-                        // 2. Abre ou fecha o menu atual
-                        if (!isActive) {
-                            dropdown.classList.add('dropdown-active');
-                            trigger.setAttribute('aria-expanded', 'true');
-                        }
-                    });
-
-                    // Enter e barra de espaço abrem/fecham, como num <button>
-                    trigger.addEventListener('keydown', function(event) {
-                        if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
-                            event.preventDefault();
-                            trigger.click();
-                        }
-                    });
-                }
-            });
-
-            // Função para fechar todos os dropdowns abertos
-            function closeAllDropdowns() {
-                document.querySelectorAll('.main-nav .dropdown.dropdown-active').forEach(function(activeDropdown) {
-                    activeDropdown.classList.remove('dropdown-active');
-                    const t = activeDropdown.querySelector('span, a');
-                    if (t) t.setAttribute('aria-expanded', 'false');
-                });
-            }
-
-            // Esc fecha o menu e devolve o foco ao gatilho
-            document.addEventListener('keydown', function(event) {
-                if (event.key !== 'Escape') return;
-                const open = document.querySelector('.main-nav .dropdown.dropdown-active');
-                closeAllDropdowns();
-                if (open) {
-                    const t = open.querySelector('span, a');
-                    if (t && t.focus) t.focus();
-                }
-            });
-
-            // --- Botão hamburguer (telas estreitas) ---
-            const nav = document.querySelector('.main-nav');
-            const navToggle = document.querySelector('.nav-toggle');
-
-            if (nav && navToggle) {
-                navToggle.addEventListener('click', function() {
-                    const isOpen = nav.classList.toggle('nav-open');
-                    navToggle.setAttribute('aria-expanded', isOpen);
-                    if (!isOpen) closeAllDropdowns();
-                });
-            }
-
-            // Event listener global para fechar os menus ao clicar fora deles
-            document.addEventListener('click', function(event) {
-                // Verifica se o clique foi fora da área do menu de navegação
-                if (!event.target.closest('.main-nav')) {
-                    closeAllDropdowns();
-                    if (nav) nav.classList.remove('nav-open');
-                    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
+      function closeAllDropdowns() {
+        document.querySelectorAll('.main-nav .dropdown.dropdown-active').forEach(function (d) {
+          d.classList.remove('dropdown-active');
+          var t = d.querySelector('span, a');
+          if (t) t.setAttribute('aria-expanded', 'false');
         });
+      }
+
+      document.querySelectorAll('.main-nav .dropdown').forEach(function (dropdown) {
+        var trigger = dropdown.querySelector('span, a');
+        if (!trigger) return;
+
+        // O gatilho e um <span>: sem isto ele nao recebe foco nem responde
+        // ao teclado, e o menu fica inacessivel sem mouse.
+        if (trigger.tagName === 'SPAN') {
+          trigger.setAttribute('role', 'button');
+          trigger.setAttribute('tabindex', '0');
+        }
+        trigger.setAttribute('aria-expanded', 'false');
+
+        trigger.addEventListener('click', function (event) {
+          event.preventDefault();
+          var isActive = dropdown.classList.contains('dropdown-active');
+          closeAllDropdowns();
+          if (!isActive) {
+            dropdown.classList.add('dropdown-active');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+
+        // Enter e barra de espaco abrem/fecham, como num <button>
+        trigger.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+            event.preventDefault();
+            trigger.click();
+          }
+        });
+      });
+
+      // Esc fecha o menu e devolve o foco ao gatilho
+      document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Escape') return;
+        var open = document.querySelector('.main-nav .dropdown.dropdown-active');
+        closeAllDropdowns();
+        if (open) {
+          var t = open.querySelector('span, a');
+          if (t && t.focus) t.focus();
+        }
+      });
+
+      // Botao hamburguer (telas estreitas)
+      if (nav && navToggle) {
+        navToggle.addEventListener('click', function () {
+          var isOpen = nav.classList.toggle('nav-open');
+          navToggle.setAttribute('aria-expanded', isOpen);
+          if (!isOpen) closeAllDropdowns();
+        });
+      }
+
+      // Clique fora da navegacao fecha menu e submenus
+      document.addEventListener('click', function (event) {
+        if (event.target.closest('.main-nav')) return;
+        closeAllDropdowns();
+        if (nav) nav.classList.remove('nav-open');
+        if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+      });
+
+    });
   </script>
 
 <style>
@@ -141,7 +121,6 @@
           --secondary:#f0f4f8;
           --accent:#4a90e2;
           --text:#333;
-          --muted:#666;
           --wash:#f9f9f9;
           --border:#ddd;
           --radius:10px;
@@ -185,7 +164,7 @@
         /* =========================================================
            LAYOUT BASE
            ========================================================= */
-        .container { width: 95%;   max-width: 95%;    margin-inline: auto; }
+        .container { width:95%; margin-inline:auto; }
 
         section{ padding-block:var(--space-5); }
         section:nth-of-type(even){ background:#f4f7fa; }
@@ -213,8 +192,8 @@
         .site-header .header-content > :nth-child(2){ flex:2 1 0; } /* 50% */
         .site-header .header-content > :nth-child(3){ flex:1 1 0; } /* 25% */
 
-        .site-header .header-title{ text-align:center; }
-        .site-header .header-contact{ text-align:right; }
+        .site-header .header-title{ text-align:center; padding-inline:var(--space-3); }
+        .site-header .header-contact{ text-align:right; font-size:9pt; min-width:14rem; }
 
         .logos{
           --pucrs-h:80px;
@@ -225,18 +204,10 @@
         .logos img{ height:var(--pucrs-h); width:auto; }
         .logos img.logo--nota{ height:calc(var(--pucrs-h) * 1.3); }
 
-        .header-title{ flex:1; text-align:center; padding-inline:var(--space-3); }
         .header-title h1{ color:#fff; }
         .header-title p{ color:var(--secondary); }
         .header-title a{ color:#a9cfff; }
         .header-title a:hover{ color:#fff; }
-
-        .header-contact{
-          font-size:9pt;
-          text-align:right;
-          color:#fff;      
-          min-width:14rem;
-        }
 
         /* =========================================================
            NAVEGAÇÃO PRINCIPAL (sticky + dropdown)
@@ -405,7 +376,7 @@
         @media (max-width:64rem){
           .grid.cols-3,
           .grid.cols-4{ grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); }
-          .header-contact{ text-align:center; min-width:auto; }
+          .site-header .header-contact{ text-align:center; min-width:auto; }
           .dropdown-content{ position:static; box-shadow:none; border:none; }
           h1{ font-size:clamp(20pt,16pt + 2vw,24pt); }
           h2{ font-size:clamp(14pt,12pt + 1.2vw,18pt); }
@@ -432,14 +403,11 @@
           .header-title p{ font-size:9.5pt; }
           .site-header .header-contact{ font-size:8.5pt; text-align:center; }
 
-          /* Menu: horizontal -> vertical, aberto pelo botão */
+          /* Menu: horizontal -> vertical, aberto pelo botão.
+             O <ul> deixa de ser grid (none/block), logo nao precisa
+             redefinir colunas nem gap aqui. */
           .nav-toggle{ display:block; }
-          .main-nav ul{
-            display:none;
-            grid-template-columns:1fr;
-            column-gap:0;
-            justify-content:stretch;
-          }
+          .main-nav ul{ display:none; }
           .main-nav.nav-open ul{
             display:block;
             max-height:70vh;
@@ -485,7 +453,7 @@
    <div class="container header-content">
 
    <div class="logos">
-     <a href="https://portal.pucrs.br/">   <img class="logo--pucrs" alt="PUCRS" data-figs="pucrs.png">   </a>
+     <a href="https://portal.pucrs.br/">   <img alt="PUCRS" data-figs="pucrs.png">   </a>
      <a href="https://portal.pucrs.br/ensino/mestrado-e-doutorado/ciencia-da-computacao/">
        <img class="logo--nota" alt="PPGCC PUCRS rating" data-figs="puc_nota7.jpeg">   </a>
    </div>
@@ -560,7 +528,6 @@
              <a href="https://www.pucrs.br/politecnica/curso/engenharia-de-computacao/"> ECo -  Informações Gerais  </a>
              <a href="https://www.politecnica.pucrs.br/programas/"> ECo -   Disciplinas </a>
              <a href="https://www.pucrs.br/grade-corpo-docente/dados-do-curso/?slug=engenharia-de-computacao"> ECo -  PPC </a>
-
              <a href="https://biblioteca.pucrs.br/"> Biblioteca </a>
             </div>
      </li>
@@ -810,7 +777,7 @@
       </ul>
      </div>
 
-     <p class="last-update"> Last update: August 6, 2026 </p>
+     <p class="last-update"> Last update: August 7, 2026 (14:47) </p>
 
     </div>
    </section>
