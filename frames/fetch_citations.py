@@ -2,9 +2,10 @@
 """
 fetch_citations.py - gera citations.json com a contagem de citacoes por DOI.
 
-Le um ou mais arquivos HTML de publicacoes, extrai os DOIs das chamadas
-DOI('...') e dos links doi.org, consulta o OpenAlex (em lote) e, para os
-DOIs ausentes, o Crossref. Grava um JSON consumido por citations.js.
+Le um ou mais arquivos HTML de publicacoes, extrai os DOIs dos atributos
+data-doi="...", das chamadas DOI('...') e dos links doi.org, consulta o
+OpenAlex (em lote) e, para os DOIs ausentes, o Crossref. Grava um JSON
+consumido por citations.js.
 
 Uso:
     python3 fetch_citations.py pub_journals.html
@@ -35,6 +36,10 @@ RETRIES = 3
 PAUSE = 1.0              # segundos entre requisicoes
 MIN_RESOLVED_RATIO = 0.5  # abaixo disso o arquivo de saida nao e reescrito
 
+# <a data-doi="10.1109/TC.2026.3700461"></a>  -- formato atual das paginas
+DOI_ATTR_RE = re.compile(
+    r"""data-doi\s*=\s*['"]\s*(?:https?://(?:dx\.)?doi\.org/)?\s*(10\.[^'"\s>]+?)\s*['"]""",
+    re.IGNORECASE)
 # DOI('10.1109/TC.2026.3700461')  -- as aspas sao obrigatorias, o que impede
 # casar com a declaracao "function DOI(doi)" presente no cabecalho da pagina.
 DOI_CALL_RE = re.compile(r"""DOI\(\s*['"]\s*(10\.[^'"\s)]+?)\s*['"]\s*\)""")
@@ -69,7 +74,9 @@ def extract_dois(paths):
         except OSError as err:
             sys.stderr.write("aviso: nao foi possivel ler %s (%s)\n" % (path, err))
             continue
-        raws = DOI_CALL_RE.findall(html) + DOI_HREF_RE.findall(html)
+        raws = (DOI_ATTR_RE.findall(html)
+                + DOI_CALL_RE.findall(html)
+                + DOI_HREF_RE.findall(html))
         for raw in raws:
             doi = clean_doi(raw)
             if doi and doi not in known:

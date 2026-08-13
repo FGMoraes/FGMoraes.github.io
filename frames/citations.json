@@ -36,7 +36,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1007/s10617-024-09292-0": {
-   "citations": 0,
+   "citations": 1,
    "doi": "10.1007/s10617-024-09292-0",
    "source": "openalex"
   },
@@ -131,7 +131,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1109/access.2024.3416812": {
-   "citations": 15,
+   "citations": 17,
    "doi": "10.1109/access.2024.3416812",
    "source": "openalex"
   },
@@ -329,8 +329,8 @@
  "dois_found": 66,
  "dois_resolved": 65,
  "dois_reused": 0,
- "generated": "2026-07-24T13:02:39Z",
- "total_citations": 1303,
+ "generated": "2026-08-13T13:36:21Z",
+ "total_citations": 1306,
  "unresolved": [
   "http://doi.org/10.29292/jics.v21i2.1196"
  ]
