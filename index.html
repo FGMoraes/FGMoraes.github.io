@@ -346,6 +346,25 @@
           margin-inline-start:.5rem;
           display:inline;
         }
+        /* News + selo lateral: o selo fica numa coluna estreita a esquerda e a
+           caixa de noticias ocupa o espaco restante (empilhados no celular). */
+        .news-row{ display:flex; gap:var(--space-5); align-items:flex-start; }
+        .news-row .news-list{ flex:1 1 auto; min-width:0; }
+        .news-aside{ flex:0 0 11rem; margin:0; }
+        .news-aside img{
+          display:block;
+          width:100%;
+          border:1px solid var(--border);
+          border-radius:var(--radius);
+        }
+        .news-aside figcaption{
+          margin-top:var(--space-2);
+          font-size:8.5pt;
+          line-height:1.25;
+          color:#6a6a6a;
+          text-align:center;
+        }
+
         .last-update{ color:#6a6a6a; font-size:10pt; margin-top:var(--space-3); }
 
         /* =========================================================
@@ -390,6 +409,10 @@
 
         /* Dispositivos <= 48rem: header empilhado + menu vertical */
         @media (max-width:48rem){
+          /* selo do premio passa a ficar abaixo da caixa de noticias */
+          .news-row{ flex-direction:column; }
+          .news-aside{ flex:0 0 auto; order:2; align-self:center; max-width:10rem; }
+
           .site-header{ padding-block:var(--space-3); }
           .site-header .header-content{
             flex-direction:column;
@@ -748,8 +771,19 @@
    <section id="news">
     <div class="container">
      <h2> News </h2>
+     <div class="news-row">
+     <figure class="news-aside">
+      <a data-figs="premio_sbc.jpg" title="Pesquisador Homenageado da CE-CCSI/SBC, 2026">
+       <img data-figs="premio_sbc.jpg" alt="Pesquisador Homenageado da CE-CCSI/SBC, 2026">
+      </a>
+      <figcaption>Pesquisador Homenageado<br>CE-CCSI / SBC &mdash; 2026</figcaption>
+     </figure>
+
      <div aria-label="Latest news items" class="news-list" role="region">
       <ul>
+         <li>September/26 — <strong>Prêmio José Camargo da Costa</strong> — Concurso de Teses da SBMicro na área Projeto, CAD e Teste de Circuitos Integrados, SBMICRO — Angelo Elias Dal Zotto
+              <a data-figs="premio_angelo.jpeg"><img alt="Prêmio José Camargo da Costa" data-figs="premio_angelo.jpeg"/></a>
+         </li>
          <li>September/25 — GAPH group at Chip in the Jungle <a data-fotos="jungle.jpeg"><img data-fotos="jungle.jpeg" alt="SBCCI"/></a> &nbsp; and best paper
               <a data-figs="best_sbcci_Angelo.jpg"><img ALT=" " data-figs="best_sbcci_Angelo.jpg"></a> 
          </li>
@@ -784,7 +818,9 @@
       </ul>
      </div>
 
-     <p class="last-update"> Last update: August 8, 2026 (10:00) </p>
+     </div>
+
+     <p class="last-update"> Last update: September 12, 2026 (16:00) </p>
 
     </div>
    </section>
