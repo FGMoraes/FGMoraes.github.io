@@ -26,7 +26,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1007/s10617-019-09223-4": {
-   "citations": 32,
+   "citations": 33,
    "doi": "10.1007/s10617-019-09223-4",
    "source": "openalex"
   },
@@ -56,7 +56,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1016/j.mejo.2017.08.010": {
-   "citations": 20,
+   "citations": 21,
    "doi": "10.1016/j.mejo.2017.08.010",
    "source": "openalex"
   },
@@ -81,7 +81,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1016/j.vlsi.2004.03.003": {
-   "citations": 510,
+   "citations": 511,
    "doi": "10.1016/j.vlsi.2004.03.003",
    "source": "openalex"
   },
@@ -111,7 +111,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1109/access.2020.3000457": {
-   "citations": 24,
+   "citations": 25,
    "doi": "10.1109/access.2020.3000457",
    "source": "openalex"
   },
@@ -131,7 +131,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1109/access.2024.3416812": {
-   "citations": 17,
+   "citations": 19,
    "doi": "10.1109/access.2024.3416812",
    "source": "openalex"
   },
@@ -161,7 +161,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1109/mdt.2010.106": {
-   "citations": 148,
+   "citations": 149,
    "doi": "10.1109/mdt.2010.106",
    "source": "openalex"
   },
@@ -176,7 +176,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1109/tc.2012.123": {
-   "citations": 21,
+   "citations": 22,
    "doi": "10.1109/tc.2012.123",
    "source": "openalex"
   },
@@ -216,12 +216,12 @@
    "source": "openalex"
   },
   "http://doi.org/10.1109/tns.2024.3378807": {
-   "citations": 4,
+   "citations": 5,
    "doi": "10.1109/tns.2024.3378807",
    "source": "openalex"
   },
   "http://doi.org/10.1109/tns.2025.3585859": {
-   "citations": 0,
+   "citations": 1,
    "doi": "10.1109/tns.2025.3585859",
    "source": "openalex"
   },
@@ -271,7 +271,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1561/1000000060": {
-   "citations": 6,
+   "citations": 7,
    "doi": "10.1561/1000000060",
    "source": "openalex"
   },
@@ -329,8 +329,8 @@
  "dois_found": 66,
  "dois_resolved": 65,
  "dois_reused": 0,
- "generated": "2026-08-13T13:36:21Z",
- "total_citations": 1306,
+ "generated": "2026-09-13T15:36:28Z",
+ "total_citations": 1317,
  "unresolved": [
   "http://doi.org/10.29292/jics.v21i2.1196"
  ]
