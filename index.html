@@ -330,11 +330,14 @@
         /* Card só de imagem: sem padding, a figura encosta na borda.
            overflow:hidden para a imagem respeitar o border-radius. */
         .card--figure{ padding:0; overflow:hidden; }
-        .card--figure .ri-rotator{ display:grid; place-items:center; height:100%; }
-        /* cover: a figura preenche a caixa toda; o excedente e cortado. */
+        /* bloco (nao grid) com altura do card: numa linha de grid auto a
+           imagem crescia alem dos 210px e o overflow cortava na vertical. */
+        .card--figure .ri-rotator{ height:100%; }
+        /* contain: a figura inteira cabe na caixa, sem corte, em qualquer
+           largura; sobra faixa branca (fundo do card) no eixo que nao encosta. */
         .card--figure img.ri-slide{
           width:100%; height:100%; max-width:none; max-height:none;
-          object-fit:cover; object-position:center; margin:0;
+          object-fit:contain; object-position:center; margin:0;
         }
         /* substitui os <br> que antes ficavam soltos dentro do <ul> */
         ul.spaced li + li{ margin-top:var(--space-4); }
@@ -829,7 +832,7 @@
 
      </div>
 
-     <p class="last-update"> Last update: September 14, 2026 (09:00) </p>
+     <p class="last-update"> Last update: September 14, 2026 (09:26) </p>
 
     </div>
    </section>
