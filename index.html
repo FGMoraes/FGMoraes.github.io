@@ -321,6 +321,21 @@
         /* Ajustes específicos por seção */
         #research .card--tight ul{ padding-left:6px; }
         #about .card--tight ul li{ margin-left:6px; }
+        /* O último card do About só tem a foto/word cloud: coluna mais estreita,
+           a sobra vai para os três cards de texto. Só em telas largas; abaixo de
+           64rem vale o auto-fit da media query. */
+        @media (min-width:64.01rem){
+          #about .grid.cols-4{ grid-template-columns:repeat(3,1.13fr) .61fr; }
+        }
+        /* Card só de imagem: sem padding, a figura encosta na borda.
+           overflow:hidden para a imagem respeitar o border-radius. */
+        .card--figure{ padding:0; overflow:hidden; }
+        .card--figure .ri-rotator{ display:grid; place-items:center; height:100%; }
+        /* cover: a figura preenche a caixa toda; o excedente e cortado. */
+        .card--figure img.ri-slide{
+          width:100%; height:100%; max-width:none; max-height:none;
+          object-fit:cover; object-position:center; margin:0;
+        }
         /* substitui os <br> que antes ficavam soltos dentro do <ul> */
         ul.spaced li + li{ margin-top:var(--space-4); }
 
@@ -618,7 +633,7 @@
     <div class="container">
      <h2>   About Me   </h2>
 
-     <div class="grid cols-3">
+     <div class="grid cols-4">
 
       <article class="card card--tight">
           <h3> Academic Background </h3>
@@ -630,9 +645,8 @@
       </article>
 
       <article class="card card--tight">
-            <div class="ri-rotator" id="riRotator">
-                 <ul class="ri-slide is-active">           
-                    <h3>  Research Interests </h3>
+           <h3>  Research Interests </h3>
+                   <ul>
                       <li> RISC-V processors and Instruction Set Extensions (ISEs) </li>
                       <li> Microelectronics: digital ASIC design </li>
                       <li> Manycores and Networks‑on‑Chip (NoCs) </li>
@@ -641,17 +655,23 @@
                       <li> Rapid prototyping with FPGAs </li>
                       <li> Applications in telecommunications </li>
                   </ul>
-                  <img class="ri-slide" alt="Chip photo" data-figs="chip.jpeg"/>
-                  <img class="ri-slide" alt="Chip photo" data-figs="APCI_2025_PUCRS.jpg"/>
-                  <img class="ri-slide" alt="Word cloud banner" data-figs="wordcloud_2019-2026.png"/>
-            </div>
       </article>
-      
+
       <article class="card card--tight">
             <h3> Short CV </h3>
             <p> Fernando Moraes received the B.Sc. degree in electrical engineering and the M.Sc. degree from the Universidade Federal do Rio Grande do Sul (UFRGS), Porto Alegre, Brazil, in 1987 and 1990, respectively, and the Ph.D. degree from the <i> Laboratoire d’Informatique, Robotique et Microélectronique de Montpellier </i> (LIRMM), France, in 1994, with the distinction <i> Très Honorable avec Félicitations du Jury</i>. He has been a Full Professor at PUCRS since 2002, where he coordinated the Computer Engineering Course (2001–2006) and the Computer Science Graduate Program (2008–2010). He has advised 33 M.Sc. and 20 Ph.D. students, and co-advised 4 M.Sc. and 3 Ph.D. students. He served as Invited Professor at the <i> Université de Montpellier </i> in 1998, 1999, 2000, and 2017, and leads cooperation programs with French institutions, including RAISON and FORCINT. He maintains close cooperation with industry, coordinating projects with DATACOM and with EnSilica on the SoC-WiMed wireless medical-monitoring chip. He has authored or co-authored over 60 journal articles and 290 conference papers on VLSI design, covering many-cores, networks-on-chip (NoCs), RISC-V hardware acceleration, and machine-learning-driven security; one of these, "HERMES: An Infrastructure for Low Area Overhead Packet-Switching Networks on Chip", has over 800 citations. His current research interests include security and reliability in NoC-based many-cores, RISC-V instruction-set extensions for cryptography and machine learning, and hardware Trojan detection using lightweight ML models. Dr. Moraes serves on the program committees of SBCCI, ISVLSI, NOCS, and DATE, and has been an Associate Editor of the IEEE Transactions on Circuits and Systems II: Express Briefs since 2024. He is a member of SBC and SBMICRO, and a Senior Member of IEEE. [July 2026].
            </p>
       </article>
+
+      <article class="card card--tight card--figure">
+            <div class="ri-rotator" id="riRotator">
+                  <img class="ri-slide is-active" alt="Chip photo" data-figs="chip.jpeg"/>
+                  <img class="ri-slide" alt="Chip photo" data-figs="APCI_2025_PUCRS.jpg"/>
+                  <img class="ri-slide" alt="Chip photo" data-figs="chip_apci_pucrs.jpg"/>
+                  <img class="ri-slide" alt="Word cloud banner" data-figs="wordcloud_2019-2026b.png"/>
+            </div>
+      </article>
+      
 
      </div>
     </div>
@@ -809,7 +829,7 @@
 
      </div>
 
-     <p class="last-update"> Last update: September 13, 2026 (13:30) </p>
+     <p class="last-update"> Last update: September 14, 2026 (09:00) </p>
 
     </div>
    </section>
