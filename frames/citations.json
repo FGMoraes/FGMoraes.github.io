@@ -66,12 +66,12 @@
    "source": "openalex"
   },
   "http://doi.org/10.1016/j.sysarc.2016.01.005": {
-   "citations": 15,
+   "citations": 16,
    "doi": "10.1016/j.sysarc.2016.01.005",
    "source": "openalex"
   },
   "http://doi.org/10.1016/j.sysarc.2019.01.006": {
-   "citations": 16,
+   "citations": 17,
    "doi": "10.1016/j.sysarc.2019.01.006",
    "source": "openalex"
   },
@@ -81,7 +81,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1016/j.vlsi.2004.03.003": {
-   "citations": 511,
+   "citations": 519,
    "doi": "10.1016/j.vlsi.2004.03.003",
    "source": "openalex"
   },
@@ -106,7 +106,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1109/13.925805": {
-   "citations": 68,
+   "citations": 69,
    "doi": "10.1109/13.925805",
    "source": "openalex"
   },
@@ -161,7 +161,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1109/mdt.2010.106": {
-   "citations": 149,
+   "citations": 152,
    "doi": "10.1109/mdt.2010.106",
    "source": "openalex"
   },
@@ -176,7 +176,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.1109/tc.2012.123": {
-   "citations": 22,
+   "citations": 23,
    "doi": "10.1109/tc.2012.123",
    "source": "openalex"
   },
@@ -295,6 +295,11 @@
    "doi": "10.29292/jics.v1i1.254",
    "source": "openalex"
   },
+  "http://doi.org/10.29292/jics.v21i2.1196": {
+   "citations": 0,
+   "doi": "10.29292/jics.v21i2.1196",
+   "source": "openalex"
+  },
   "http://doi.org/10.29292/jics.v3i1.278": {
    "citations": 16,
    "doi": "10.29292/jics.v3i1.278",
@@ -306,7 +311,7 @@
    "source": "openalex"
   },
   "http://doi.org/10.29292/jics.v4i1.293": {
-   "citations": 4,
+   "citations": 5,
    "doi": "10.29292/jics.v4i1.293",
    "source": "openalex"
   },
@@ -327,11 +332,9 @@
   }
  },
  "dois_found": 66,
- "dois_resolved": 65,
+ "dois_resolved": 66,
  "dois_reused": 0,
- "generated": "2026-09-13T15:36:28Z",
- "total_citations": 1317,
- "unresolved": [
-  "http://doi.org/10.29292/jics.v21i2.1196"
- ]
+ "generated": "2026-10-07T20:11:50Z",
+ "total_citations": 1333,
+ "unresolved": []
 }
