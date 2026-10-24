@@ -20,7 +20,7 @@ connect_global_net gnd -type pg_pin -pin_base_name gnd -inst_base_name *
 connect_global_net vdd -type tie_hi -inst_base_name *
 connect_global_net gnd -type tie_lo -inst_base_name *
 
-##Generating square floorplan (1) with 80% of density (0.85) with 3um margins 
+##Generating square floorplan (1) with 85% of density (0.85) with 3um margins 
 create_floorplan -site CORE12T -core_density_size 1 0.85 3 3 3 3 
 
 gui_fit
