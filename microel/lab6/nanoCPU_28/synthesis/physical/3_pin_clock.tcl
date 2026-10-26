@@ -6,9 +6,9 @@ edit_pin -fix_overlap 1 -unit micron -spread_direction clockwise -side Top    -l
 edit_pin -fix_overlap 1 -unit micron -spread_direction clockwise -side Right  -layer 3 -spread_type center -spacing 1.0 -pin {dataR* dataW* ce we}
 set_db assign_pins_edit_in_batch false
 
-# posionamento
+# posicionamento
 place_opt_design
 
-## Clock tree synthesiscd 
+## Clock tree synthesis
 clock_opt_design 
  

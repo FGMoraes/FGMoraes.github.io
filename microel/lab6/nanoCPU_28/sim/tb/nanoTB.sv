@@ -1,6 +1,6 @@
 /*
  * 
- * TEST BEHNCH PARA A NANO CPU 
+ * TEST BENCH PARA A NANO CPU 
  * Fernando Gehm Moraes
  * 02/maio/2025
  * 

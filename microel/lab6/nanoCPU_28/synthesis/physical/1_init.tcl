@@ -1,7 +1,6 @@
 set_distributed_hosts -local
 set_multi_cpu_usage -local_cpu max -remote_host 1 -cpu_per_remote_host 28
 
-set TOP_MODULE nanoCPU
 
 set_db init_power_nets {vdd}
 set_db init_ground_nets {gnd}    

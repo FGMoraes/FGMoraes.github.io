@@ -1,5 +1,5 @@
 ********** LAB5 simulação de flip-flops **********
-** FERNANDO MORAES   -  PUCRS -  23/maio/2026  ***
+** FERNANDO MORAES   -  PUCRS -  26/outubro/2026  ***
 ******************* TSMC 28 nm *******************
 
 simulator lang=spectre insensitive=no
@@ -7,12 +7,12 @@ include "/soft64/spectre28/toplevel.scs"  section=top_tt
 simulator lang=spice
 
 ****************************************************************************************
-** TRANSITOR SIZING AND OUTPUT LOAD USED DURING THIS SIMULATION (NOT MODIFY)
+** TRANSISTOR SIZING AND OUTPUT LOAD USED DURING THIS SIMULATION (DO NOT MODIFY)
 ****************************************************************************************
 .param wn=0.15u wp=0.2u  CL=2fF
 
 ****************************************************************************************
-** BASIC GATES USED TO BUILD THE FLOPS  (NOT MODIFY)
+** BASIC GATES USED TO BUILD THE FLOPS  (DO NOT MODIFY)
 ****************************************************************************************
 .subckt inv in out  vcc
 MP1 out in vcc  vcc   pch_mac w=wp l=30n
@@ -105,13 +105,13 @@ X1 D q_latch CK nCK vcc latch
 C1 q_latch 0 CL
 
 **** circuit 2 - FLIP-FLOPS MASTER-SLAVE 
-.ic v(qE)=0 v(qT)=0 v(qP)=0 v(nqE)=1 v(nqT)=1 v(nqP)=1
+.ic v(qE)=0 v(qT)=0 v(qP)=0 v(nqE)=0.9 v(nqT)=0.9
 * X2  
 * X3  
 * X4  
 X5 CK clkG vcc clckg
 
-** the 3 flops are load by an inverter 
+** the 3 flops are loaded by an inverter 
 X22 qE qE2 vcc inv
 X33 qT qT2 vcc inv
 X44 qP qP2 vcc inv
@@ -131,8 +131,8 @@ C7 Q2 0 CL
 C8 Q3 0 CL
 
 ** circuit 4 – clock divider **************
-X6  nqD qD nqD CK nCK vcc ff_static
-C61 qD  0 clms
+* X6  nqD qD nqD CK nCK vcc ff_static
+* C61 qD  0 clms
 
 ******************************************************************
 **  SIMULATION CONTROL AND CLOCK/INPUT SOURCES
